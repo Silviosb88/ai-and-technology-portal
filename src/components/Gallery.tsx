@@ -76,7 +76,7 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
             {/* Filtro por Categoria */}
             <div class="mb-6">
               <h4 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Categorias</h4>
-              <div class="space-y-2">
+              <div class="category-filters-container space-y-2">
                 <button 
                   class={`category-filter w-full text-left px-3 py-2 mb-2 rounded-lg transition-colors flex items-center ${!currentCategory ? 'bg-ai-primary/10 text-ai-primary border border-ai-primary/20' : 'hover:bg-gray-100 text-gray-700'}`}
                   data-category=""
@@ -85,6 +85,7 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
                   <span class="font-medium flex-1">Todas as Categorias</span>
                 </button>
                 
+                {/* Categorias dinâmicas serão inseridas via JavaScript */}
                 {categories.map((category: any) => (
                   <button 
                     class={`category-filter w-full text-left px-3 py-2 mb-2 rounded-lg transition-colors flex items-center ${currentCategory === category.slug ? 'bg-ai-primary/10 text-ai-primary border border-ai-primary/20' : 'hover:bg-gray-100 text-gray-700'}`}
@@ -92,7 +93,7 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
                   >
                     <i class={`${category.icon} mr-2 flex-shrink-0`} style={`color: ${category.color}`}></i>
                     <span class="font-medium flex-1 min-w-0 truncate">{category.name}</span>
-                    <span class="text-xs text-gray-500 ml-2 flex-shrink-0">12</span>
+                    <span class="text-xs text-gray-500 ml-2 flex-shrink-0">{category.images_count || 0}</span>
                   </button>
                 ))}
               </div>

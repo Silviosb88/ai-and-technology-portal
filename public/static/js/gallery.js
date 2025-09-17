@@ -14,9 +14,25 @@ class GalleryManager {
 
     init() {
         this.bindEvents();
+        this.loadCategories(); // Carregar categorias primeiro
         this.loadImages();
         this.initLightbox();
         this.initUpload();
+        this.checkUrlParams(); // Verificar parâmetros da URL
+    }
+
+    checkUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Abrir modal de upload se parâmetro estiver presente
+        if (urlParams.get('upload') === 'true') {
+            setTimeout(() => {
+                this.openUploadModal();
+                // Remover parâmetro da URL sem recarregar a página
+                const newUrl = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, '', newUrl);
+            }, 500);
+        }
     }
 
     bindEvents() {
@@ -111,6 +127,51 @@ class GalleryManager {
         }
     }
 
+    async loadCategories() {
+        try {
+            const response = await fetch('/api/categories');
+            const data = await response.json();
+
+            if (data.success) {
+                this.updateCategoryFilters(data.data);
+            } else {
+                console.error('Erro ao carregar categorias:', data.error);
+            }
+        } catch (error) {
+            console.error('Erro ao carregar categorias:', error);
+        }
+    }
+
+    updateCategoryFilters(categories) {
+        const categoryContainer = document.querySelector('.category-filters-container');
+        if (!categoryContainer) return;
+
+        // Manter o botão "Todas as Categorias"
+        const allCategoriesBtn = categoryContainer.querySelector('[data-category=""]');
+        
+        // Remover categorias antigas (exceto "Todas")
+        categoryContainer.querySelectorAll('[data-category]:not([data-category=""])').forEach(btn => btn.remove());
+
+        // Adicionar novas categorias
+        categories.forEach(category => {
+            const button = document.createElement('button');
+            button.className = `category-filter w-full text-left px-3 py-2 mb-2 rounded-lg transition-colors flex items-center hover:bg-gray-100 text-gray-700`;
+            button.setAttribute('data-category', category.slug);
+            button.innerHTML = `
+                <i class="${category.icon} mr-2 flex-shrink-0" style="color: ${category.color}"></i>
+                <span class="font-medium flex-1 min-w-0 truncate">${category.name}</span>
+                <span class="text-xs text-gray-500 ml-2 flex-shrink-0">${category.images_count || 0}</span>
+            `;
+
+            // Bind evento
+            button.addEventListener('click', () => {
+                this.filterByCategory(category.slug);
+            });
+
+            categoryContainer.appendChild(button);
+        });
+    }
+
     renderImages(images) {
         const grid = document.getElementById('gallery-grid');
         const emptyState = document.getElementById('gallery-empty');
@@ -152,9 +213,9 @@ class GalleryManager {
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center space-x-2 text-white text-sm">
                                         <i class="fas fa-eye"></i>
-                                        <span>${this.formatNumber(image.view_count)}</span>
+                                        <span class="view-count">${this.formatNumber(image.view_count)}</span>
                                         <i class="fas fa-heart ml-2"></i>
-                                        <span>${this.formatNumber(image.like_count)}</span>
+                                        <span class="like-count">${this.formatNumber(image.like_count)}</span>
                                     </div>
                                     <div class="flex space-x-2">
                                         <button class="like-btn p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors backdrop-blur-sm" 
@@ -606,27 +667,119 @@ class GalleryManager {
 
     async toggleLike(imageId) {
         try {
-            // Implementar sistema de likes
-            showToast('Sistema de likes em desenvolvimento', 'info');
+            const response = await fetch(`/api/images/${imageId}/like`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Atualizar UI com novo contador
+                const likeElements = document.querySelectorAll(`[data-image-id="${imageId}"]`);
+                likeElements.forEach(element => {
+                    const likeCountSpan = element.querySelector('.like-count');
+                    if (likeCountSpan) {
+                        likeCountSpan.textContent = this.formatNumber(result.data.like_count);
+                    }
+                });
+
+                // Atualizar no array local
+                const imageIndex = this.currentImages.findIndex(img => img.id == imageId);
+                if (imageIndex !== -1) {
+                    this.currentImages[imageIndex].like_count = result.data.like_count;
+                }
+
+                showToast('❤️ Imagem curtida!', 'success');
+            } else {
+                showToast('Erro ao curtir imagem: ' + result.error, 'error');
+            }
         } catch (error) {
             console.error('Erro ao curtir imagem:', error);
-            showToast('Erro ao curtir imagem', 'error');
+            showToast('Erro de conexão ao curtir imagem', 'error');
         }
     }
 
-    shareImage(imageId) {
-        const image = this.currentImages.find(img => img.id == imageId);
-        if (image && navigator.share) {
-            navigator.share({
-                title: image.title,
-                text: image.description,
-                url: window.location.href + '#image-' + imageId
+    async shareImage(imageId) {
+        try {
+            const response = await fetch(`/api/images/${imageId}/share`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                const shareData = result.data;
+                
+                // Tentar usar API nativa de compartilhamento
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: shareData.title,
+                            text: shareData.description,
+                            url: shareData.url
+                        });
+                        showToast('🔗 Conteúdo compartilhado!', 'success');
+                    } catch (shareError) {
+                        // Usuário cancelou ou erro
+                        this.fallbackShare(shareData.url);
+                    }
+                } else {
+                    // Fallback para navegadores sem suporte
+                    this.fallbackShare(shareData.url);
+                }
+            } else {
+                showToast('Erro ao compartilhar: ' + result.error, 'error');
+            }
+        } catch (error) {
+            console.error('Erro ao compartilhar imagem:', error);
+            const image = this.currentImages.find(img => img.id == imageId);
+            if (image) {
+                this.fallbackShare(window.location.href + '#image-' + imageId);
+            }
+        }
+    }
+
+    fallbackShare(url) {
+        // Copiar URL para área de transferência
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('🔗 Link copiado para área de transferência!', 'success');
+            }).catch(() => {
+                this.showShareModal(url);
             });
         } else {
-            // Fallback - copiar URL
-            navigator.clipboard.writeText(window.location.href + '#image-' + imageId);
-            showToast('Link copiado para área de transferência!', 'success');
+            this.showShareModal(url);
         }
+    }
+
+    showShareModal(url) {
+        // Criar modal simples para compartilhamento
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4';
+        modal.innerHTML = `
+            <div class="bg-white rounded-lg p-6 max-w-md w-full">
+                <h3 class="text-lg font-semibold mb-4">Compartilhar Imagem</h3>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Link da imagem:</label>
+                    <input type="text" value="${url}" readonly 
+                           class="w-full p-2 border border-gray-300 rounded bg-gray-50 text-sm" 
+                           onclick="this.select()">
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button onclick="this.parentElement.parentElement.parentElement.remove()" 
+                            class="px-4 py-2 text-gray-600 hover:text-gray-800">Fechar</button>
+                    <button onclick="navigator.clipboard.writeText('${url}').then(() => { showToast('Link copiado!', 'success'); this.parentElement.parentElement.parentElement.remove(); })"
+                            class="px-4 py-2 bg-ai-primary text-white rounded hover:bg-ai-secondary">Copiar</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
     }
 }
 

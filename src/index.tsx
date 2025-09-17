@@ -442,8 +442,324 @@ app.get('/api/showcases/featured', async (c) => {
 })
 
 // =========================================
+// Upload de Imagens
+// =========================================
+
+app.post('/api/upload', async (c) => {
+  try {
+    if (!c.env?.DB) {
+      return c.json({ success: false, error: 'Database não disponível' }, 500)
+    }
+
+    const formData = await c.req.formData()
+    const file = formData.get('file') as File
+    
+    if (!file) {
+      return c.json({ success: false, error: 'Nenhum arquivo enviado' }, 400)
+    }
+
+    // Validar tipo de arquivo
+    if (!file.type.startsWith('image/')) {
+      return c.json({ success: false, error: 'Arquivo deve ser uma imagem' }, 400)
+    }
+
+    // Validar tamanho (10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      return c.json({ success: false, error: 'Arquivo muito grande (máx. 10MB)' }, 400)
+    }
+
+    // Obter metadados do formulário
+    const title = formData.get('title') as string
+    const description = formData.get('description') as string
+    const categoryId = parseInt(formData.get('category_id') as string)
+    const promptUsed = formData.get('prompt_used') as string
+    const aiModel = formData.get('ai_model') as string
+    const tags = formData.get('tags') as string
+    const isFeatured = formData.get('is_featured') === '1'
+
+    // Validar campos obrigatórios
+    if (!title || !categoryId) {
+      return c.json({ success: false, error: 'Título e categoria são obrigatórios' }, 400)
+    }
+
+    // Simular processamento de imagem (em produção, usar Cloudflare R2)
+    const fileExtension = file.name.split('.').pop() || 'jpg'
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExtension}`
+    
+    // URLs simuladas (em produção, seria o R2 bucket)
+    const imageUrl = `https://via.placeholder.com/800x600/6366f1/ffffff?text=${encodeURIComponent(title.substring(0, 20))}`
+    const thumbnailUrl = `https://via.placeholder.com/400x300/6366f1/ffffff?text=${encodeURIComponent(title.substring(0, 15))}`
+
+    // Inserir no banco D1
+    const insertResult = await c.env.DB.prepare(`
+      INSERT INTO ai_images (
+        title, description, prompt_used, ai_model, image_url, thumbnail_url,
+        file_size, file_format, category_id, is_featured, status, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+    `).bind(
+      title,
+      description || null,
+      promptUsed || null,
+      aiModel || null,
+      imageUrl,
+      thumbnailUrl,
+      file.size,
+      fileExtension,
+      categoryId,
+      isFeatured ? 1 : 0,
+      'pending' // Status inicial
+    ).run()
+
+    if (!insertResult.success) {
+      throw new Error('Falha ao salvar no banco de dados')
+    }
+
+    const imageId = insertResult.meta.last_row_id
+
+    // Processar tags se fornecidas
+    if (tags && tags.trim()) {
+      const tagList = tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0)
+      
+      for (const tagName of tagList) {
+        // Inserir tag se não existir
+        await c.env.DB.prepare(`
+          INSERT OR IGNORE INTO tags (name, slug, created_at) 
+          VALUES (?, ?, CURRENT_TIMESTAMP)
+        `).bind(tagName, tagName.toLowerCase().replace(/\s+/g, '-')).run()
+        
+        // Obter ID da tag
+        const tagResult = await c.env.DB.prepare(`
+          SELECT id FROM tags WHERE name = ?
+        `).bind(tagName).first<{ id: number }>()
+        
+        if (tagResult) {
+          // Associar tag à imagem
+          await c.env.DB.prepare(`
+            INSERT OR IGNORE INTO ai_image_tags (image_id, tag_id, created_at) 
+            VALUES (?, ?, CURRENT_TIMESTAMP)
+          `).bind(imageId, tagResult.id).run()
+          
+          // Incrementar contador de uso da tag
+          await c.env.DB.prepare(`
+            UPDATE tags SET usage_count = usage_count + 1 WHERE id = ?
+          `).bind(tagResult.id).run()
+        }
+      }
+    }
+
+    // Atualizar estatísticas globais
+    await c.env.DB.prepare(`
+      INSERT OR REPLACE INTO global_stats (stat_name, stat_value, updated_at) 
+      VALUES ('total_images', (SELECT COUNT(*) FROM ai_images), CURRENT_TIMESTAMP)
+    `).run()
+
+    // Retornar sucesso com dados da imagem
+    const newImage = await c.env.DB.prepare(`
+      SELECT ai.*, c.name as category_name, c.slug as category_slug
+      FROM ai_images ai
+      LEFT JOIN categories c ON ai.category_id = c.id
+      WHERE ai.id = ?
+    `).bind(imageId).first()
+
+    return c.json({
+      success: true,
+      message: 'Upload realizado com sucesso!',
+      data: {
+        id: imageId,
+        image: newImage,
+        status: 'pending_approval'
+      }
+    })
+
+  } catch (error) {
+    console.error('Erro no upload:', error)
+    return c.json({ 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Erro interno do servidor' 
+    }, 500)
+  }
+})
+
+// =========================================
+// Categorias Dinâmicas
+// =========================================
+
+app.get('/api/categories', async (c) => {
+  try {
+    if (!c.env?.DB) {
+      return c.json({ error: 'Database não disponível' }, 500)
+    }
+
+    const categories = await c.env.DB.prepare(`
+      SELECT c.*, 
+             COUNT(ai.id) as images_count,
+             COUNT(CASE WHEN ai.is_featured = 1 THEN 1 END) as featured_count
+      FROM categories c
+      LEFT JOIN ai_images ai ON c.id = ai.category_id AND ai.status = 'approved'
+      WHERE c.is_active = 1
+      GROUP BY c.id
+      ORDER BY c.sort_order ASC, c.name ASC
+    `).all()
+
+    return c.json({ success: true, data: categories.results || [] })
+  } catch (error) {
+    console.error('Erro ao buscar categorias:', error)
+    return c.json({ success: false, error: 'Erro interno do servidor' }, 500)
+  }
+})
+
+// =========================================
+// Ações de Imagens (Like, Share, Download)
+// =========================================
+
+app.post('/api/images/:id/like', async (c) => {
+  try {
+    if (!c.env?.DB) {
+      return c.json({ success: false, error: 'Database não disponível' }, 500)
+    }
+
+    const imageId = parseInt(c.req.param('id'))
+    if (isNaN(imageId)) {
+      return c.json({ success: false, error: 'ID inválido' }, 400)
+    }
+
+    // Por enquanto, apenas incrementar o contador (sem autenticação)
+    const result = await c.env.DB.prepare(`
+      UPDATE ai_images 
+      SET like_count = like_count + 1, updated_at = CURRENT_TIMESTAMP 
+      WHERE id = ? AND status = 'approved'
+    `).bind(imageId).run()
+
+    if (result.changes === 0) {
+      return c.json({ success: false, error: 'Imagem não encontrada' }, 404)
+    }
+
+    // Buscar contador atualizado
+    const image = await c.env.DB.prepare(`
+      SELECT like_count FROM ai_images WHERE id = ?
+    `).bind(imageId).first<{ like_count: number }>()
+
+    return c.json({ 
+      success: true, 
+      data: { 
+        liked: true, 
+        like_count: image?.like_count || 0 
+      }
+    })
+
+  } catch (error) {
+    console.error('Erro ao curtir imagem:', error)
+    return c.json({ success: false, error: 'Erro interno do servidor' }, 500)
+  }
+})
+
+app.post('/api/images/:id/share', async (c) => {
+  try {
+    if (!c.env?.DB) {
+      return c.json({ success: false, error: 'Database não disponível' }, 500)
+    }
+
+    const imageId = parseInt(c.req.param('id'))
+    if (isNaN(imageId)) {
+      return c.json({ success: false, error: 'ID inválido' }, 400)
+    }
+
+    // Incrementar contador de compartilhamentos
+    await c.env.DB.prepare(`
+      UPDATE ai_images 
+      SET share_count = share_count + 1, updated_at = CURRENT_TIMESTAMP 
+      WHERE id = ? AND status = 'approved'
+    `).bind(imageId).run()
+
+    // Buscar dados da imagem para compartilhamento
+    const image = await c.env.DB.prepare(`
+      SELECT title, description, image_url FROM ai_images WHERE id = ?
+    `).bind(imageId).first<{ title: string, description: string, image_url: string }>()
+
+    if (!image) {
+      return c.json({ success: false, error: 'Imagem não encontrada' }, 404)
+    }
+
+    const shareUrl = `${c.req.url.replace('/api/images/' + imageId + '/share', '/galeria#image-' + imageId)}`
+
+    return c.json({ 
+      success: true, 
+      data: {
+        title: image.title,
+        description: image.description,
+        url: shareUrl,
+        image_url: image.image_url
+      }
+    })
+
+  } catch (error) {
+    console.error('Erro ao compartilhar imagem:', error)
+    return c.json({ success: false, error: 'Erro interno do servidor' }, 500)
+  }
+})
+
+// =========================================
 // PÁGINAS DO PORTAL
 // =========================================
+
+// =========================================
+// NAVEGAÇÃO E ROTAS PRINCIPAIS
+// =========================================
+
+// Página Showcase (placeholder)
+app.get('/showcase', (c) => {
+  return c.render(
+    <Layout currentPage="showcase">
+      <div class="text-center py-12">
+        <div class="w-24 h-24 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-rocket text-white text-3xl"></i>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Hub de Showcase</h1>
+        <p class="text-xl text-gray-600 mb-6 max-w-2xl mx-auto">
+          Explore projetos incríveis da comunidade de IA. Descubra demonstrações, códigos e inovações.
+        </p>
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 max-w-md mx-auto">
+          <p class="text-sm text-gray-600 mb-4">🚧 Em desenvolvimento</p>
+          <a href="/galeria" class="ai-button-primary text-white px-6 py-3 rounded-lg font-semibold">
+            <i class="fas fa-images mr-2"></i>
+            Ver Galeria Enquanto Isso
+          </a>
+        </div>
+      </div>
+    </Layout>,
+    { title: 'Showcase de IAs' }
+  )
+})
+
+// Página Tutoriais (placeholder)
+app.get('/tutoriais', (c) => {
+  return c.render(
+    <Layout currentPage="tutoriais">
+      <div class="text-center py-12">
+        <div class="w-24 h-24 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-graduation-cap text-white text-3xl"></i>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Tutoriais Educativos</h1>
+        <p class="text-xl text-gray-600 mb-6 max-w-2xl mx-auto">
+          Aprenda IA do zero ao avançado com nossos tutoriais práticos e projetos guiados.
+        </p>
+        <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 max-w-md mx-auto">
+          <p class="text-sm text-gray-600 mb-4">📚 Em preparação</p>
+          <a href="/galeria" class="ai-button-primary text-white px-6 py-3 rounded-lg font-semibold">
+            <i class="fas fa-images mr-2"></i>
+            Explorar Galeria
+          </a>
+        </div>
+      </div>
+    </Layout>,
+    { title: 'Tutoriais' }
+  )
+})
+
+// Página Upload (redirect para galeria com modal)
+app.get('/upload', (c) => {
+  return c.redirect('/galeria?upload=true')
+})
 
 // Página da Galeria
 app.get('/galeria', async (c) => {

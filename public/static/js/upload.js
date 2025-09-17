@@ -310,51 +310,52 @@ class UploadManager {
         const finalTitle = this.selectedFiles.length > 1 ? `${title} - ${index + 1}` : title;
         
         formData.append('title', finalTitle);
-        formData.append('description', description);
+        formData.append('description', description || '');
         formData.append('category_id', category);
-        formData.append('prompt_used', prompt);
-        formData.append('ai_model', aiModel);
-        formData.append('tags', tags);
+        formData.append('prompt_used', prompt || '');
+        formData.append('ai_model', aiModel || '');
+        formData.append('tags', tags || '');
         formData.append('is_featured', isFeatured ? '1' : '0');
 
-        // Simular progresso (já que não temos endpoint real ainda)
-        await this.simulateUploadProgress(progressBar, index);
+        try {
+            // Simular progresso inicial
+            if (progressBar) {
+                const baseProgress = (index / this.selectedFiles.length) * 100;
+                progressBar.style.width = baseProgress + '%';
+            }
 
-        // TODO: Substituir por chamada real da API
-        // const response = await fetch('/api/images', {
-        //     method: 'POST',
-        //     body: formData
-        // });
-        
-        // if (!response.ok) {
-        //     throw new Error('Falha no upload');
-        // }
-        
-        console.log('Upload simulado para:', finalTitle);
+            // Fazer upload real
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                throw new Error(result.error || 'Falha no upload');
+            }
+
+            // Atualizar progresso para completo
+            if (progressBar) {
+                const finalProgress = ((index + 1) / this.selectedFiles.length) * 100;
+                progressBar.style.width = finalProgress + '%';
+            }
+
+            if (uploadStatus) {
+                uploadStatus.textContent = `Upload concluído: ${finalTitle}`;
+            }
+
+            console.log('Upload realizado com sucesso:', result.data);
+            return result.data;
+
+        } catch (error) {
+            console.error('Erro no upload:', error);
+            throw error;
+        }
     }
 
-    async simulateUploadProgress(progressBar, fileIndex) {
-        const totalFiles = this.selectedFiles.length;
-        const baseProgress = (fileIndex / totalFiles) * 100;
-        const fileProgress = 100 / totalFiles;
 
-        return new Promise((resolve) => {
-            let currentProgress = baseProgress;
-            const interval = setInterval(() => {
-                currentProgress += Math.random() * 10;
-                const finalProgress = Math.min(currentProgress, baseProgress + fileProgress);
-                
-                if (progressBar) {
-                    progressBar.style.width = finalProgress + '%';
-                }
-
-                if (finalProgress >= baseProgress + fileProgress) {
-                    clearInterval(interval);
-                    resolve();
-                }
-            }, 100);
-        });
-    }
 
     closeModal() {
         const modal = document.getElementById('upload-modal');
