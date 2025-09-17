@@ -78,21 +78,21 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
               <h4 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Categorias</h4>
               <div class="space-y-2">
                 <button 
-                  class={`category-filter w-full text-left px-3 py-2 rounded-lg transition-colors ${!currentCategory ? 'bg-ai-primary/10 text-ai-primary border border-ai-primary/20' : 'hover:bg-gray-100 text-gray-700'}`}
+                  class={`category-filter w-full text-left px-3 py-2 mb-2 rounded-lg transition-colors flex items-center ${!currentCategory ? 'bg-ai-primary/10 text-ai-primary border border-ai-primary/20' : 'hover:bg-gray-100 text-gray-700'}`}
                   data-category=""
                 >
-                  <i class="fas fa-th mr-2"></i>
-                  <span class="font-medium">Todas as Categorias</span>
+                  <i class="fas fa-th mr-2 flex-shrink-0"></i>
+                  <span class="font-medium flex-1">Todas as Categorias</span>
                 </button>
                 
                 {categories.map((category: any) => (
                   <button 
-                    class={`category-filter w-full text-left px-3 py-2 rounded-lg transition-colors ${currentCategory === category.slug ? 'bg-ai-primary/10 text-ai-primary border border-ai-primary/20' : 'hover:bg-gray-100 text-gray-700'}`}
+                    class={`category-filter w-full text-left px-3 py-2 mb-2 rounded-lg transition-colors flex items-center ${currentCategory === category.slug ? 'bg-ai-primary/10 text-ai-primary border border-ai-primary/20' : 'hover:bg-gray-100 text-gray-700'}`}
                     data-category={category.slug}
                   >
-                    <i class={`${category.icon} mr-2`} style={`color: ${category.color}`}></i>
-                    <span class="font-medium">{category.name}</span>
-                    <span class="text-xs text-gray-500 ml-auto float-right">12</span>
+                    <i class={`${category.icon} mr-2 flex-shrink-0`} style={`color: ${category.color}`}></i>
+                    <span class="font-medium flex-1 min-w-0 truncate">{category.name}</span>
+                    <span class="text-xs text-gray-500 ml-2 flex-shrink-0">12</span>
                   </button>
                 ))}
               </div>
@@ -101,26 +101,26 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
             {/* Filtro por Modelo de IA */}
             <div class="mb-6">
               <h4 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Modelo de IA</h4>
-              <div class="space-y-2">
-                <label class="flex items-center space-x-2">
-                  <input type="checkbox" class="ai-model-filter rounded text-ai-primary" value="DALL-E" />
-                  <span class="text-sm">DALL-E 3</span>
-                  <span class="text-xs text-gray-400 ml-auto">8</span>
+              <div class="space-y-3">
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="checkbox" class="ai-model-filter rounded text-ai-primary flex-shrink-0" value="DALL-E" />
+                  <span class="text-sm flex-1">DALL-E 3</span>
+                  <span class="text-xs text-gray-400 flex-shrink-0">8</span>
                 </label>
-                <label class="flex items-center space-x-2">
-                  <input type="checkbox" class="ai-model-filter rounded text-ai-primary" value="Midjourney" />
-                  <span class="text-sm">Midjourney v6</span>
-                  <span class="text-xs text-gray-400 ml-auto">15</span>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="checkbox" class="ai-model-filter rounded text-ai-primary flex-shrink-0" value="Midjourney" />
+                  <span class="text-sm flex-1">Midjourney v6</span>
+                  <span class="text-xs text-gray-400 flex-shrink-0">15</span>
                 </label>
-                <label class="flex items-center space-x-2">
-                  <input type="checkbox" class="ai-model-filter rounded text-ai-primary" value="Stable Diffusion" />
-                  <span class="text-sm">Stable Diffusion</span>
-                  <span class="text-xs text-gray-400 ml-auto">22</span>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="checkbox" class="ai-model-filter rounded text-ai-primary flex-shrink-0" value="Stable Diffusion" />
+                  <span class="text-sm flex-1">Stable Diffusion</span>
+                  <span class="text-xs text-gray-400 flex-shrink-0">22</span>
                 </label>
-                <label class="flex items-center space-x-2">
-                  <input type="checkbox" class="ai-model-filter rounded text-ai-primary" value="Leonardo" />
-                  <span class="text-sm">Leonardo AI</span>
-                  <span class="text-xs text-gray-400 ml-auto">6</span>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="checkbox" class="ai-model-filter rounded text-ai-primary flex-shrink-0" value="Leonardo" />
+                  <span class="text-sm flex-1">Leonardo AI</span>
+                  <span class="text-xs text-gray-400 flex-shrink-0">6</span>
                 </label>
               </div>
             </div>

@@ -302,11 +302,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar sistemas
     initMobileNavigation();
 
-    // Adicionar estilos CSS dinâmicos
+    // Adicionar estilos CSS dinâmicos (apenas para componentes não definidos em CSS)
     const style = document.createElement('style');
     style.textContent = `
         .toast-base {
-            @apply px-6 py-4 rounded-lg shadow-lg text-white transform translate-x-full transition-transform duration-300 border-l-4;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            color: white;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            border-left: 4px solid;
             max-width: 400px;
         }
         
@@ -314,20 +320,17 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: translateX(0);
         }
         
-        .nav-item {
-            @apply flex items-center space-x-3 px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all duration-200;
-        }
-        
-        .nav-item.active {
-            @apply bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-600 border-r-2 border-blue-500;
-        }
-        
-        .category-item {
-            @apply flex items-center space-x-3 px-3 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100 transition-colors duration-200;
-        }
-        
         .ai-card {
-            @apply bg-white rounded-xl shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f3f4f6;
+            transition: all 0.3s ease;
+        }
+        
+        .ai-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
         }
     `;
     document.head.appendChild(style);
