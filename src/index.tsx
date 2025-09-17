@@ -3,6 +3,9 @@ import { cors } from 'hono/cors'
 import { serveStatic } from 'hono/cloudflare-workers'
 import { renderer } from './renderer'
 import { Layout } from './components/Layout'
+import { Gallery } from './components/Gallery'
+import { Lightbox } from './components/Lightbox'
+import { UploadModal } from './components/UploadModal'
 import { ImageQueries, TutorialQueries, ShowcaseQueries, StatsQueries } from './utils/database'
 import type { Env } from './types/database'
 
@@ -435,6 +438,52 @@ app.get('/api/showcases/featured', async (c) => {
   } catch (error) {
     console.error('Erro ao buscar showcases em destaque:', error)
     return c.json({ success: false, error: 'Erro interno do servidor' }, 500)
+  }
+})
+
+// =========================================
+// PÁGINAS DO PORTAL
+// =========================================
+
+// Página da Galeria
+app.get('/galeria', async (c) => {
+  try {
+    // Buscar categorias e imagens em destaque
+    let categories = [];
+    let featuredImages = [];
+
+    if (c.env?.DB) {
+      // Buscar categorias
+      const categoriesQuery = await c.env.DB.prepare(`
+        SELECT * FROM categories 
+        WHERE is_active = 1 
+        ORDER BY sort_order ASC, name ASC
+      `).all();
+      categories = categoriesQuery.results || [];
+
+      // Buscar imagens em destaque
+      featuredImages = await ImageQueries.getFeatured(c.env.DB, 8);
+    }
+
+    return c.render(
+      <Layout currentPage="galeria">
+        <Gallery images={featuredImages} categories={categories} />
+        <Lightbox />
+        <UploadModal categories={categories} />
+      </Layout>,
+      { title: 'Galeria de IAs' }
+    )
+  } catch (error) {
+    console.error('Erro na página da galeria:', error);
+    return c.render(
+      <Layout currentPage="galeria">
+        <div class="text-center py-12">
+          <h1 class="text-2xl font-bold text-gray-900 mb-4">Erro ao carregar galeria</h1>
+          <p class="text-gray-600">Tente novamente em alguns instantes</p>
+        </div>
+      </Layout>,
+      { title: 'Erro - Galeria' }
+    )
   }
 })
 
