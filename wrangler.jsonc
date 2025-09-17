@@ -1,34 +1,38 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "webapp",
+  "name": "portal-educativo-ia",
   "compatibility_date": "2025-09-17",
   "pages_build_output_dir": "./dist",
   "compatibility_flags": [
     "nodejs_compat"
-  ]
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
+  ],
+  
+  // Banco de dados D1 para persistência
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "portal-ia-production",
+      "database_id": "placeholder-will-be-updated-after-creation"
+    }
+  ],
+  
+  // Variáveis de ambiente (será usado no deploy)
+  "vars": {
+    "ENVIRONMENT": "development",
+    "PORTAL_NAME": "Portal Educativo IA & Tecnologia"
+  }
+  
+  // Para futuras expansões:
   // "kv_namespaces": [
   //   {
-  //     "binding": "MY_KV_NAMESPACE",
+  //     "binding": "CACHE",
   //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   //   }
   // ],
   // "r2_buckets": [
   //   {
-  //     "binding": "MY_BUCKET",
-  //     "bucket_name": "my-bucket"
+  //     "binding": "IMAGES",
+  //     "bucket_name": "portal-ia-images"
   //   }
-  // ],
-  // "d1_databases": [
-  //   {
-  //     "binding": "MY_DB",
-  //     "database_name": "my-database",
-  //     "database_id": ""
-  //   }
-  // ],
-  // "ai": {
-  //   "binding": "AI"
-  // }
+  // ]
 }
