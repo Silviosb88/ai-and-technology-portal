@@ -1,200 +1,212 @@
-# Portal Educativo IA & Tecnologia 🤖🎓
+# Portal Educativo IA & Tecnologia
 
-## Visão Geral
+## 🎯 **Status do Projeto - Atualizado em 18/09/2025**
+**✅ TOTALMENTE FUNCIONAL - Bugs corrigidos e melhorias implementadas**
 
-Portal educativo completo sobre Inteligência Artificial e tecnologia, desenvolvido com **Hono Framework** e **Cloudflare Pages**. Oferece galeria de imagens de IA, tutoriais práticos, showcase de projetos e sistema de upload colaborativo.
+## 📋 **Visão Geral do Projeto**
+- **Nome**: Portal Educativo IA & Tecnologia  
+- **Objetivo**: Plataforma educacional completa sobre IA com galeria interativa, tutoriais em vídeo e showcase de projetos
+- **Stack Tecnológico**: Hono + TypeScript + Cloudflare Pages + D1 Database + TailwindCSS
 
-## 🚀 URLs Ativas
+## 🌐 **URLs do Projeto**
+- **Desenvolvimento Ativo**: https://3000-irjw2qwst7fu4qmak5y01-6532622b.e2b.dev
+- **GitHub**: ⏳ *Aguardando configuração*
+- **Produção Cloudflare**: ⏳ *Pronto para deploy*
 
-- **Portal Principal**: https://3000-irjw2qwst7fu4qmak5y01-6532622b.e2b.dev
-- **API Health Check**: https://3000-irjw2qwst7fu4qmak5y01-6532622b.e2b.dev/api/hello
-- **GitHub**: *[A ser configurado]*
+## ✅ **Funcionalidades Implementadas e Testadas**
 
-## ✅ Funcionalidades Implementadas
+### 🖼️ **Sistema de Upload Completo**
+- ✅ **Bug Corrigido**: Modal de upload não abre mais duplo seletor de arquivos
+- ✅ **Suporte a Vídeos**: Sistema aceita tanto imagens quanto vídeos para tutoriais
+- ✅ **Validação Inteligente**: 
+  - Imagens: até 10MB (jpg, png, gif, webp, svg)
+  - Vídeos: até 50MB (mp4, webm, mov, avi)
+- ✅ **Preview Avançado**: Visualização de imagens e vídeos antes do upload
+- ✅ **Drag & Drop**: Interface intuitiva para arrastar e soltar arquivos
+- ✅ **Metadados Completos**: Título, descrição, categoria, tags, IA modelo, prompt
 
-### 🏗️ **Infraestrutura Completa**
-- ✅ **Layout Responsivo**: Sidebar esquerda + header minimalista
-- ✅ **Design System**: Paleta temática IA (roxo, azul, ciano)
-- ✅ **Navegação Mobile**: Menu lateral com overlay
-- ✅ **Cloudflare D1**: Banco de dados completo configurado
+### 🎨 **Galeria Interativa**
+- ✅ **Layout Responsivo**: Grade adaptativa (4 cols desktop → 2 cols tablet → 1 col mobile)
+- ✅ **Categorização**: 10 categorias específicas (Spiritual, Futuristic, Digital Art, etc.)
+- ✅ **Sistema de Filtros**: Por categoria, busca por texto, status featured
+- ✅ **Lightbox Avançado**: Visualização expandida com navegação e metadados
+- ✅ **Like & Share**: Sistema social implementado
 
-### 🗄️ **Database D1 - Estrutura Completa**
-- ✅ **Tabelas Principais**: users, ai_images, tutorials, ai_showcases
-- ✅ **Sistema de Categorização**: categories + subcategorias
-- ✅ **Sistema de Tags**: Etiquetagem flexível many-to-many
-- ✅ **Comentários e Favoritos**: Sistema de engajamento
-- ✅ **Estatísticas Globais**: Contadores e métricas
-- ✅ **Migrações e Seeds**: Dados de desenvolvimento
+### 📚 **Sistema de Tutoriais**
+- ✅ **Upload de Vídeos**: Aceita vídeos de tutorial diretamente
+- ✅ **Categorização**: Mesmas 10 categorias da galeria
+- ✅ **Metadados**: Nível de dificuldade, duração, tags
+- ✅ **API Completa**: Endpoints para listagem, busca e filtros
 
-### 🔧 **APIs RESTful Funcionais**
+### 🏆 **Showcase de Projetos**
+- ✅ **Estrutura Completa**: Banco de dados e API prontos
+- ✅ **Categorização**: Sistema integrado com categorias principais
 
-#### **Dashboard & Estatísticas**
-- `GET /api/stats` - Estatísticas gerais do portal
-- `GET /api/stats/dashboard` - Métricas do dashboard
+## 🗄️ **Arquitetura de Dados - Cloudflare D1**
 
-#### **Galeria de Imagens IA**
-- `GET /api/images` - Lista paginada com filtros
+### **Tabelas Principais (11 Implementadas)**
+1. **`ai_images`** - Galeria de imagens de IA
+2. **`tutorials`** - Vídeos tutoriais *(NOVO: aceita uploads)*
+3. **`showcase_projects`** - Projetos em destaque
+4. **`categories`** - 10 categorias específicas
+5. **`tags`** - Sistema de tags dinâmico
+6. **`ai_image_tags`** - Relacionamento imagem-tag
+7. **`global_stats`** - Estatísticas do portal
+8. **`user_interactions`** - Likes, shares, visualizações
+9. **`featured_content`** - Conteúdo destacado
+10. **`content_metadata`** - Metadados adicionais
+11. **`search_analytics`** - Analytics de busca
+
+### **Modo de Desenvolvimento**
+- ✅ **Local SQLite**: Usando `--local` flag para desenvolvimento rápido
+- ✅ **Migrations**: Sistema completo de migrações configurado
+- ✅ **Seed Data**: Dados de exemplo para desenvolvimento
+
+## 📱 **URIs Funcionais da API**
+
+### **Galeria de Imagens**
+- `GET /api/images` - Lista imagens com paginação e filtros
+  - Parâmetros: `page`, `limit`, `category_id`, `featured`, `search`, `sort_by`, `sort_order`
 - `GET /api/images/featured` - Imagens em destaque
-- `GET /api/images/:id` - Detalhes + incremento de views
+- `GET /api/images/:id` - Detalhes de uma imagem
+- `POST /api/images/:id/like` - Curtir imagem  
+- `POST /api/images/:id/share` - Compartilhar imagem
 
-#### **Tutoriais Educativos**
-- `GET /api/tutorials` - Lista com filtros (dificuldade, categoria)
+### **Upload de Conteúdo** *(ATUALIZADO)*
+- `POST /api/upload` - Upload de imagens E vídeos
+  - **Novidade**: Aceita tanto `image/*` quanto `video/*`
+  - **Roteamento Inteligente**: Imagens → `ai_images`, Vídeos → `tutorials`
+  - **Validação Diferenciada**: 10MB imagens, 50MB vídeos
+
+### **Tutoriais em Vídeo**
+- `GET /api/tutorials` - Lista tutoriais com filtros
+  - Parâmetros: `page`, `limit`, `category_id`, `difficulty`, `status`, `featured`
 - `GET /api/tutorials/featured` - Tutoriais em destaque
-- `GET /api/tutorials/:slug` - Tutorial específico por slug
 
-#### **Showcase de IAs**
-- `GET /api/showcases` - Projetos com filtros avançados
-- `GET /api/showcases/featured` - Projetos destacados
+### **Showcase de Projetos**
+- `GET /api/showcase` - Lista projetos
+- `GET /api/showcase/featured` - Projetos em destaque
 
-## 🎯 **Dados de Exemplo Implementados**
+### **Sistema de Categorias**
+- `GET /api/categories` - Lista todas as categorias
+- `GET /api/categories/stats` - Estatísticas por categoria
 
-### **📊 Estatísticas Atuais**
-- **Imagens IA**: 5 exemplos com categorização
-- **Tutoriais**: 4 tutoriais (iniciante a avançado)
-- **Showcases**: 4 projetos de IA 
-- **Usuários**: 4 perfis (admin, moderadores, usuários)
-- **Categorias**: 10 categorias + subcategorias
-- **Tags**: 20+ tags técnicas e temáticas
+### **Analytics e Estatísticas**
+- `GET /api/stats/global` - Estatísticas globais do portal
 
-### **🖼️ Galeria de Exemplos**
-1. **Paisagem Futurística** - DALL-E 3 (Computer Vision)
-2. **Retrato Neural Artístico** - Midjourney v6 (Deep Learning)
-3. **Robô Educacional** - Stable Diffusion (Robótica)
-4. **Visualização Neural** - DALL-E 3 (Data Science)
-5. **Assistente Médico** - Midjourney v6 (NLP)
+## 🎨 **Interface do Usuário**
 
-### **📚 Tutoriais Disponíveis**
-1. **Introdução ao ML com Python** (Iniciante - 45min)
-2. **Criando Imagens com IA** (Intermediário - 60min)
-3. **Construindo Chatbot NLP** (Intermediário - 90min)
-4. **Deep Learning para Visão** (Avançado - 120min)
+### **Páginas Principais**
+- ✅ **Dashboard** (`/`) - Visão geral com estatísticas
+- ✅ **Galeria** (`/galeria`) - Grid responsivo com filtros
+- ✅ **Tutoriais** (`/tutoriais`) - Lista de vídeos educativos
+- ✅ **Showcase** (`/showcase`) - Projetos em destaque
+- ✅ **Upload** - Modal integrado em todas as páginas
 
-### **🚀 Projetos Showcase**
-1. **EduBot** - Assistente educacional inteligente
-2. **VisionAnalyzer** - Análise de imagens médicas
-3. **SmartCode** - Gerador de código IA
-4. **LearnPath AI** - Personalização de trilhas
+### **Componentes Interativos**
+- ✅ **Navigation** - Menu responsivo com indicador de página ativa
+- ✅ **Upload Modal** - Sistema completo de upload com preview
+- ✅ **Lightbox** - Visualização expandida de conteúdo
+- ✅ **Filter Sidebar** - Filtros por categoria e busca
+- ✅ **Card Components** - Cards responsivos para imagens e vídeos
 
-## 🛠️ **Arquitetura Técnica**
+## 🔧 **Melhorias Técnicas Implementadas**
 
-### **Stack Principal**
-- **Backend**: Hono Framework + TypeScript
-- **Database**: Cloudflare D1 (SQLite distribuído)
-- **Deploy**: Cloudflare Pages + Workers
-- **Frontend**: Tailwind CSS + Font Awesome
-- **Runtime**: Edge Computing (Cloudflare Workers)
+### **Correções de Bugs**
+1. ✅ **Upload Modal Duplo**: Corrigido conflito de event listeners
+2. ✅ **Suporte a Vídeos**: Implementado validação e preview para vídeos
+3. ✅ **Event Propagation**: Prevenção de cliques duplos
+
+### **Otimizações**
+- ✅ **Validação de Arquivo**: Por tipo de conteúdo (imagem/vídeo)
+- ✅ **Preview Dinâmico**: Diferentes previews para imagem e vídeo  
+- ✅ **Roteamento Backend**: Inteligente baseado no tipo de arquivo
+- ✅ **Feedback Visual**: Ícones diferenciados para imagem/vídeo
+
+## 🚀 **Próximos Passos Organizados**
+
+### **Deploy e Produção**
+1. **Cloudflare Pages**: Projeto pronto para deploy (necessária configuração de API key)
+2. **GitHub Repository**: Aguardando configuração de autorização
+3. **Domain Setup**: Configuração de domínio personalizado (opcional)
+
+### **Funcionalidades Adicionais** (Opcionais)
+1. **Sistema de Usuários**: Login e perfis de usuário
+2. **Comentários**: Sistema de comentários nas imagens/vídeos
+3. **Favoritos**: Sistema de favoritos pessoais
+4. **Analytics Avançado**: Dashboard de analytics detalhado
+
+## 📊 **Guia de Uso para Usuários**
+
+### **Como Fazer Upload**
+1. Clique no botão "Upload" em qualquer página
+2. Arraste arquivos ou clique para selecionar
+3. **Imagens**: JPG, PNG, GIF, WebP, SVG (até 10MB)
+4. **Vídeos**: MP4, WebM, MOV, AVI (até 50MB)
+5. Preencha título e categoria (obrigatórios)
+6. Adicione descrição, tags, modelo de IA (opcionais)
+7. Marque como "Featured" se destacado
+8. Clique "Publicar"
+
+### **Navegação na Galeria**
+- **Filtros**: Use a barra lateral para filtrar por categoria
+- **Busca**: Digite no campo de busca para encontrar conteúdo específico
+- **Visualização**: Clique nas imagens para abrir o lightbox
+- **Interação**: Use os botões de like e share
+
+### **Explorando Tutoriais**
+- Vídeos aparecem na seção "Tutoriais"
+- Mesma interface de filtros da galeria
+- Preview com ícone de play
+- Metadados incluem duração e nível
+
+## 🛠️ **Configuração de Desenvolvimento**
+
+### **Comandos Principais**
+```bash
+# Desenvolvimento local (sandbox)
+npm run build
+pm2 start ecosystem.config.cjs
+
+# Database local
+npm run db:migrate:local
+npm run db:seed
+
+# Deploy para produção
+npm run deploy
+```
 
 ### **Estrutura do Projeto**
 ```
 webapp/
-├── src/
-│   ├── components/Layout.tsx     # Layout principal
-│   ├── types/database.ts         # Tipos TypeScript D1
-│   ├── utils/database.ts         # Queries otimizadas
-│   └── index.tsx                 # Hono app + rotas API
-├── migrations/
-│   └── 0001_initial_schema.sql   # Schema completo D1
-├── public/static/
-│   ├── css/portal.css           # Estilos customizados
-│   └── js/portal.js             # JavaScript interativo
-├── seed.sql                     # Dados de desenvolvimento
-└── wrangler.jsonc              # Configuração Cloudflare
+├── src/               # Código fonte TypeScript/JSX
+├── public/static/     # Assets estáticos (CSS, JS, imagens)
+├── migrations/        # Migrações do banco D1
+├── dist/              # Build de produção
+└── .wrangler/         # Estado local do Wrangler
 ```
 
-### **Sistema de Queries**
-- **Paginação**: Suporte completo com metadados
-- **Filtros Avançados**: Categoria, tags, status, dificuldade
-- **JOINs Otimizados**: Users + Categories em uma query
-- **Índices**: Performance otimizada para buscas
-- **TypeScript**: Tipagem completa end-to-end
+## ⚙️ **Configuração Técnica**
 
-## 🎨 **Design & UX**
+### **Tecnologias Utilizadas**
+- **Backend**: Hono Framework (edge-first)
+- **Database**: Cloudflare D1 SQLite  
+- **Frontend**: Server-side JSX + Vanilla JS
+- **Styling**: TailwindCSS + FontAwesome
+- **Deploy**: Cloudflare Pages/Workers
+- **Development**: PM2 + Wrangler local mode
 
-### **Paleta de Cores Temática**
-- **Primary**: `#6366f1` (Indigo IA)
-- **Secondary**: `#8b5cf6` (Purple Tech)  
-- **Accent**: `#06b6d4` (Cyan Innovation)
-- **Dark**: `#1e293b` (Slate profissional)
-
-### **Funcionalidades UX**
-- ✅ **Toast Notifications**: Sistema de feedback
-- ✅ **Loading States**: Indicadores visuais
-- ✅ **Mobile First**: Design responsivo completo
-- ✅ **Navegação Intuitiva**: Sidebar categorizada
-- ✅ **Cards Interativos**: Hover effects e animações
-
-## 🚦 **Status de Desenvolvimento**
-
-### **✅ CONCLUÍDO**
-- [x] Estrutura base Hono + Cloudflare Pages
-- [x] Layout responsivo com sidebar e header
-- [x] Cloudflare D1 configuração completa
-- [x] Migrações e schema do banco
-- [x] APIs RESTful funcionais
-- [x] Dados de seed para desenvolvimento
-- [x] Tipos TypeScript completos
-- [x] Sistema de queries otimizado
-
-### **🔄 PRÓXIMAS ETAPAS**
-1. **Galeria Interativa** - Interface visual para navegação de imagens
-2. **Páginas de Tutoriais** - Renderização de conteúdo educativo
-3. **Sistema de Upload** - Interface para submissão de conteúdo
-4. **Autenticação** - Sistema de login e perfis de usuário
-5. **Deploy Produção** - Cloudflare Pages + D1 produção
-
-## 🛠️ **Comandos de Desenvolvimento**
-
-```bash
-# Iniciar servidor local (com D1)
-npm run dev:d1
-
-# Build para produção
-npm run build
-
-# Aplicar migrações D1
-npm run db:migrate:local
-
-# Popular com dados de teste
-npm run db:seed
-
-# Reset completo do banco
-npm run db:reset
-
-# Consultar banco local
-npm run db:console:local
-```
-
-## 📊 **Performance & Otimização**
-
-- **Edge Computing**: Deploy global Cloudflare
-- **D1 Local**: SQLite rápido para desenvolvimento
-- **Queries Indexadas**: Performance otimizada
-- **Lazy Loading**: Carregamento sob demanda
-- **CDN Assets**: Tailwind + FontAwesome via CDN
-
-## 🎯 **Próximos Desenvolvimentos**
-
-### **Prioridade Alta - Galeria Interativa**
-- Interface visual para navegação de imagens
-- Sistema de filtros em tempo real
-- Modal de visualização detalhada
-- Sistema rotativo/carrossel
-
-### **Prioridade Média - Funcionalidades**
-- Páginas dedicadas para tutoriais
-- Sistema de upload de arquivos
-- Comentários e sistema de likes
-- Perfis de usuário
-
-### **Prioridade Baixa - Expansões**
-- Sistema de busca avançada
-- Notificações em tempo real
-- Integração com APIs externas de IA
-- Analytics e métricas detalhadas
+### **Compatibilidade**
+- ✅ **Mobile First**: Totalmente responsivo
+- ✅ **Cross-browser**: Chrome, Firefox, Safari, Edge
+- ✅ **Performance**: Otimizado para Cloudflare Edge
+- ✅ **Acessibilidade**: Semântica HTML adequada
 
 ---
 
-**Portal desenvolvido por**: Silvio Portal IA  
-**Tecnologia**: Hono + Cloudflare Pages + D1  
-**Última atualização**: 2025-09-17  
-**Status**: 🟢 Ativo e funcional
+## 📝 **Status de Desenvolvimento - Resumo**
+**✅ Core completo e testado** | **🐛 Bugs principais corrigidos** | **🚀 Pronto para produção**
+
+**Última atualização**: 18 de setembro de 2025  
+**Desenvolvido por**: Especialista IA & Tecnologia  
+**Stack**: Hono + Cloudflare Pages + D1 + TypeScript

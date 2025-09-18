@@ -35,7 +35,8 @@ class UploadManager {
         const fileSelectBtn = document.getElementById('file-select-btn');
         
         if (fileSelectBtn) {
-            fileSelectBtn.addEventListener('click', () => {
+            fileSelectBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Evita propagação para o dropZone
                 if (fileInput) fileInput.click();
             });
         }
@@ -84,8 +85,12 @@ class UploadManager {
         // Handle dropped files
         dropZone.addEventListener('drop', (e) => this.handleDrop(e), false);
 
-        // Click to select files
-        dropZone.addEventListener('click', () => {
+        // Click to select files (only if not clicking the button)
+        dropZone.addEventListener('click', (e) => {
+            // Não ativar se clicou no botão file-select-btn ou seus filhos
+            if (e.target.closest('#file-select-btn')) {
+                return;
+            }
             const fileInput = document.getElementById('file-input');
             if (fileInput) fileInput.click();
         });
@@ -113,40 +118,53 @@ class UploadManager {
     }
 
     handleFileSelection(files) {
-        // Filtrar apenas imagens
-        const imageFiles = files.filter(file => {
-            return file.type.startsWith('image/');
+        // Filtrar imagens e vídeos
+        const validFiles = files.filter(file => {
+            return file.type.startsWith('image/') || file.type.startsWith('video/');
         });
 
-        if (imageFiles.length !== files.length) {
-            const invalidCount = files.length - imageFiles.length;
-            showToast(`${invalidCount} arquivo(s) não são imagens válidas`, 'warning');
+        if (validFiles.length !== files.length) {
+            const invalidCount = files.length - validFiles.length;
+            showToast(`${invalidCount} arquivo(s) não são suportados (apenas imagens e vídeos)`, 'warning');
         }
 
-        if (imageFiles.length === 0) {
-            showToast('Nenhuma imagem válida selecionada', 'error');
+        if (validFiles.length === 0) {
+            showToast('Nenhum arquivo válido selecionado (apenas imagens e vídeos)', 'error');
             return;
         }
 
-        // Verificar tamanho dos arquivos (10MB max)
-        const validFiles = imageFiles.filter(file => {
-            if (file.size > 10 * 1024 * 1024) { // 10MB
-                showToast(`${file.name} é muito grande (máx. 10MB)`, 'warning');
+        // Verificar tamanho dos arquivos (10MB para imagens, 50MB para vídeos)
+        const sizeValidFiles = validFiles.filter(file => {
+            const maxSize = file.type.startsWith('video/') ? 50 * 1024 * 1024 : 10 * 1024 * 1024; // 50MB vídeos, 10MB imagens
+            const maxSizeText = file.type.startsWith('video/') ? '50MB' : '10MB';
+            
+            if (file.size > maxSize) {
+                showToast(`${file.name} é muito grande (máx. ${maxSizeText})`, 'warning');
                 return false;
             }
             return true;
         });
 
-        if (validFiles.length === 0) {
+        if (sizeValidFiles.length === 0) {
             showToast('Nenhum arquivo atende aos critérios de tamanho', 'error');
             return;
         }
 
-        this.selectedFiles = validFiles;
+        this.selectedFiles = sizeValidFiles;
         this.showPreviews();
         this.updateUI();
         
-        showToast(`${validFiles.length} imagem(ns) selecionada(s)`, 'success');
+        const imageCount = sizeValidFiles.filter(f => f.type.startsWith('image/')).length;
+        const videoCount = sizeValidFiles.filter(f => f.type.startsWith('video/')).length;
+        let message = '';
+        if (imageCount > 0 && videoCount > 0) {
+            message = `${imageCount} imagem(ns) e ${videoCount} vídeo(s) selecionado(s)`;
+        } else if (imageCount > 0) {
+            message = `${imageCount} imagem(ns) selecionada(s)`;
+        } else {
+            message = `${videoCount} vídeo(s) selecionado(s)`;
+        }
+        showToast(message, 'success');
     }
 
     showPreviews() {
@@ -166,37 +184,75 @@ class UploadManager {
         grid.innerHTML = '';
 
         this.selectedFiles.forEach((file, index) => {
-            const reader = new FileReader();
+            const isVideo = file.type.startsWith('video/');
+            const previewElement = document.createElement('div');
+            previewElement.className = 'relative group';
             
-            reader.onload = (e) => {
-                const previewElement = document.createElement('div');
-                previewElement.className = 'relative group';
+            if (isVideo) {
+                // Preview para vídeos
+                const videoUrl = URL.createObjectURL(file);
                 previewElement.innerHTML = `
-                    <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                        <img src="${e.target.result}" 
-                             alt="Preview ${index + 1}" 
-                             class="w-full h-full object-cover">
+                    <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden relative">
+                        <video class="w-full h-full object-cover" muted>
+                            <source src="${videoUrl}" type="${file.type}">
+                        </video>
+                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-white text-3xl opacity-80"></i>
+                        </div>
                     </div>
                     <button class="remove-file absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100" 
                             data-file-index="${index}">
                         <i class="fas fa-times"></i>
                     </button>
-                    <div class="mt-1 text-xs text-gray-600 truncate">
+                    <div class="mt-1 text-xs text-gray-600 truncate flex items-center">
+                        <i class="fas fa-video text-blue-500 mr-1"></i>
                         ${file.name}
                     </div>
                     <div class="text-xs text-gray-400">
                         ${this.formatFileSize(file.size)}
                     </div>
                 `;
-
                 grid.appendChild(previewElement);
-
+                
                 // Bind remove button
                 const removeBtn = previewElement.querySelector('.remove-file');
-                removeBtn.addEventListener('click', () => this.removeFile(index));
-            };
-
-            reader.readAsDataURL(file);
+                removeBtn.addEventListener('click', () => {
+                    URL.revokeObjectURL(videoUrl);
+                    this.removeFile(index);
+                });
+            } else {
+                // Preview para imagens
+                const reader = new FileReader();
+                
+                reader.onload = (e) => {
+                    previewElement.innerHTML = `
+                        <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                            <img src="${e.target.result}" 
+                                 alt="Preview ${index + 1}" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <button class="remove-file absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100" 
+                                data-file-index="${index}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="mt-1 text-xs text-gray-600 truncate flex items-center">
+                            <i class="fas fa-image text-green-500 mr-1"></i>
+                            ${file.name}
+                        </div>
+                        <div class="text-xs text-gray-400">
+                            ${this.formatFileSize(file.size)}
+                        </div>
+                    `;
+    
+                    grid.appendChild(previewElement);
+    
+                    // Bind remove button
+                    const removeBtn = previewElement.querySelector('.remove-file');
+                    removeBtn.addEventListener('click', () => this.removeFile(index));
+                };
+    
+                reader.readAsDataURL(file);
+            }
         });
     }
 
@@ -206,9 +262,9 @@ class UploadManager {
         this.updateUI();
         
         if (this.selectedFiles.length === 0) {
-            showToast('Todas as imagens foram removidas', 'info');
+            showToast('Todos os arquivos foram removidos', 'info');
         } else {
-            showToast('Imagem removida', 'success');
+            showToast('Arquivo removido', 'success');
         }
     }
 
@@ -240,7 +296,7 @@ class UploadManager {
 
     async submitUpload() {
         if (this.selectedFiles.length === 0) {
-            showToast('Selecione pelo menos uma imagem', 'error');
+            showToast('Selecione pelo menos um arquivo', 'error');
             return;
         }
 

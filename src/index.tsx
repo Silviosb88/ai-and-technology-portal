@@ -458,14 +458,20 @@ app.post('/api/upload', async (c) => {
       return c.json({ success: false, error: 'Nenhum arquivo enviado' }, 400)
     }
 
-    // Validar tipo de arquivo
-    if (!file.type.startsWith('image/')) {
-      return c.json({ success: false, error: 'Arquivo deve ser uma imagem' }, 400)
+    // Validar tipo de arquivo (imagens e vídeos)
+    const isImage = file.type.startsWith('image/')
+    const isVideo = file.type.startsWith('video/')
+    
+    if (!isImage && !isVideo) {
+      return c.json({ success: false, error: 'Arquivo deve ser uma imagem ou vídeo' }, 400)
     }
 
-    // Validar tamanho (10MB)
-    if (file.size > 10 * 1024 * 1024) {
-      return c.json({ success: false, error: 'Arquivo muito grande (máx. 10MB)' }, 400)
+    // Validar tamanho (10MB para imagens, 50MB para vídeos)
+    const maxSize = isVideo ? 50 * 1024 * 1024 : 10 * 1024 * 1024
+    const maxSizeText = isVideo ? '50MB' : '10MB'
+    
+    if (file.size > maxSize) {
+      return c.json({ success: false, error: `Arquivo muito grande (máx. ${maxSizeText})` }, 400)
     }
 
     // Obter metadados do formulário
@@ -476,48 +482,82 @@ app.post('/api/upload', async (c) => {
     const aiModel = formData.get('ai_model') as string
     const tags = formData.get('tags') as string
     const isFeatured = formData.get('is_featured') === '1'
+    const contentType = isVideo ? 'video' : 'image'
 
     // Validar campos obrigatórios
     if (!title || !categoryId) {
       return c.json({ success: false, error: 'Título e categoria são obrigatórios' }, 400)
     }
 
-    // Simular processamento de imagem (em produção, usar Cloudflare R2)
-    const fileExtension = file.name.split('.').pop() || 'jpg'
+    // Simular processamento de arquivo (em produção, usar Cloudflare R2)
+    const fileExtension = file.name.split('.').pop() || (isVideo ? 'mp4' : 'jpg')
     const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExtension}`
     
     // URLs simuladas (em produção, seria o R2 bucket)
-    const imageUrl = `https://via.placeholder.com/800x600/6366f1/ffffff?text=${encodeURIComponent(title.substring(0, 20))}`
-    const thumbnailUrl = `https://via.placeholder.com/400x300/6366f1/ffffff?text=${encodeURIComponent(title.substring(0, 15))}`
+    let imageUrl, thumbnailUrl
+    
+    if (isVideo) {
+      // URLs simuladas para vídeo
+      imageUrl = `https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`
+      thumbnailUrl = `https://via.placeholder.com/400x300/dc2626/ffffff?text=${encodeURIComponent('Vídeo: ' + title.substring(0, 10))}`
+    } else {
+      // URLs simuladas para imagem
+      imageUrl = `https://via.placeholder.com/800x600/6366f1/ffffff?text=${encodeURIComponent(title.substring(0, 20))}`
+      thumbnailUrl = `https://via.placeholder.com/400x300/6366f1/ffffff?text=${encodeURIComponent(title.substring(0, 15))}`
+    }
 
-    // Inserir no banco D1
-    const insertResult = await c.env.DB.prepare(`
-      INSERT INTO ai_images (
-        title, description, prompt_used, ai_model, image_url, thumbnail_url,
-        file_size, file_format, category_id, is_featured, status, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
-    `).bind(
-      title,
-      description || null,
-      promptUsed || null,
-      aiModel || null,
-      imageUrl,
-      thumbnailUrl,
-      file.size,
-      fileExtension,
-      categoryId,
-      isFeatured ? 1 : 0,
-      'pending' // Status inicial
-    ).run()
+    // Determinar tabela de destino baseada no tipo de conteúdo
+    let insertResult
+    
+    if (isVideo) {
+      // Inserir na tabela tutorials para vídeos
+      insertResult = await c.env.DB.prepare(`
+        INSERT INTO tutorials (
+          title, description, video_url, thumbnail_url, file_size, file_format,
+          category_id, is_featured, status, created_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+      `).bind(
+        title,
+        description || null,
+        imageUrl, // video_url
+        thumbnailUrl,
+        file.size,
+        fileExtension,
+        categoryId,
+        isFeatured ? 1 : 0,
+        'published' // Status inicial para vídeos
+      ).run()
+    } else {
+      // Inserir na tabela ai_images para imagens
+      insertResult = await c.env.DB.prepare(`
+        INSERT INTO ai_images (
+          title, description, prompt_used, ai_model, image_url, thumbnail_url,
+          file_size, file_format, category_id, is_featured, status, created_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+      `).bind(
+        title,
+        description || null,
+        promptUsed || null,
+        aiModel || null,
+        imageUrl,
+        thumbnailUrl,
+        file.size,
+        fileExtension,
+        categoryId,
+        isFeatured ? 1 : 0,
+        'pending' // Status inicial para imagens
+      ).run()
+    }
 
     if (!insertResult.success) {
       throw new Error('Falha ao salvar no banco de dados')
     }
 
-    const imageId = insertResult.meta.last_row_id
+    const recordId = insertResult.meta.last_row_id
+    const tableName = isVideo ? 'tutorials' : 'ai_images'
 
-    // Processar tags se fornecidas
-    if (tags && tags.trim()) {
+    // Processar tags se fornecidas (apenas para imagens)
+    if (!isVideo && tags && tags.trim()) {
       const tagList = tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0)
       
       for (const tagName of tagList) {
@@ -537,7 +577,7 @@ app.post('/api/upload', async (c) => {
           await c.env.DB.prepare(`
             INSERT OR IGNORE INTO ai_image_tags (image_id, tag_id, created_at) 
             VALUES (?, ?, CURRENT_TIMESTAMP)
-          `).bind(imageId, tagResult.id).run()
+          `).bind(recordId, tagResult.id).run()
           
           // Incrementar contador de uso da tag
           await c.env.DB.prepare(`
@@ -548,26 +588,42 @@ app.post('/api/upload', async (c) => {
     }
 
     // Atualizar estatísticas globais
-    await c.env.DB.prepare(`
-      INSERT OR REPLACE INTO global_stats (stat_name, stat_value, updated_at) 
-      VALUES ('total_images', (SELECT COUNT(*) FROM ai_images), CURRENT_TIMESTAMP)
-    `).run()
+    if (isVideo) {
+      await c.env.DB.prepare(`
+        INSERT OR REPLACE INTO global_stats (stat_name, stat_value, updated_at) 
+        VALUES ('total_tutorials', (SELECT COUNT(*) FROM tutorials), CURRENT_TIMESTAMP)
+      `).run()
+    } else {
+      await c.env.DB.prepare(`
+        INSERT OR REPLACE INTO global_stats (stat_name, stat_value, updated_at) 
+        VALUES ('total_images', (SELECT COUNT(*) FROM ai_images), CURRENT_TIMESTAMP)
+      `).run()
+    }
 
-    // Retornar sucesso com dados da imagem
-    const newImage = await c.env.DB.prepare(`
+    // Retornar sucesso com dados do registro
+    const query = isVideo ? `
+      SELECT t.*, c.name as category_name, c.slug as category_slug
+      FROM tutorials t
+      LEFT JOIN categories c ON t.category_id = c.id
+      WHERE t.id = ?
+    ` : `
       SELECT ai.*, c.name as category_name, c.slug as category_slug
       FROM ai_images ai
       LEFT JOIN categories c ON ai.category_id = c.id
       WHERE ai.id = ?
-    `).bind(imageId).first()
+    `
+
+    const newRecord = await c.env.DB.prepare(query).bind(recordId).first()
 
     return c.json({
       success: true,
-      message: 'Upload realizado com sucesso!',
+      message: `${contentType === 'video' ? 'Vídeo' : 'Imagem'} enviado(a) com sucesso!`,
       data: {
-        id: imageId,
-        image: newImage,
-        status: 'pending_approval'
+        id: recordId,
+        type: contentType,
+        record: newRecord,
+        table: tableName,
+        status: isVideo ? 'published' : 'pending_approval'
       }
     })
 
