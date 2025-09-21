@@ -104,8 +104,11 @@ function filterGallery(category) {
 }
 
 function loadGalleryData() {
-    // Sample gallery data
-    galleryData = [
+    // Load uploaded images from Cloudinary
+    const uploadedImages = JSON.parse(localStorage.getItem('uploadedImages') || '[]');
+    
+    // Combine with sample data
+    const sampleData = [
         {
             id: 1,
             title: "Paisagem Cyberpunk Futurística",
@@ -167,6 +170,22 @@ function loadGalleryData() {
             shares: 29
         }
     ];
+    
+    // Convert uploaded images to gallery format
+    const convertedUploads = uploadedImages.map(img => ({
+        id: img.id,
+        title: img.title,
+        description: img.description || 'Imagem enviada pelo usuário',
+        category: img.category || 'digital-art',
+        image: img.url,
+        thumbnail: img.thumbnail,
+        likes: Math.floor(Math.random() * 50) + 10,
+        shares: Math.floor(Math.random() * 15) + 5,
+        isUploaded: true
+    }));
+    
+    // Combine uploaded and sample data
+    galleryData = [...convertedUploads, ...sampleData];
     
     renderGallery();
 }
@@ -349,35 +368,10 @@ function renderShowcase() {
     `).join('');
 }
 
-// Upload system (demonstration)
+// Upload system is now handled by upload-cloudinary.js
 function setupUploadSystem() {
-    const dropZone = document.getElementById('drop-zone');
-    
-    if (dropZone) {
-        // Drag and drop functionality
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropZone.addEventListener(eventName, preventDefaults, false);
-        });
-
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropZone.addEventListener(eventName, () => {
-                dropZone.classList.add('border-ai-primary', 'bg-ai-primary/5');
-                dropZone.classList.remove('border-gray-300');
-            }, false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropZone.addEventListener(eventName, () => {
-                dropZone.classList.remove('border-ai-primary', 'bg-ai-primary/5');
-                dropZone.classList.add('border-gray-300');
-            }, false);
-        });
-
-        dropZone.addEventListener('drop', handleDrop, false);
-        dropZone.addEventListener('click', () => {
-            alert('Sistema de upload implementado! ✅\\n\\n• Bug duplo clique corrigido\\n• Suporte a vídeos adicionado\\n• Validação inteligente por tipo\\n• Preview para imagem e vídeo');
-        });
-    }
+    // Upload system is initialized by CloudinaryUploadManager
+    console.log('Upload system initialized with Cloudinary');
 }
 
 function preventDefaults(e) {
