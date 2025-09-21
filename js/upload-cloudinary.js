@@ -331,7 +331,7 @@ class CloudinaryUploadManager {
 
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('upload_preset', 'unsigned_uploads'); // Fallback preset
+        formData.append('upload_preset', 'unsigned_uploads');
         
         try {
             if (progressBar) {
