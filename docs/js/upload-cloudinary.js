@@ -49,26 +49,13 @@ class CloudinaryUploadManager {
             });
         }
 
-        // Form submission (primary method)
+        // Form submission (primary and only method needed)
         const form = document.getElementById('upload-form');
         if (form) {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 console.log('Form submit event triggered');
                 this.submitUpload();
-            });
-        }
-        
-        // Direct button click (backup method)
-        const submitBtn = document.getElementById('upload-submit-btn');
-        if (submitBtn) {
-            submitBtn.addEventListener('click', (e) => {
-                console.log('Submit button click event triggered');
-                // Only prevent default if it's not inside a form or if form submission fails
-                if (submitBtn.type !== 'submit') {
-                    e.preventDefault();
-                    this.submitUpload();
-                }
             });
         }
     }
@@ -291,6 +278,13 @@ class CloudinaryUploadManager {
 
     async submitUpload() {
         console.log('submitUpload called');
+        
+        // Prevent multiple simultaneous uploads
+        if (this.isUploading) {
+            console.log('Upload already in progress, ignoring...');
+            return;
+        }
+        
         console.log('Selected files:', this.selectedFiles.length);
         
         if (this.selectedFiles.length === 0) {
@@ -413,11 +407,15 @@ class CloudinaryUploadManager {
     }
 
     closeModal() {
+        console.log('closeModal called');
         const modal = document.getElementById('upload-modal');
         if (modal) {
+            console.log('Closing modal...');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.body.style.overflow = '';
+        } else {
+            console.error('Upload modal not found!');
         }
         this.resetForm();
     }
