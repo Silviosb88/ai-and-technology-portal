@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal IA & Tecnologia - Apresentação MBA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            overflow-x: hidden;
+        }
+
+        .presentation {
+            display: none;
+        }
+
+        .presentation.active {
+            display: block;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .slide {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+            min-height: 80vh;
+            position: relative;
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: #4299e1;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .slide-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #4299e1, #805ad5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-subtitle {
+            font-size: 1.4rem;
+            color: #718096;
+            margin-bottom: 10px;
+        }
+
+        .slide-author {
+            font-size: 1rem;
+            color: #a0aec0;
+            font-style: italic;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #4299e1;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .card-text {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Statistics */
+        .stat-card {
+            background: linear-gradient(135deg, #4299e1, #805ad5);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Process Steps */
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .step-number {
+            background: #4299e1;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            color: #718096;
+        }
+
+        /* Architecture diagram */
+        .arch-container {
+            background: #f7fafc;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .service-box {
+            display: inline-block;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-width: 180px;
+        }
+
+        .service-genspark { border-left: 5px solid #4299e1; }
+        .service-github { border-left: 5px solid #48bb78; }
+        .service-cloudinary { border-left: 5px solid #ed8936; }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: rgba(255,255,255,0.9);
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #3182ce;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-indicator {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 0 20px;
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #cbd5e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #4299e1;
+            transform: scale(1.2);
+        }
+
+        /* Lists */
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li::before {
+            content: "✅";
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-controls {
+                bottom: 20px;
+                padding: 10px 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .presentation.active .slide {
+            animation: slideIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Título -->
+    <div class="presentation active" data-slide="1">
+        <div class="slide">
+            <div class="slide-number">1/8</div>
+            <div class="slide-header">
+                <h1 class="slide-title">🚀 Portal IA & Tecnologia</h1>
+                <p class="slide-subtitle">Solução Educacional Completa para MBA</p>
+                <p class="slide-author">Por Silvio - Analista de Informação & Pesquisador de Tecnologia</p>
+            </div>
+            
+            <div class="arch-container">
+                <h2 style="margin-bottom: 30px; color: #2d3748;">Triangulação de Serviços Gratuitos</h2>
+                <div>
+                    <div class="service-box service-genspark">
+                        <div style="font-size: 2rem;">🔧</div>
+                        <h3>GenSpark AI</h3>
+                        <p>Desenvolvimento</p>
+                    </div>
+                    <div style="display: inline-block; margin: 0 20px; font-size: 2rem;">↔</div>
+                    <div class="service-box service-github">
+                        <div style="font-size: 2rem;">🌐</div>
+                        <h3>GitHub Pages</h3>
+                        <p>Hospedagem</p>
+                    </div>
+                    <div style="display: inline-block; margin: 0 20px; font-size: 2rem;">↔</div>
+                    <div class="service-box service-cloudinary">
+                        <div style="font-size: 2rem;">☁️</div>
+                        <h3>Cloudinary</h3>
+                        <p>Storage</p>
+                    </div>
+                </div>
+                <div style="margin-top: 30px; font-size: 1.5rem; color: #48bb78; font-weight: 600;">
+                    Custo Total: R$ 0/mês
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Problema & Solução -->
+    <div class="presentation" data-slide="2">
+        <div class="slide">
+            <div class="slide-number">2/8</div>
+            <h1 class="slide-title">🎯 Problema & Solução</h1>
+            
+            <div class="grid-2">
+                <div class="card" style="border-left-color: #e53e3e;">
+                    <div class="card-icon">❌</div>
+                    <h2 class="card-title">Desafios MBA</h2>
+                    <ul class="feature-list">
+                        <li>Orçamento zero para projetos</li>
+                        <li>Necessidade de portals profissionais</li>
+                        <li>Falta de conhecimento técnico</li>
+                        <li>Tempo limitado para desenvolvimento</li>
+                        <li>Requisitos de escalabilidade</li>
+                    </ul>
+                </div>
+                
+                <div class="card" style="border-left-color: #38a169;">
+                    <div class="card-icon">✅</div>
+                    <h2 class="card-title">Nossa Solução</h2>
+                    <ul class="feature-list">
+                        <li>100% gratuito e funcional</li>
+                        <li>Interface profissional moderna</li>
+                        <li>Setup automatizado GenSpark</li>
+                        <li>Deploy em 90 minutos</li>
+                        <li>Escalável globalmente (CDN)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Funcionalidades -->
+    <div class="presentation" data-slide="3">
+        <div class="slide">
+            <div class="slide-number">3/8</div>
+            <h1 class="slide-title">⚡ Funcionalidades Implementadas</h1>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">🖼️</div>
+                    <h3 class="card-title">Galeria Responsiva</h3>
+                    <p class="card-text">Interface moderna com categorização, filtros e visualização em lightbox.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">📤</div>
+                    <h3 class="card-title">Upload Real</h3>
+                    <p class="card-text">Sistema completo de upload para nuvem com drag & drop e preview.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🎬</div>
+                    <h3 class="card-title">Multimídia</h3>
+                    <p class="card-text">Suporte completo a imagens e vídeos com otimização automática.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">📱</div>
+                    <h3 class="card-title">Responsivo</h3>
+                    <p class="card-text">Funciona perfeitamente em desktop, tablet e mobile.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🚀</div>
+                    <h3 class="card-title">Performance</h3>
+                    <p class="card-text">CDN global, carregamento rápido e 99.9% uptime garantido.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3 class="card-title">Segurança</h3>
+                    <p class="card-text">HTTPS automático, backup em Git e armazenamento seguro.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Arquitetura -->
+    <div class="presentation" data-slide="4">
+        <div class="slide">
+            <div class="slide-number">4/8</div>
+            <h1 class="slide-title">🏗️ Arquitetura da Solução</h1>
+            
+            <div class="grid-3">
+                <div class="card service-genspark">
+                    <div class="card-icon">🔧</div>
+                    <h3 class="card-title">GenSpark AI</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✅ IDE completa na nuvem</li>
+                        <li>✅ IA integrada para código</li>
+                        <li>✅ Node.js + Git + Terminal</li>
+                        <li>✅ Deploy direto GitHub</li>
+                        <li>✅ Sem configuração local</li>
+                    </ul>
+                </div>
+                
+                <div class="card service-github">
+                    <div class="card-icon">🌐</div>
+                    <h3 class="card-title">GitHub Pages</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✅ Hospedagem gratuita</li>
+                        <li>✅ Deploy automático</li>
+                        <li>✅ HTTPS + domínio custom</li>
+                        <li>✅ Controle de versão</li>
+                        <li>✅ Backup automático</li>
+                    </ul>
+                </div>
+                
+                <div class="card service-cloudinary">
+                    <div class="card-icon">☁️</div>
+                    <h3 class="card-title">Cloudinary</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✅ Upload real de mídia</li>
+                        <li>✅ 25GB gratuitos</li>
+                        <li>✅ Otimização automática</li>
+                        <li>✅ CDN mundial</li>
+                        <li>✅ URLs permanentes</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; padding: 30px; background: #f7fafc; border-radius: 15px;">
+                <h3 style="color: #2d3748; margin-bottom: 15px;">💡 Vantagem Competitiva</h3>
+                <p style="color: #4a5568; font-size: 1.1rem;">
+                    Integração perfeita entre desenvolvimento, hospedagem e storage - 
+                    uma solução enterprise com custo zero!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Métricas -->
+    <div class="presentation" data-slide="5">
+        <div class="slide">
+            <div class="slide-number">5/8</div>
+            <h1 class="slide-title">📊 Métricas & Performance</h1>
+            
+            <div class="grid-4">
+                <div class="stat-card">
+                    <div class="stat-value">R$ 0</div>
+                    <div class="stat-label">Custo Mensal</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">25GB</div>
+                    <div class="stat-label">Storage Gratuito</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">99.9%</div>
+                    <div class="stat-label">Uptime SLA</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">< 3s</div>
+                    <div class="stat-label">Carregamento</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">200+</div>
+                    <div class="stat-label">Países CDN</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">90min</div>
+                    <div class="stat-label">Tempo Setup</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">∞</div>
+                    <div class="stat-label">ROI</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">0h</div>
+                    <div class="stat-label">Manutenção/Mês</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <h3 style="color: #2d3748; margin-bottom: 20px;">📈 Escalabilidade Enterprise</h3>
+                <p style="color: #4a5568; font-size: 1.1rem; max-width: 800px; margin: 0 auto;">
+                    Infraestrutura robusta que suporta desde protótipos MBA até aplicações corporativas.
+                    Mesmo backend usado por startups unicórnio e empresas Fortune 500.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Processo -->
+    <div class="presentation" data-slide="6">
+        <div class="slide">
+            <div class="slide-number">6/8</div>
+            <h1 class="slide-title">🔄 Processo de Implementação</h1>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Cadastros (30min)</h3>
+                        <p>GenSpark AI + GitHub + Cloudinary - todos gratuitos</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Setup GenSpark (20min)</h3>
+                        <p>Clone do projeto base + instalação automática</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Configuração (30min)</h3>
+                        <p>Personalização Cloudinary + branding do portal</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Deploy (20min)</h3>
+                        <p>Push para GitHub + ativação GitHub Pages</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Testes (10min)</h3>
+                        <p>Validação completa + primeiro upload real</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #48bb78, #38a169); color: white; border-radius: 15px;">
+                <h3 style="margin-bottom: 15px;">⚡ Resultado Final</h3>
+                <p style="font-size: 1.1rem; opacity: 0.95;">
+                    Portal profissional funcionando, com upload real, 
+                    hospedado globalmente e pronto para apresentação!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Cases MBA -->
+    <div class="presentation" data-slide="7">
+        <div class="slide">
+            <div class="slide-number">7/8</div>
+            <h1 class="slide-title">🎓 Aplicações MBA</h1>
+            
+            <div class="grid-2">
+                <div>
+                    <h2 style="margin-bottom: 30px; color: #2d3748;">📚 Casos de Uso Acadêmico</h2>
+                    
+                    <div class="card" style="margin-bottom: 20px; border-left-color: #805ad5;">
+                        <h3 class="card-title">TCC/Dissertação</h3>
+                        <p class="card-text">Portfolio visual de metodologia, análise de dados, resultados e conclusões.</p>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 20px; border-left-color: #38a169;">
+                        <h3 class="card-title">Projeto Empresarial</h3>
+                        <p class="card-text">Documentação visual de diagnóstico, proposta, implementação e ROI.</p>
+                    </div>
+                    
+                    <div class="card" style="border-left-color: #ed8936;">
+                        <h3 class="card-title">Portfolio Profissional</h3>
+                        <p class="card-text">Galeria de projetos, certificações, conquistas e networking.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 style="margin-bottom: 30px; color: #2d3748;">💼 Casos de Uso Corporativo</h2>
+                    
+                    <div class="card" style="margin-bottom: 20px; border-left-color: #4299e1;">
+                        <h3 class="card-title">Marketing</h3>
+                        <p class="card-text">Campanhas visuais, análise de concorrência, cases de sucesso.</p>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 20px; border-left-color: #48bb78;">
+                        <h3 class="card-title">Recursos Humanos</h3>
+                        <p class="card-text">Onboarding visual, cultura organizacional, treinamentos.</p>
+                    </div>
+                    
+                    <div class="card" style="border-left-color: #805ad5;">
+                        <h3 class="card-title">Inovação</h3>
+                        <p class="card-text">Prototipagem, documentação técnica, cases de transformação digital.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; padding: 25px; background: #f0fff4; border: 2px solid #48bb78; border-radius: 15px;">
+                <h3 style="color: #2d3748; margin-bottom: 10px;">💡 Diferencial Competitivo</h3>
+                <p style="color: #4a5568;">
+                    <strong>Não é apenas um projeto técnico</strong> - é uma demonstração prática de 
+                    inovação, gestão de custos e implementação de soluções escaláveis.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Call to Action -->
+    <div class="presentation" data-slide="8">
+        <div class="slide">
+            <div class="slide-number">8/8</div>
+            <div style="text-align: center; padding: 40px 0;">
+                <h1 class="slide-title">🚀 Vamos Começar?</h1>
+                
+                <div style="max-width: 600px; margin: 0 auto 40px;">
+                    <p style="font-size: 1.3rem; color: #4a5568; line-height: 1.6; margin-bottom: 30px;">
+                        Transform sua ideia MBA em um portal profissional funcionando em apenas 90 minutos!
+                    </p>
+                </div>
+                
+                <div class="grid-3" style="margin-bottom: 40px;">
+                    <div class="card" style="text-align: center;">
+                        <div class="card-icon">📋</div>
+                        <h3 class="card-title">Documentação</h3>
+                        <p class="card-text">Guia completo passo-a-passo para replicação</p>
+                    </div>
+                    
+                    <div class="card" style="text-align: center;">
+                        <div class="card-icon">🎨</div>
+                        <h3 class="card-title">Template</h3>
+                        <p class="card-text">Código-fonte pronto para personalização</p>
+                    </div>
+                    
+                    <div class="card" style="text-align: center;">
+                        <div class="card-icon">🆘</div>
+                        <h3 class="card-title">Suporte</h3>
+                        <p class="card-text">Ajuda técnica para colegas de MBA</p>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 40px; border-radius: 20px;">
+                    <h2 style="margin-bottom: 20px;">📞 Próximos Passos</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: left;">
+                        <div>
+                            <h4 style="margin-bottom: 10px;">🔗 Recursos</h4>
+                            <p style="margin: 5px 0; opacity: 0.9;">• GitHub: projeto completo</p>
+                            <p style="margin: 5px 0; opacity: 0.9;">• Documentação técnica</p>
+                            <p style="margin: 5px 0; opacity: 0.9;">• Guia MBA específico</p>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">💬 Contato</h4>
+                            <p style="margin: 5px 0; opacity: 0.9;">• Email: suporte técnico</p>
+                            <p style="margin: 5px 0; opacity: 0.9;">• LinkedIn: networking</p>
+                            <p style="margin: 5px 0; opacity: 0.9;">• WhatsApp: grupo MBA</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.3);">
+                        <p style="font-style: italic; opacity: 0.9;">
+                            "Tecnologia aplicada à vida e às pessoas" - Silvio, Analista de Informação
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="previousSlide()" id="prevBtn">← Anterior</button>
+        <div class="slide-indicator" id="slideIndicator"></div>
+        <button class="nav-btn" onclick="nextSlide()" id="nextBtn">Próximo →</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function showSlide(slideNumber) {
+            // Hide all presentations
+            document.querySelectorAll('.presentation').forEach(p => p.classList.remove('active'));
+            
+            // Show current slide
+            document.querySelector(`[data-slide="${slideNumber}"]`).classList.add('active');
+            
+            // Update navigation
+            document.getElementById('prevBtn').disabled = slideNumber === 1;
+            document.getElementById('nextBtn').disabled = slideNumber === totalSlides;
+            
+            // Update indicators
+            updateIndicators(slideNumber);
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function goToSlide(slideNumber) {
+            currentSlide = slideNumber;
+            showSlide(currentSlide);
+        }
+
+        function createIndicators() {
+            const indicator = document.getElementById('slideIndicator');
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'indicator-dot';
+                if (i === 1) dot.classList.add('active');
+                dot.onclick = () => goToSlide(i);
+                indicator.appendChild(dot);
+            }
+        }
+
+        function updateIndicators(active) {
+            document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index + 1 === active);
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') previousSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'Escape') goToSlide(1);
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createIndicators();
+            showSlide(1);
+        });
+
+        // Auto-advance (optional - uncomment for demo mode)
+        // setInterval(() => {
+        //     if (currentSlide < totalSlides) nextSlide();
+        //     else goToSlide(1);
+        // }, 10000);
+    </script>
+</body>
+</html>
