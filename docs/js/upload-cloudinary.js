@@ -441,4 +441,19 @@ class CloudinaryUploadManager {
 // Initialize upload manager
 document.addEventListener('DOMContentLoaded', () => {
     window.cloudinaryUploadManager = new CloudinaryUploadManager();
+    console.log('Cloudinary Upload Manager initialized');
 });
+
+// Fallback initialization
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initManager);
+} else {
+    initManager();
+}
+
+function initManager() {
+    if (!window.cloudinaryUploadManager) {
+        window.cloudinaryUploadManager = new CloudinaryUploadManager();
+        console.log('Cloudinary Upload Manager initialized (fallback)');
+    }
+}
