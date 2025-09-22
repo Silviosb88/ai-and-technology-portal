@@ -49,12 +49,26 @@ class CloudinaryUploadManager {
             });
         }
 
-        // Form submission
+        // Form submission (primary method)
         const form = document.getElementById('upload-form');
         if (form) {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
+                console.log('Form submit event triggered');
                 this.submitUpload();
+            });
+        }
+        
+        // Direct button click (backup method)
+        const submitBtn = document.getElementById('upload-submit-btn');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', (e) => {
+                console.log('Submit button click event triggered');
+                // Only prevent default if it's not inside a form or if form submission fails
+                if (submitBtn.type !== 'submit') {
+                    e.preventDefault();
+                    this.submitUpload();
+                }
             });
         }
     }
@@ -276,24 +290,33 @@ class CloudinaryUploadManager {
     }
 
     async submitUpload() {
+        console.log('submitUpload called');
+        console.log('Selected files:', this.selectedFiles.length);
+        
         if (this.selectedFiles.length === 0) {
+            console.log('No files selected');
             this.showToast('Selecione pelo menos um arquivo', 'error');
             return;
         }
 
         const title = document.getElementById('upload-title')?.value.trim();
         const category = document.getElementById('upload-category')?.value;
+        
+        console.log('Form data - Title:', title, 'Category:', category);
 
         if (!title) {
+            console.log('Title missing');
             this.showToast('Título é obrigatório', 'error');
             return;
         }
 
         if (!category) {
+            console.log('Category missing');
             this.showToast('Categoria é obrigatória', 'error');
             return;
         }
 
+        console.log('Starting upload process...');
         this.isUploading = true;
         this.updateUI();
 
