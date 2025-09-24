@@ -51,6 +51,16 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
                 </span>
               </label>
 
+              {/* Botão Modo Edição */}
+              <button 
+                id="edit-mode-toggle"
+                class="px-4 py-2 bg-gray-500 text-white rounded-lg font-semibold hover:bg-gray-600 transition-colors flex items-center space-x-2"
+                onclick="window.galleryManager && window.galleryManager.toggleEditMode()"
+              >
+                <i class="fas fa-edit"></i>
+                <span>Modo Edição</span>
+              </button>
+
               {/* Botão Upload */}
               <button 
                 id="upload-btn"
@@ -180,11 +190,18 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
                             <span>{image.like_count}</span>
                           </div>
                           <div class="flex space-x-2">
-                            <button class="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors backdrop-blur-sm">
+                            <button class="like-btn p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors backdrop-blur-sm" 
+                                    data-image-id={image.id} 
+                                    data-like-count={image.like_count || 0}>
                               <i class="fas fa-heart text-white"></i>
                             </button>
-                            <button class="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors backdrop-blur-sm">
+                            <button class="share-btn p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors backdrop-blur-sm" 
+                                    data-image-id={image.id}>
                               <i class="fas fa-share text-white"></i>
+                            </button>
+                            <button class="delete-btn hidden p-2 bg-red-500/80 rounded-full hover:bg-red-600/80 transition-colors backdrop-blur-sm" 
+                                    data-image-id={image.id}>
+                              <i class="fas fa-trash text-white"></i>
                             </button>
                           </div>
                         </div>

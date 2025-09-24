@@ -45,12 +45,12 @@ app.get('/', (c) => {
         </div>
 
         {/* Estatísticas */}
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6" id="stats-cards">
           <div class="ai-card p-6 text-center">
             <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <i class="fas fa-images text-blue-600 text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">1,247</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2" id="stat-images">...</h3>
             <p class="text-gray-600">Imagens de IA</p>
           </div>
           
@@ -58,7 +58,7 @@ app.get('/', (c) => {
             <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <i class="fas fa-book-open text-green-600 text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">89</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2" id="stat-tutorials">...</h3>
             <p class="text-gray-600">Tutoriais</p>
           </div>
           
@@ -66,7 +66,7 @@ app.get('/', (c) => {
             <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <i class="fas fa-rocket text-purple-600 text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">156</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2" id="stat-showcases">...</h3>
             <p class="text-gray-600">Projetos Showcase</p>
           </div>
           
@@ -74,7 +74,7 @@ app.get('/', (c) => {
             <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <i class="fas fa-users text-orange-600 text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">2,341</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2" id="stat-users">...</h3>
             <p class="text-gray-600">Usuários Ativos</p>
           </div>
         </div>
@@ -93,18 +93,18 @@ app.get('/', (c) => {
               </a>
             </div>
             
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-2 gap-4" id="featured-gallery">
               <div class="aspect-square bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-image text-4xl text-purple-400"></i>
+                <i class="fas fa-spinner fa-spin text-2xl text-purple-400"></i>
               </div>
               <div class="aspect-square bg-gradient-to-br from-blue-100 to-cyan-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-palette text-4xl text-blue-400"></i>
+                <i class="fas fa-spinner fa-spin text-2xl text-blue-400"></i>
               </div>
               <div class="aspect-square bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-brain text-4xl text-green-400"></i>
+                <i class="fas fa-spinner fa-spin text-2xl text-green-400"></i>
               </div>
               <div class="aspect-square bg-gradient-to-br from-orange-100 to-red-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-robot text-4xl text-orange-400"></i>
+                <i class="fas fa-spinner fa-spin text-2xl text-orange-400"></i>
               </div>
             </div>
           </div>
@@ -178,6 +178,9 @@ app.get('/', (c) => {
           </div>
         </div>
       </div>
+      
+      {/* Scripts específicos da home */}
+      <script src="/static/js/dashboard.js"></script>
     </Layout>,
     { title: 'Dashboard' }
   )
@@ -665,6 +668,73 @@ app.get('/api/categories', async (c) => {
 })
 
 // =========================================
+// Estatísticas Globais
+// =========================================
+
+app.get('/api/stats/global', async (c) => {
+  try {
+    if (!c.env?.DB) {
+      return c.json({ error: 'Database não disponível' }, 500)
+    }
+
+    // Buscar estatísticas em paralelo para melhor performance
+    const [imagesCount, tutorialsCount, showcasesCount, categoriesCount] = await Promise.all([
+      // Total de imagens aprovadas
+      c.env.DB.prepare('SELECT COUNT(*) as count FROM ai_images WHERE status = ?')
+        .bind('approved').first<{ count: number }>(),
+      
+      // Total de tutoriais publicados
+      c.env.DB.prepare('SELECT COUNT(*) as count FROM tutorials WHERE status = ?')
+        .bind('published').first<{ count: number }>(),
+      
+      // Total de showcases ativos
+      c.env.DB.prepare('SELECT COUNT(*) as count FROM ai_showcases WHERE status = ?')
+        .bind('published').first<{ count: number }>(),
+      
+      // Total de categorias ativas
+      c.env.DB.prepare('SELECT COUNT(*) as count FROM categories WHERE is_active = ?')
+        .bind(1).first<{ count: number }>()
+    ])
+
+    // Buscar estatísticas de engajamento
+    const [totalLikes, totalShares, totalViews] = await Promise.all([
+      c.env.DB.prepare('SELECT COALESCE(SUM(like_count), 0) as total FROM ai_images')
+        .first<{ total: number }>(),
+      c.env.DB.prepare('SELECT COALESCE(SUM(share_count), 0) as total FROM ai_images')
+        .first<{ total: number }>(),
+      c.env.DB.prepare('SELECT COALESCE(SUM(view_count), 0) as total FROM ai_images')
+        .first<{ total: number }>()
+    ])
+
+    // Calcular estatística fictícia de usuários ativos (baseada no engajamento)
+    const baseUsers = 50 // Base mínima de usuários
+    const engagementFactor = Math.floor((totalLikes?.total || 0) / 10) // 1 usuário a cada 10 likes
+    const estimatedActiveUsers = baseUsers + engagementFactor
+
+    return c.json({
+      success: true,
+      data: {
+        images: imagesCount?.count || 0,
+        tutorials: tutorialsCount?.count || 0,
+        showcases: showcasesCount?.count || 0,
+        users: estimatedActiveUsers,
+        engagement: {
+          total_likes: totalLikes?.total || 0,
+          total_shares: totalShares?.total || 0,
+          total_views: totalViews?.total || 0
+        },
+        categories: categoriesCount?.count || 0,
+        updated_at: new Date().toISOString()
+      }
+    })
+
+  } catch (error) {
+    console.error('Erro ao buscar estatísticas globais:', error)
+    return c.json({ success: false, error: 'Erro interno do servidor' }, 500)
+  }
+})
+
+// =========================================
 // Ações de Imagens (Like, Share, Download)
 // =========================================
 
@@ -750,6 +820,95 @@ app.post('/api/images/:id/share', async (c) => {
 
   } catch (error) {
     console.error('Erro ao compartilhar imagem:', error)
+    return c.json({ success: false, error: 'Erro interno do servidor' }, 500)
+  }
+})
+
+// API para deletar imagem
+app.delete('/api/images/:id', async (c) => {
+  try {
+    if (!c.env?.DB) {
+      return c.json({ success: false, error: 'Database não disponível' }, 500)
+    }
+
+    const imageId = parseInt(c.req.param('id'))
+    if (isNaN(imageId)) {
+      return c.json({ success: false, error: 'ID inválido' }, 400)
+    }
+
+    // Verificar se a imagem existe
+    const image = await c.env.DB.prepare(`
+      SELECT id, title FROM ai_images WHERE id = ?
+    `).bind(imageId).first<{ id: number, title: string }>()
+
+    if (!image) {
+      return c.json({ success: false, error: 'Imagem não encontrada' }, 404)
+    }
+
+    // Deletar relacionamentos de tags primeiro (integridade referencial)
+    await c.env.DB.prepare(`
+      DELETE FROM ai_image_tags WHERE image_id = ?
+    `).bind(imageId).run()
+
+    // Deletar a imagem
+    const deleteResult = await c.env.DB.prepare(`
+      DELETE FROM ai_images WHERE id = ?
+    `).bind(imageId).run()
+
+    if (deleteResult.changes === 0) {
+      return c.json({ success: false, error: 'Falha ao deletar imagem' }, 500)
+    }
+
+    return c.json({ 
+      success: true, 
+      message: `Imagem "${image.title}" deletada com sucesso`,
+      deleted_id: imageId
+    })
+
+  } catch (error) {
+    console.error('Erro ao deletar imagem:', error)
+    return c.json({ success: false, error: 'Erro interno do servidor' }, 500)
+  }
+})
+
+// API para deletar tutorial
+app.delete('/api/tutorials/:id', async (c) => {
+  try {
+    if (!c.env?.DB) {
+      return c.json({ success: false, error: 'Database não disponível' }, 500)
+    }
+
+    const tutorialId = parseInt(c.req.param('id'))
+    if (isNaN(tutorialId)) {
+      return c.json({ success: false, error: 'ID inválido' }, 400)
+    }
+
+    // Verificar se o tutorial existe
+    const tutorial = await c.env.DB.prepare(`
+      SELECT id, title FROM tutorials WHERE id = ?
+    `).bind(tutorialId).first<{ id: number, title: string }>()
+
+    if (!tutorial) {
+      return c.json({ success: false, error: 'Tutorial não encontrado' }, 404)
+    }
+
+    // Deletar o tutorial
+    const deleteResult = await c.env.DB.prepare(`
+      DELETE FROM tutorials WHERE id = ?
+    `).bind(tutorialId).run()
+
+    if (deleteResult.changes === 0) {
+      return c.json({ success: false, error: 'Falha ao deletar tutorial' }, 500)
+    }
+
+    return c.json({ 
+      success: true, 
+      message: `Tutorial "${tutorial.title}" deletado com sucesso`,
+      deleted_id: tutorialId
+    })
+
+  } catch (error) {
+    console.error('Erro ao deletar tutorial:', error)
     return c.json({ success: false, error: 'Erro interno do servidor' }, 500)
   }
 })
@@ -842,6 +1001,9 @@ app.get('/galeria', async (c) => {
         <Gallery images={featuredImages} categories={categories} />
         <Lightbox />
         <UploadModal categories={categories} />
+        
+        {/* Scripts específicos da galeria */}
+        <script src="/static/js/gallery.js"></script>
       </Layout>,
       { title: 'Galeria de IAs' }
     )

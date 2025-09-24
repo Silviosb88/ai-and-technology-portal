@@ -10,8 +10,8 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
             <i class="fas fa-bars text-ai-dark text-xl"></i>
           </button>
           
-          {/* Logo */}
-          <div class="flex items-center space-x-3">
+          {/* Logo - Clicável para Home */}
+          <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <div class="w-10 h-10 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-xl flex items-center justify-center">
               <i class="fas fa-brain text-white text-lg"></i>
             </div>
@@ -21,7 +21,7 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
               </h1>
               <p class="text-xs text-gray-500 -mt-1">Educação em Tecnologia</p>
             </div>
-          </div>
+          </a>
           
           {/* Header actions */}
           <div class="flex items-center space-x-4">
