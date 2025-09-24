@@ -10,8 +10,9 @@
 
 ## 🌐 **URLs do Projeto**
 - **Desenvolvimento Ativo**: https://3000-irjw2qwst7fu4qmak5y01-6532622b.e2b.dev
-- **GitHub**: ⏳ *Aguardando configuração*
-- **Produção Cloudflare**: ⏳ *Pronto para deploy*
+- **GitHub**: ✅ https://github.com/Silviosb88/ai-and-technology-portal
+- **Produção Cloudflare**: ⏳ *Seguir DEPLOY_INSTRUCTIONS.md*
+- **Backup Completo**: https://page.gensparksite.com/project_backups/tooluse_v6FmPwLzQNCQ7Q7UmmBbnw.tar.gz
 
 ## ✅ **Funcionalidades Implementadas e Testadas**
 
@@ -207,6 +208,7 @@ webapp/
 ## 📝 **Status de Desenvolvimento - Resumo**
 **✅ Core completo e testado** | **🐛 Bugs principais corrigidos** | **🚀 Pronto para produção**
 
-**Última atualização**: 18 de setembro de 2025  
-**Desenvolvido por**: Especialista IA & Tecnologia  
-**Stack**: Hono + Cloudflare Pages + D1 + TypeScript
+**Última atualização**: 24 de setembro de 2025 - v1.1.0  
+**Desenvolvido por**: Silvio - Analista de Informação, Pesquisador de Tecnologia  
+**Stack**: Hono + Cloudflare Pages + D1 SQLite + TypeScript + TailwindCSS
+**Deploy**: Consulte `DEPLOY_INSTRUCTIONS.md` para instruções completas
