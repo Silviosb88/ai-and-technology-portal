@@ -134,6 +134,41 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
           {children}
         </div>
       </main>
+      
+      {/* Footer */}
+      <footer class="lg:ml-[280px] bg-gradient-to-r from-ai-dark to-slate-800 text-white">
+        <div class="p-6">
+          <div class="text-center">
+            <div class="flex items-center justify-center mb-4">
+              <div class="w-8 h-8 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-lg flex items-center justify-center mr-3">
+                <i class="fas fa-brain text-white text-sm"></i>
+              </div>
+              <span class="text-xl font-bold">Portal IA & Tech</span>
+            </div>
+            
+            <div class="flex justify-center space-x-6 mb-4">
+              <a href="/" class="text-gray-300 hover:text-white transition-colors">
+                <i class="fas fa-home text-xl"></i>
+              </a>
+              <a href="/galeria" class="text-gray-300 hover:text-white transition-colors">
+                <i class="fas fa-images text-xl"></i>
+              </a>
+              <a href="/tutoriais" class="text-gray-300 hover:text-white transition-colors">
+                <i class="fas fa-book-open text-xl"></i>
+              </a>
+            </div>
+            
+            <div class="border-t border-gray-600 pt-4">
+              <p class="text-sm text-gray-400">
+                © 2025 Portal Educativo IA & Tecnologia. Desenvolvido com ❤️ para educação em tecnologia.
+              </p>
+              <p class="text-xs text-gray-500 mt-2">
+                Stack: Hono + TypeScript + Cloudflare Pages + TailwindCSS
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
