@@ -2,35 +2,41 @@
 export const Layout = ({ children, currentPage = 'home' }: { children: any, currentPage?: string }) => {
   return (
     <div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
-      <header class="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-200/50">
-        <div class="flex items-center justify-between h-[70px] px-6">
+      {/* Header - Melhorado para mobile */}
+      <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
+        <div class="flex items-center justify-between h-[70px] px-4 sm:px-6">
           {/* Mobile menu button */}
           <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
             <i class="fas fa-bars text-ai-dark text-xl"></i>
           </button>
           
-          {/* Logo - Clicável para Home */}
-          <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <div class="w-10 h-10 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-xl flex items-center justify-center">
-              <i class="fas fa-brain text-white text-lg"></i>
+          {/* Logo - Melhorado para mobile */}
+          <a href="/" class="flex items-center space-x-2 sm:space-x-3 hover:opacity-80 transition-opacity">
+            <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-xl flex items-center justify-center">
+              <i class="fas fa-brain text-white text-sm sm:text-lg"></i>
             </div>
             <div class="hidden sm:block">
-              <h1 class="text-xl font-bold bg-gradient-to-r from-ai-primary to-ai-secondary bg-clip-text text-transparent">
+              <h1 class="text-lg sm:text-xl font-bold bg-gradient-to-r from-ai-primary to-ai-secondary bg-clip-text text-transparent">
                 Portal IA & Tech
               </h1>
               <p class="text-xs text-gray-500 -mt-1">Educação em Tecnologia</p>
             </div>
+            {/* Título mobile */}
+            <div class="sm:hidden">
+              <h1 class="text-base font-bold bg-gradient-to-r from-ai-primary to-ai-secondary bg-clip-text text-transparent">
+                Portal IA
+              </h1>
+            </div>
           </a>
           
-          {/* Header actions */}
-          <div class="flex items-center space-x-4">
-            <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors relative">
+          {/* Header actions - Melhorado para mobile */}
+          <div class="flex items-center space-x-2 sm:space-x-4">
+            <button id="search-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" title="Buscar">
+              <i class="fas fa-search text-gray-600"></i>
+            </button>
+            <button class="hidden sm:block p-2 rounded-lg hover:bg-gray-100 transition-colors relative" title="Notificações">
               <i class="fas fa-bell text-gray-600"></i>
               <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
-            </button>
-            <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
-              <i class="fas fa-search text-gray-600"></i>
             </button>
           </div>
         </div>
@@ -39,25 +45,25 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
       {/* Mobile overlay */}
       <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-30 lg:hidden hidden"></div>
       
-      {/* Sidebar */}
-      <aside id="sidebar" class="fixed left-0 top-0 z-50 w-[280px] h-screen bg-white/90 backdrop-blur-xl border-r border-gray-200/50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+      {/* Sidebar - Melhorado para mobile */}
+      <aside id="sidebar" class="fixed left-0 top-0 z-50 w-[280px] sm:w-[300px] h-screen bg-white/95 backdrop-blur-xl border-r border-gray-200/50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 shadow-2xl lg:shadow-none">
         <div class="flex flex-col h-full">
-          {/* Sidebar header */}
-          <div class="flex items-center justify-between p-6 border-b border-gray-200/50">
+          {/* Sidebar header - Melhorado */}
+          <div class="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200/50">
             <div class="flex items-center space-x-3">
               <div class="w-8 h-8 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-lg flex items-center justify-center">
                 <i class="fas fa-brain text-white text-sm"></i>
               </div>
               <span class="font-semibold text-ai-dark">Portal IA</span>
             </div>
-            <button id="sidebar-close" class="p-1 rounded lg:hidden hover:bg-gray-100">
+            <button id="sidebar-close" class="p-2 rounded-lg lg:hidden hover:bg-gray-100 transition-colors">
               <i class="fas fa-times text-gray-500"></i>
             </button>
           </div>
           
-          {/* Navigation */}
-          <nav class="flex-1 p-6 overflow-y-auto">
-            <div class="space-y-2">
+          {/* Navigation - Links funcionais */}
+          <nav class="flex-1 p-4 sm:p-6 overflow-y-auto">
+            <div class="space-y-1 sm:space-y-2">
               {/* Home */}
               <a href="/" class={`nav-item ${currentPage === 'home' ? 'active' : ''}`}>
                 <i class="fas fa-home"></i>
@@ -79,35 +85,39 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
               {/* Showcase */}
               <a href="/showcase" class={`nav-item ${currentPage === 'showcase' ? 'active' : ''}`}>
                 <i class="fas fa-rocket"></i>
-                <span>Showcase de IAs</span>
+                <span>Showcase</span>
               </a>
               
               {/* Upload */}
-              <a href="/upload" class={`nav-item ${currentPage === 'upload' ? 'active' : ''}`}>
+              <button onclick="openUploadModal()" class="nav-item w-full text-left">
                 <i class="fas fa-cloud-upload-alt"></i>
                 <span>Upload & Share</span>
-              </a>
+              </button>
             </div>
             
-            {/* Seção de Categorias */}
-            <div class="mt-8">
-              <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-4">Categorias</h3>
-              <div class="space-y-2">
-                <a href="/categoria/machine-learning" class="category-item">
+            {/* Seção de Categorias - Melhorada */}
+            <div class="mt-6 sm:mt-8">
+              <h3 class="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wide mb-3 sm:mb-4 px-1">Categorias</h3>
+              <div class="space-y-1 sm:space-y-2">
+                <a href="/galeria?categoria=machine-learning" class="category-item">
                   <i class="fas fa-cogs text-blue-500"></i>
                   <span>Machine Learning</span>
                 </a>
-                <a href="/categoria/computer-vision" class="category-item">
+                <a href="/galeria?categoria=computer-vision" class="category-item">
                   <i class="fas fa-eye text-green-500"></i>
                   <span>Computer Vision</span>
                 </a>
-                <a href="/categoria/nlp" class="category-item">
+                <a href="/galeria?categoria=nlp" class="category-item">
                   <i class="fas fa-comments text-purple-500"></i>
                   <span>NLP</span>
                 </a>
-                <a href="/categoria/robotica" class="category-item">
+                <a href="/galeria?categoria=robotica" class="category-item">
                   <i class="fas fa-robot text-orange-500"></i>
                   <span>Robótica</span>
+                </a>
+                <a href="/galeria?categoria=generative" class="category-item">
+                  <i class="fas fa-magic text-pink-500"></i>
+                  <span>IA Generativa</span>
                 </a>
               </div>
             </div>

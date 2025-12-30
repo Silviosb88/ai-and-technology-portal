@@ -7,8 +7,82 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebarClose = document.getElementById('sidebar-close');
     const mobileOverlay = document.getElementById('mobile-overlay');
 
-    // Sistema de navegação mobile
-    function initMobileNavigation() {
+    // Sistema de busca
+    function initSearch() {
+        const searchBtn = document.getElementById('search-btn');
+        
+        if (searchBtn) {
+            searchBtn.addEventListener('click', () => {
+                // Criar modal de busca dinâmico
+                const searchModal = document.createElement('div');
+                searchModal.className = 'fixed inset-0 bg-black/50 z-50 flex items-start justify-center pt-20';
+                searchModal.innerHTML = `
+                    <div class="bg-white rounded-xl p-6 mx-4 w-full max-w-2xl shadow-2xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900">Buscar no Portal</h3>
+                            <button id="close-search" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                                <i class="fas fa-times text-gray-500"></i>
+                            </button>
+                        </div>
+                        <div class="relative mb-4">
+                            <input type="text" id="search-input" placeholder="Digite sua busca..." 
+                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="text-sm font-medium text-gray-700">Busca rápida:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <button class="search-tag" data-search="machine learning">Machine Learning</button>
+                                <button class="search-tag" data-search="computer vision">Computer Vision</button>
+                                <button class="search-tag" data-search="tutorial">Tutoriais</button>
+                                <button class="search-tag" data-search="projeto">Projetos</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(searchModal);
+                document.getElementById('search-input').focus();
+                
+                // Fechar modal
+                const closeSearch = () => {
+                    document.body.removeChild(searchModal);
+                };
+                
+                document.getElementById('close-search').addEventListener('click', closeSearch);
+                searchModal.addEventListener('click', (e) => {
+                    if (e.target === searchModal) closeSearch();
+                });
+                
+                // Tags de busca rápida
+                document.querySelectorAll('.search-tag').forEach(tag => {
+                    tag.addEventListener('click', () => {
+                        const searchTerm = tag.dataset.search;
+                        window.location.href = `/galeria?busca=${encodeURIComponent(searchTerm)}`;
+                    });
+                });
+                
+                // Busca ao pressionar Enter
+                document.getElementById('search-input').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        const searchTerm = e.target.value.trim();
+                        if (searchTerm) {
+                            window.location.href = `/galeria?busca=${encodeURIComponent(searchTerm)}`;
+                        }
+                    }
+                });
+                
+                // Fechar com ESC
+                document.addEventListener('keydown', function escHandler(e) {
+                    if (e.key === 'Escape') {
+                        closeSearch();
+                        document.removeEventListener('keydown', escHandler);
+                    }
+                });
+            });
+        }
+    }
+    // Sistema de navegação mobile aprimorado
         // Abrir sidebar mobile
         if (mobileMenuBtn) {
             mobileMenuBtn.addEventListener('click', () => {
@@ -40,11 +114,47 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Auto-fechar em telas grandes
+        // Melhor responsividade no redimensionamento
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 1024) {
                 closeSidebar();
             }
+        });
+        
+        // Ativação de swipe para mobile
+        let startX = null;
+        let startY = null;
+        
+        document.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            if (!startX || !startY) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+            
+            // Swipe horizontal deve ser maior que vertical
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                // Swipe da esquerda para direita (abrir sidebar)
+                if (diffX < -50 && startX < 50) {
+                    sidebar.classList.remove('-translate-x-full');
+                    mobileOverlay.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+                // Swipe da direita para esquerda (fechar sidebar)
+                else if (diffX > 50 && !sidebar.classList.contains('-translate-x-full')) {
+                    closeSidebar();
+                }
+            }
+            
+            startX = null;
+            startY = null;
         });
     }
 
@@ -300,6 +410,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Inicializar sistemas
+    // Inicializar sistemas
+    initSearch();
     initMobileNavigation();
 
     // Adicionar estilos CSS dinâmicos (apenas para componentes não definidos em CSS)

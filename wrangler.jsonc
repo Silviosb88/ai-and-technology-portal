@@ -7,14 +7,14 @@
     "nodejs_compat"
   ],
   
-  // Banco de dados D1 para persistência
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "iaetech-portal-production",
-      "database_id": "placeholder-will-be-updated-after-creation"
-    }
-  ],
+  // Banco de dados D1 para persistência (removido temporariamente para deploy)
+  // "d1_databases": [
+  //   {
+  //     "binding": "DB",
+  //     "database_name": "iaetech-portal-production",
+  //     "database_id": "placeholder-will-be-updated-after-creation"
+  //   }
+  // ],
   
   // Variáveis de ambiente (será usado no deploy)
   "vars": {

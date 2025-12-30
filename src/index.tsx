@@ -21,22 +21,22 @@ app.get('/', (c) => {
   return c.render(
     <Layout currentPage="home">
       <div class="space-y-8">
-        {/* Hero Section */}
-        <div class="bg-gradient-to-r from-ai-primary via-ai-secondary to-ai-accent rounded-2xl p-8 text-white relative overflow-hidden">
+        {/* Hero Section - Melhorado para mobile */}
+        <div class="bg-gradient-to-r from-ai-primary via-ai-secondary to-ai-accent rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10">
-            <h1 class="text-4xl font-bold mb-4">
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
               Portal Educativo IA & Tecnologia
             </h1>
-            <p class="text-xl mb-6 text-white/90">
+            <p class="text-lg sm:text-xl mb-6 text-white/90">
               Descubra, aprenda e explore o fascinante mundo da Inteligência Artificial
             </p>
-            <div class="flex flex-wrap gap-4">
-              <a href="/galeria" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm">
+            <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+              <a href="/galeria" class="bg-white/20 hover:bg-white/30 px-4 sm:px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm text-center">
                 <i class="fas fa-images mr-2"></i>
                 Explorar Galeria
               </a>
-              <a href="/tutoriais" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm">
+              <a href="/tutoriais" class="bg-white/20 hover:bg-white/30 px-4 sm:px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm text-center">
                 <i class="fas fa-book-open mr-2"></i>
                 Ver Tutoriais
               </a>
@@ -44,38 +44,38 @@ app.get('/', (c) => {
           </div>
         </div>
 
-        {/* Estatísticas */}
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6" id="stats-cards">
-          <div class="ai-card p-6 text-center">
-            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-images text-blue-600 text-xl"></i>
+        {/* Estatísticas - Melhorado para mobile */}
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="stats-cards">
+          <div class="ai-card p-4 sm:p-6 text-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <i class="fas fa-images text-blue-600 text-lg sm:text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2" id="stat-images">...</h3>
-            <p class="text-gray-600">Imagens de IA</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2" id="stat-images">...</h3>
+            <p class="text-xs sm:text-sm text-gray-600">Imagens de IA</p>
           </div>
           
-          <div class="ai-card p-6 text-center">
-            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-book-open text-green-600 text-xl"></i>
+          <div class="ai-card p-4 sm:p-6 text-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <i class="fas fa-book-open text-green-600 text-lg sm:text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2" id="stat-tutorials">...</h3>
-            <p class="text-gray-600">Tutoriais</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2" id="stat-tutorials">...</h3>
+            <p class="text-xs sm:text-sm text-gray-600">Tutoriais</p>
           </div>
           
-          <div class="ai-card p-6 text-center">
-            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-rocket text-purple-600 text-xl"></i>
+          <div class="ai-card p-4 sm:p-6 text-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <i class="fas fa-rocket text-purple-600 text-lg sm:text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2" id="stat-showcases">...</h3>
-            <p class="text-gray-600">Projetos Showcase</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2" id="stat-showcases">...</h3>
+            <p class="text-xs sm:text-sm text-gray-600">Projetos</p>
           </div>
           
-          <div class="ai-card p-6 text-center">
-            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-users text-orange-600 text-xl"></i>
+          <div class="ai-card p-4 sm:p-6 text-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <i class="fas fa-users text-orange-600 text-lg sm:text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2" id="stat-users">...</h3>
-            <p class="text-gray-600">Usuários Ativos</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2" id="stat-users">...</h3>
+            <p class="text-xs sm:text-sm text-gray-600">Usuários</p>
           </div>
         </div>
 
@@ -921,24 +921,237 @@ app.delete('/api/tutorials/:id', async (c) => {
 // NAVEGAÇÃO E ROTAS PRINCIPAIS
 // =========================================
 
-// Página Showcase (placeholder)
-app.get('/showcase', (c) => {
+// Página Showcase - Funcional
+app.get('/showcase', async (c) => {
   return c.render(
     <Layout currentPage="showcase">
-      <div class="text-center py-12">
-        <div class="w-24 h-24 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-full flex items-center justify-center mx-auto mb-6">
-          <i class="fas fa-rocket text-white text-3xl"></i>
+      <div class="space-y-8">
+        {/* Hero Section */}
+        <div class="bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-2xl p-8 text-white relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative z-10">
+            <div class="flex items-center mb-4">
+              <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mr-6">
+                <i class="fas fa-rocket text-3xl"></i>
+              </div>
+              <div>
+                <h1 class="text-4xl font-bold mb-2">Showcase de IAs</h1>
+                <p class="text-xl text-white/90">Projetos incríveis da comunidade</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-4 mt-6">
+              <button class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm">
+                <i class="fas fa-plus mr-2"></i>
+                Submeter Projeto
+              </button>
+              <button class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm">
+                <i class="fas fa-trophy mr-2"></i>
+                Projetos Premiados
+              </button>
+            </div>
+          </div>
         </div>
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">Hub de Showcase</h1>
-        <p class="text-xl text-gray-600 mb-6 max-w-2xl mx-auto">
-          Explore projetos incríveis da comunidade de IA. Descubra demonstrações, códigos e inovações.
-        </p>
-        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 max-w-md mx-auto">
-          <p class="text-sm text-gray-600 mb-4">🚧 Em desenvolvimento</p>
-          <a href="/galeria" class="ai-button-primary text-white px-6 py-3 rounded-lg font-semibold">
-            <i class="fas fa-images mr-2"></i>
-            Ver Galeria Enquanto Isso
-          </a>
+
+        {/* Estatísticas */}
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="ai-card p-6 text-center">
+            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-project-diagram text-purple-600 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">42</h3>
+            <p class="text-sm text-gray-600">Projetos Ativos</p>
+          </div>
+          
+          <div class="ai-card p-6 text-center">
+            <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-users text-pink-600 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">156</h3>
+            <p class="text-sm text-gray-600">Desenvolvedores</p>
+          </div>
+          
+          <div class="ai-card p-6 text-center">
+            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-star text-red-600 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">2.8k</h3>
+            <p class="text-sm text-gray-600">Estrelas GitHub</p>
+          </div>
+          
+          <div class="ai-card p-6 text-center">
+            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-download text-orange-600 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">12.4k</h3>
+            <p class="text-sm text-gray-600">Downloads</p>
+          </div>
+        </div>
+
+        {/* Categorias de Projetos */}
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">
+            <i class="fas fa-layer-group text-ai-primary mr-2"></i>
+            Categorias de Projetos
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <button class="ai-card p-6 text-center hover:shadow-lg transition-all group">
+              <div class="w-12 h-12 bg-blue-100 group-hover:bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                <i class="fas fa-eye text-blue-600 text-xl"></i>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">Computer Vision</h3>
+              <p class="text-sm text-gray-600">12 projetos</p>
+            </button>
+            
+            <button class="ai-card p-6 text-center hover:shadow-lg transition-all group">
+              <div class="w-12 h-12 bg-green-100 group-hover:bg-green-200 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                <i class="fas fa-comments text-green-600 text-xl"></i>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">NLP & Chatbots</h3>
+              <p class="text-sm text-gray-600">8 projetos</p>
+            </button>
+            
+            <button class="ai-card p-6 text-center hover:shadow-lg transition-all group">
+              <div class="w-12 h-12 bg-purple-100 group-hover:bg-purple-200 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                <i class="fas fa-magic text-purple-600 text-xl"></i>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">IA Generativa</h3>
+              <p class="text-sm text-gray-600">15 projetos</p>
+            </button>
+            
+            <button class="ai-card p-6 text-center hover:shadow-lg transition-all group">
+              <div class="w-12 h-12 bg-orange-100 group-hover:bg-orange-200 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                <i class="fas fa-robot text-orange-600 text-xl"></i>
+              </div>
+              <h3 class="font-semibold text-gray-900 mb-2">Robótica</h3>
+              <p class="text-sm text-gray-600">7 projetos</p>
+            </button>
+          </div>
+        </div>
+
+        {/* Projetos em Destaque */}
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-900">
+              <i class="fas fa-fire text-orange-500 mr-2"></i>
+              Projetos em Destaque
+            </h2>
+            <button class="text-ai-primary hover:text-ai-secondary font-medium">
+              Ver todos <i class="fas fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Projeto 1 */}
+            <div class="ai-card overflow-hidden hover:shadow-xl transition-all group">
+              <div class="aspect-video bg-gradient-to-br from-blue-500 to-purple-600 relative overflow-hidden">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <div class="text-center text-white">
+                    <i class="fas fa-play-circle text-5xl mb-2 opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                    <p class="text-sm font-medium">Demo Interativa</p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Computer Vision</span>
+                  <div class="flex items-center text-gray-500 text-sm">
+                    <i class="fas fa-star text-yellow-500 mr-1"></i>
+                    <span>4.8</span>
+                  </div>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Detector de Objetos em Tempo Real</h3>
+                <p class="text-gray-600 text-sm mb-4">Sistema de detecção de objetos usando YOLO v8 com interface web interativa.</p>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center text-sm text-gray-500">
+                    <i class="fas fa-user-circle mr-2"></i>
+                    <span>@dev_pedro</span>
+                  </div>
+                  <div class="flex space-x-2">
+                    <button class="bg-ai-primary text-white px-3 py-1 rounded text-sm font-medium hover:bg-ai-secondary transition-colors">
+                      Demo
+                    </button>
+                    <button class="border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm font-medium hover:bg-gray-50 transition-colors">
+                      Código
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Projeto 2 */}
+            <div class="ai-card overflow-hidden hover:shadow-xl transition-all group">
+              <div class="aspect-video bg-gradient-to-br from-green-500 to-teal-600 relative overflow-hidden">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <div class="text-center text-white">
+                    <i class="fas fa-comments text-5xl mb-2 opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                    <p class="text-sm font-medium">Chatbot Ativo</p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">NLP</span>
+                  <div class="flex items-center text-gray-500 text-sm">
+                    <i class="fas fa-star text-yellow-500 mr-1"></i>
+                    <span>4.6</span>
+                  </div>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Assistente Virtual Inteligente</h3>
+                <p class="text-gray-600 text-sm mb-4">Chatbot com processamento de linguagem natural avançado e memória contextual.</p>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center text-sm text-gray-500">
+                    <i class="fas fa-user-circle mr-2"></i>
+                    <span>@ana_dev</span>
+                  </div>
+                  <div class="flex space-x-2">
+                    <button class="bg-ai-primary text-white px-3 py-1 rounded text-sm font-medium hover:bg-ai-secondary transition-colors">
+                      Testar
+                    </button>
+                    <button class="border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm font-medium hover:bg-gray-50 transition-colors">
+                      Código
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Projeto 3 */}
+            <div class="ai-card overflow-hidden hover:shadow-xl transition-all group">
+              <div class="aspect-video bg-gradient-to-br from-purple-500 to-pink-600 relative overflow-hidden">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <div class="text-center text-white">
+                    <i class="fas fa-image text-5xl mb-2 opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                    <p class="text-sm font-medium">Gerador Ativo</p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Generativa</span>
+                  <div class="flex items-center text-gray-500 text-sm">
+                    <i class="fas fa-star text-yellow-500 mr-1"></i>
+                    <span>4.9</span>
+                  </div>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Gerador de Arte com IA</h3>
+                <p class="text-gray-600 text-sm mb-4">Crie obras de arte únicas usando modelos de difusão estável e prompts criativos.</p>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center text-sm text-gray-500">
+                    <i class="fas fa-user-circle mr-2"></i>
+                    <span>@art_ai</span>
+                  </div>
+                  <div class="flex space-x-2">
+                    <button class="bg-ai-primary text-white px-3 py-1 rounded text-sm font-medium hover:bg-ai-secondary transition-colors">
+                      Criar
+                    </button>
+                    <button class="border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm font-medium hover:bg-gray-50 transition-colors">
+                      Código
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>,
@@ -946,24 +1159,244 @@ app.get('/showcase', (c) => {
   )
 })
 
-// Página Tutoriais (placeholder)
-app.get('/tutoriais', (c) => {
+// Página Tutoriais - Funcional
+app.get('/tutoriais', async (c) => {
   return c.render(
     <Layout currentPage="tutoriais">
-      <div class="text-center py-12">
-        <div class="w-24 h-24 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
-          <i class="fas fa-graduation-cap text-white text-3xl"></i>
+      <div class="space-y-8">
+        {/* Header Section */}
+        <div class="bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 rounded-2xl p-8 text-white relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative z-10">
+            <div class="flex items-center mb-4">
+              <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mr-6">
+                <i class="fas fa-graduation-cap text-3xl"></i>
+              </div>
+              <div>
+                <h1 class="text-4xl font-bold mb-2">Tutoriais de IA</h1>
+                <p class="text-xl text-white/90">Aprenda do básico ao avançado</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-4 mt-6">
+              <button class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm">
+                <i class="fas fa-filter mr-2"></i>
+                Filtrar por Nível
+              </button>
+              <button class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm">
+                <i class="fas fa-clock mr-2"></i>
+                Ordenar por Tempo
+              </button>
+            </div>
+          </div>
         </div>
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">Tutoriais Educativos</h1>
-        <p class="text-xl text-gray-600 mb-6 max-w-2xl mx-auto">
-          Aprenda IA do zero ao avançado com nossos tutoriais práticos e projetos guiados.
-        </p>
-        <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 max-w-md mx-auto">
-          <p class="text-sm text-gray-600 mb-4">📚 Em preparação</p>
-          <a href="/galeria" class="ai-button-primary text-white px-6 py-3 rounded-lg font-semibold">
-            <i class="fas fa-images mr-2"></i>
-            Explorar Galeria
-          </a>
+
+        {/* Estatísticas */}
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="ai-card p-6 text-center">
+            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-play-circle text-green-600 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">24</h3>
+            <p class="text-sm text-gray-600">Vídeo Tutoriais</p>
+          </div>
+          
+          <div class="ai-card p-6 text-center">
+            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-code text-blue-600 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">18</h3>
+            <p class="text-sm text-gray-600">Projetos Práticos</p>
+          </div>
+          
+          <div class="ai-card p-6 text-center">
+            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-certificate text-purple-600 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">6</h3>
+            <p class="text-sm text-gray-600">Certificações</p>
+          </div>
+          
+          <div class="ai-card p-6 text-center">
+            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-users text-orange-600 text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">1.2k</h3>
+            <p class="text-sm text-gray-600">Estudantes</p>
+          </div>
+        </div>
+
+        {/* Trilhas de Aprendizado */}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Iniciante */}
+          <div class="ai-card p-6 border-l-4 border-green-500">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-seedling text-green-600"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">Iniciante</h3>
+                <p class="text-sm text-gray-600">Fundamentos de IA</p>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                Introdução à IA
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                Python para IA
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                Primeiro Projeto
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-clock text-gray-400 mr-3"></i>
+                Machine Learning Básico
+              </li>
+            </ul>
+            <button class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+              Iniciar Trilha
+            </button>
+          </div>
+
+          {/* Intermediário */}
+          <div class="ai-card p-6 border-l-4 border-blue-500">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-chart-line text-blue-600"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">Intermediário</h3>
+                <p class="text-sm text-gray-600">Aprofundamento</p>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-check-circle text-blue-500 mr-3"></i>
+                Deep Learning
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-check-circle text-blue-500 mr-3"></i>
+                Computer Vision
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-clock text-gray-400 mr-3"></i>
+                Processamento de Linguagem
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-clock text-gray-400 mr-3"></i>
+                Redes Neurais Avançadas
+              </li>
+            </ul>
+            <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+              Continuar Trilha
+            </button>
+          </div>
+
+          {/* Avançado */}
+          <div class="ai-card p-6 border-l-4 border-purple-500">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-rocket text-purple-600"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">Avançado</h3>
+                <p class="text-sm text-gray-600">Especialização</p>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-lock text-gray-400 mr-3"></i>
+                IA Generativa
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-lock text-gray-400 mr-3"></i>
+                Reinforcement Learning
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-lock text-gray-400 mr-3"></i>
+                MLOps e Deploy
+              </li>
+              <li class="flex items-center text-gray-700">
+                <i class="fas fa-lock text-gray-400 mr-3"></i>
+                Projetos Enterprise
+              </li>
+            </ul>
+            <button class="w-full bg-gray-300 text-gray-600 py-3 rounded-lg font-semibold cursor-not-allowed">
+              Em Breve
+            </button>
+          </div>
+        </div>
+
+        {/* Tutoriais Recentes */}
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-900">
+              <i class="fas fa-star text-yellow-500 mr-2"></i>
+              Tutoriais em Destaque
+            </h2>
+            <button class="text-ai-primary hover:text-ai-secondary font-medium">
+              Ver todos <i class="fas fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Tutorial 1 */}
+            <div class="ai-card overflow-hidden hover:shadow-lg transition-shadow">
+              <div class="aspect-video bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
+                <i class="fas fa-play-circle text-4xl text-green-600"></i>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center mb-3">
+                  <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Iniciante</span>
+                  <span class="text-sm text-gray-500">15 min</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Introdução ao Machine Learning</h3>
+                <p class="text-gray-600 text-sm mb-4">Aprenda os conceitos fundamentais do aprendizado de máquina de forma prática.</p>
+                <button class="w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors">
+                  Assistir Tutorial
+                </button>
+              </div>
+            </div>
+
+            {/* Tutorial 2 */}
+            <div class="ai-card overflow-hidden hover:shadow-lg transition-shadow">
+              <div class="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+                <i class="fas fa-play-circle text-4xl text-blue-600"></i>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center mb-3">
+                  <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Intermediário</span>
+                  <span class="text-sm text-gray-500">32 min</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Criando uma Rede Neural</h3>
+                <p class="text-gray-600 text-sm mb-4">Construa sua primeira rede neural do zero usando Python e TensorFlow.</p>
+                <button class="w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors">
+                  Assistir Tutorial
+                </button>
+              </div>
+            </div>
+
+            {/* Tutorial 3 */}
+            <div class="ai-card overflow-hidden hover:shadow-lg transition-shadow">
+              <div class="aspect-video bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
+                <i class="fas fa-play-circle text-4xl text-purple-600"></i>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center mb-3">
+                  <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Iniciante</span>
+                  <span class="text-sm text-gray-500">22 min</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Computer Vision com OpenCV</h3>
+                <p class="text-gray-600 text-sm mb-4">Detecte objetos em imagens usando técnicas de visão computacional.</p>
+                <button class="w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors">
+                  Assistir Tutorial
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>,
