@@ -25,87 +25,110 @@ app.get('/', (c) => {
         <div class="bg-gradient-to-r from-ai-primary via-ai-secondary to-ai-accent rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10">
+            <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3">
+              🎓 Portal de referência para estudantes
+            </span>
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
-              Portal Educativo IA & Tecnologia
+              Conheça seus direitos como estudante
             </h1>
             <p class="text-lg sm:text-xl mb-6 text-white/90">
-              Descubra, aprenda e explore o fascinante mundo da Inteligência Artificial
+              Microsoft 365, Azure, GitHub, Google e outras ferramentas pagas são <strong>gratuitas</strong> para estudantes elegíveis. Guias claros, verificados e atualizados — para que nenhum direito se perca por desconhecimento.
             </p>
             <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-              <a href="/galeria" class="bg-white/20 hover:bg-white/30 px-4 sm:px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm text-center">
-                <i class="fas fa-images mr-2"></i>
-                Explorar Galeria
+              <a href="/beneficios" class="bg-white text-ai-primary hover:bg-blue-50 px-4 sm:px-6 py-3 rounded-lg font-semibold transition-colors text-center">
+                <i class="fas fa-graduation-cap mr-2"></i>
+                Ver Benefícios
               </a>
               <a href="/tutoriais" class="bg-white/20 hover:bg-white/30 px-4 sm:px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm text-center">
                 <i class="fas fa-book-open mr-2"></i>
-                Ver Tutoriais
+                Guias de IA
               </a>
             </div>
           </div>
         </div>
 
         {/* Estatísticas - Melhorado para mobile */}
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="stats-cards">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <div class="ai-card p-4 sm:p-6 text-center">
             <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-              <i class="fas fa-images text-blue-600 text-lg sm:text-xl"></i>
+              <i class="fas fa-graduation-cap text-blue-600 text-lg sm:text-xl"></i>
             </div>
-            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2" id="stat-images">...</h3>
-            <p class="text-xs sm:text-sm text-gray-600">Imagens de IA</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">4</h3>
+            <p class="text-xs sm:text-sm text-gray-600">Benefícios com guia completo</p>
           </div>
           
           <div class="ai-card p-4 sm:p-6 text-center">
             <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-              <i class="fas fa-book-open text-green-600 text-lg sm:text-xl"></i>
+              <i class="fas fa-check-circle text-green-600 text-lg sm:text-xl"></i>
             </div>
-            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2" id="stat-tutorials">...</h3>
-            <p class="text-xs sm:text-sm text-gray-600">Tutoriais</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">100%</h3>
+            <p class="text-xs sm:text-sm text-gray-600">Fontes oficiais citadas</p>
           </div>
           
           <div class="ai-card p-4 sm:p-6 text-center">
             <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-              <i class="fas fa-rocket text-purple-600 text-lg sm:text-xl"></i>
+              <i class="fas fa-list text-purple-600 text-lg sm:text-xl"></i>
             </div>
-            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2" id="stat-showcases">...</h3>
-            <p class="text-xs sm:text-sm text-gray-600">Projetos</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">10+</h3>
+            <p class="text-xs sm:text-sm text-gray-600">Programas em catalogação</p>
           </div>
           
           <div class="ai-card p-4 sm:p-6 text-center">
             <div class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-              <i class="fas fa-users text-orange-600 text-lg sm:text-xl"></i>
+              <i class="fas fa-calendar-check text-orange-600 text-lg sm:text-xl"></i>
             </div>
-            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2" id="stat-users">...</h3>
-            <p class="text-xs sm:text-sm text-gray-600">Usuários</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">04/11/2026</h3>
+            <p class="text-xs sm:text-sm text-gray-600">Última verificação</p>
           </div>
         </div>
 
         {/* Seções em Destaque */}
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Galeria em Destaque */}
+          {/* Benefícios em Destaque */}
           <div class="ai-card p-6">
             <div class="flex items-center justify-between mb-6">
               <h2 class="text-2xl font-bold text-gray-900">
-                <i class="fas fa-star text-yellow-500 mr-2"></i>
-                Destaques da Galeria
+                <i class="fas fa-graduation-cap text-blue-500 mr-2"></i>
+                Benefícios em destaque
               </h2>
-              <a href="/galeria" class="text-ai-primary hover:text-ai-secondary font-medium">
-                Ver todas <i class="fas fa-arrow-right ml-1"></i>
+              <a href="/beneficios" class="text-ai-primary hover:text-ai-secondary font-medium">
+                Ver todos <i class="fas fa-arrow-right ml-1"></i>
               </a>
             </div>
             
-            <div class="grid grid-cols-2 gap-4" id="featured-gallery">
-              <div class="aspect-square bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-spinner fa-spin text-2xl text-purple-400"></i>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-blue-100 to-cyan-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-spinner fa-spin text-2xl text-blue-400"></i>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-spinner fa-spin text-2xl text-green-400"></i>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-orange-100 to-red-100 rounded-lg flex items-center justify-center">
-                <i class="fas fa-spinner fa-spin text-2xl text-orange-400"></i>
-              </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <a href="/beneficios/office-365-education" class="block p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors border border-blue-100">
+                <div class="flex items-center justify-between mb-2">
+                  <i class="fab fa-microsoft text-2xl text-blue-600"></i>
+                  <span class="text-xs font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded-full">Gratuito</span>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-1">Microsoft 365 Education (A1)</h3>
+                <p class="text-sm text-gray-600">Word, Excel, PowerPoint e Teams grátis com e-mail institucional</p>
+              </a>
+              <a href="/beneficios/azure-for-students" class="block p-4 bg-cyan-50 hover:bg-cyan-100 rounded-lg transition-colors border border-cyan-100">
+                <div class="flex items-center justify-between mb-2">
+                  <i class="fas fa-cloud text-2xl text-cyan-600"></i>
+                  <span class="text-xs font-bold text-cyan-700 bg-cyan-100 px-2 py-0.5 rounded-full">US$ 100</span>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-1">Azure for Students</h3>
+                <p class="text-sm text-gray-600">Crédito de nuvem sem cartão de crédito, renovável anualmente</p>
+              </a>
+              <a href="/beneficios/github-student-pack" class="block p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors border border-gray-200">
+                <div class="flex items-center justify-between mb-2">
+                  <i class="fab fa-github text-2xl text-gray-800"></i>
+                  <span class="text-xs font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded-full">Gratuito</span>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-1">GitHub Student Pack</h3>
+                <p class="text-sm text-gray-600">Copilot, GitHub Pro e dezenas de ofertas de parceiros</p>
+              </a>
+              <a href="/beneficios/google-ai-pro-estudantes" class="block p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors border border-green-100">
+                <div class="flex items-center justify-between mb-2">
+                  <i class="fab fa-google text-2xl text-green-600"></i>
+                  <span class="text-xs font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">Desconto</span>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-1">Google AI Pro estudantes</h3>
+                <p class="text-sm text-gray-600">Plano com desconto enquanto estudante, até 4 anos</p>
+              </a>
             </div>
           </div>
 
@@ -161,28 +184,416 @@ app.get('/', (c) => {
         {/* Call to Action */}
         <div class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8 text-center border border-gray-200">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Pronto para começar sua jornada em IA?
+            Nenhum direito deve ser perdido por desconhecimento
           </h2>
           <p class="text-xl text-gray-600 mb-6">
-            Explore nossa coleção curada de recursos educacionais e projetos práticos
+            Veja quais benefícios você tem e como ativá-los em poucos minutos — sempre com fonte oficial e data de verificação
           </p>
           <div class="flex flex-wrap justify-center gap-4">
-            <a href="/upload" class="ai-button-primary text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
-              <i class="fas fa-cloud-upload-alt mr-2"></i>
-              Compartilhar Projeto
+            <a href="/beneficios" class="ai-button-primary text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+              <i class="fas fa-graduation-cap mr-2"></i>
+              Explorar Benefícios
             </a>
-            <a href="/showcase" class="bg-white text-ai-primary px-8 py-3 rounded-lg font-semibold border-2 border-ai-primary hover:bg-ai-primary hover:text-white transition-all">
-              <i class="fas fa-rocket mr-2"></i>
-              Ver Showcase
+            <a href="/tutoriais" class="bg-white text-ai-primary px-8 py-3 rounded-lg font-semibold border-2 border-ai-primary hover:bg-ai-primary hover:text-white transition-all">
+              <i class="fas fa-book-open mr-2"></i>
+              Guias de IA
             </a>
           </div>
         </div>
       </div>
-      
-      {/* Scripts específicos da home */}
-      <script src="/static/js/dashboard.js"></script>
     </Layout>,
-    { title: 'Dashboard' }
+    { title: 'Portal IA & Tech — Benefícios para Estudantes' }
+  )
+})
+
+// =========================================
+// BENEFÍCIOS ESTUDANTIS — guias verificados em fontes oficiais
+// Última verificação: 04/11/2026
+// =========================================
+
+const VERIFICADO = '04/11/2026'
+
+type Fonte = { label: string; url: string }
+type Beneficio = {
+  slug: string
+  nome: string
+  icone: string
+  corIcone: string
+  bgIcone: string
+  badge: string
+  badgeClasse: string
+  resumo: string
+  oQueE: string[]
+  direitos: string[]
+  passos: string[]
+  documentos: string[]
+  prazos: string[]
+  aviso?: string
+  linkOficial: string
+  fontes: Fonte[]
+}
+
+const BENEFICIOS: Beneficio[] = [
+  {
+    slug: 'office-365-education',
+    nome: 'Microsoft 365 Education (A1)',
+    icone: 'fab fa-microsoft',
+    corIcone: 'text-blue-600',
+    bgIcone: 'bg-blue-100',
+    badge: 'Gratuito',
+    badgeClasse: 'bg-green-100 text-green-800',
+    resumo: 'Word, Excel, PowerPoint, OneNote e Teams na web, gratuitos para estudantes de instituições elegíveis.',
+    oQueE: [
+      'O Microsoft 365 Education é a suíte Office da Microsoft com o plano A1 gratuito para instituições de ensino qualificadas.',
+      'Inclui versões web de Word, Excel, PowerPoint, OneNote e Teams, além de serviços online (como OneDrive) vinculados ao e-mail da instituição.'
+    ],
+    direitos: [
+      'Estudantes e educadores com e-mail de instituição educacional elegível.',
+      'A qualificação pode ser reverificada pela Microsoft a qualquer momento.'
+    ],
+    passos: [
+      'Acesse a página oficial do Microsoft 365 Education (botão "Site oficial").',
+      'Clique em "Começar gratuitamente" (Get started for free).',
+      'Informe seu e-mail institucional (ex.: nome@sua-instituicao.edu.br).',
+      'Aguarde a verificação: na maioria dos casos é instantânea e automatizada; se a instituição precisar ser verificada manualmente, pode levar até um mês.',
+      'Faça login com sua conta Microsoft e comece a usar os aplicativos na web.'
+    ],
+    documentos: [
+      'E-mail institucional ativo (fornecido pela escola/faculdade).',
+      'Conta Microsoft vinculada a esse e-mail.'
+    ],
+    prazos: [
+      'Disponível enquanto você estiver matriculado ou vinculado à instituição elegível.',
+      'Se o plano expirar, os aplicativos entram em modo de funcionalidade reduzida (visualizar, mas não editar) — dá para revalidar seu status para estender o acesso.'
+    ],
+    linkOficial: 'https://www.microsoft.com/pt-br/education/products/office',
+    fontes: [
+      { label: 'Microsoft Education — Office 365 gratuito para escolas (PT-BR)', url: 'https://www.microsoft.com/pt-br/education/products/office' }
+    ]
+  },
+  {
+    slug: 'azure-for-students',
+    nome: 'Azure for Students',
+    icone: 'fas fa-cloud',
+    corIcone: 'text-cyan-600',
+    bgIcone: 'bg-cyan-100',
+    badge: 'US$ 100 sem cartão',
+    badgeClasse: 'bg-cyan-100 text-cyan-800',
+    resumo: 'Crédito de US$ 100 para usar na nuvem Azure, sem cartão de crédito, renovável anualmente enquanto você estudar.',
+    oQueE: [
+      'Assinatura Azure para estudantes, gratuita e sem exigência de cartão de crédito.',
+      'Inclui crédito de USD 100, utilizável em até 12 meses na maioria dos produtos Azure.',
+      'Dá acesso a ferramentas de desenvolvimento via Azure Dev Tools for Teaching (Visual Studio, SQL Server, Windows Server e outros).'
+    ],
+    direitos: [
+      'Estudantes com e-mail institucional/escolar válido.',
+      'Renovação anual enquanto você continuar estudante.',
+      'Limite de uma conta por pessoa.'
+    ],
+    passos: [
+      'Acesse azure.microsoft.com/pt-br/free/students (botão abaixo).',
+      'Clique em "Comece gratuitamente" e entre com sua conta Microsoft.',
+      'Verifique seu status de estudante usando o e-mail escolar.',
+      'Ative a assinatura — sem cartão de crédito.',
+      'Se quiser, baixe as ferramentas no Hub de Educação do Azure.'
+    ],
+    documentos: [
+      'E-mail institucional/escolar ativo.',
+      'Conta Microsoft para login.'
+    ],
+    prazos: [
+      'O crédito de US$ 100 vale por 12 meses.',
+      'A assinatura é renovada anualmente enquanto você permanecer estudante.',
+      'Ao fim do ciclo, você pode migrar para pagamento conforme o uso; sem migrar, a assinatura e os produtos são desabilitados.'
+    ],
+    aviso: 'O crédito não pode ser usado em ofertas do Azure Marketplace.',
+    linkOficial: 'https://azure.microsoft.com/pt-br/free/students',
+    fontes: [
+      { label: 'Microsoft Azure for Students — página oficial (PT-BR)', url: 'https://azure.microsoft.com/pt-br/free/students' }
+    ]
+  },
+  {
+    slug: 'github-student-pack',
+    nome: 'GitHub Student Developer Pack',
+    icone: 'fab fa-github',
+    corIcone: 'text-gray-800',
+    bgIcone: 'bg-gray-100',
+    badge: 'Gratuito',
+    badgeClasse: 'bg-green-100 text-green-800',
+    resumo: 'GitHub Pro grátis, Copilot Student e dezenas de ofertas de parceiros (Azure, JetBrains, 1Password, Heroku e mais).',
+    oQueE: [
+      'Pacote de ofertas do GitHub e de parceiros para estudantes verificados.',
+      'Inclui GitHub Pro gratuito enquanto durar o status de estudante e o GitHub Copilot Student: sugestões de código ilimitadas, créditos de IA e uso limitado de chat/agentes.',
+      'Reúne ofertas como Azure (US$ 100 de crédito), JetBrains (IDEs grátis com renovação anual), Namecheap, 1Password (2 anos), Heroku, MongoDB, Notion, DataCamp e muitas outras.'
+    ],
+    direitos: [
+      'Estudantes verificados pelo GitHub Education — a partir de 13 anos, matriculados em instituição que conceda grau ou diploma (critérios na documentação oficial).'
+    ],
+    passos: [
+      'Acesse education.github.com/pack (botão abaixo).',
+      'Faça login na sua conta GitHub e inicie a candidatura ao Student Developer Pack.',
+      'Preencha os dados da instituição e informe o e-mail escolar, se tiver.',
+      'Envie a prova de matrícula e a foto de documento quando solicitado (foto nítida, com nome e datas legíveis).',
+      'Aguarde a análise e ative as ofertas pelo painel do Pack.'
+    ],
+    documentos: [
+      'Comprovante de matrícula ou documento escolar com data de emissão recente.',
+      'Foto de identificação com nome e datas legíveis.',
+      'E-mail institucional ajuda na aprovação (nem sempre obrigatório).'
+    ],
+    prazos: [
+      'GitHub Pro e Copilot Student valem enquanto o status de estudante estiver verificado (com reverificação periódica).',
+      'Cada oferta de parceiro tem prazo próprio — confira no painel do Pack.'
+    ],
+    linkOficial: 'https://education.github.com/pack',
+    fontes: [
+      { label: 'GitHub Education — Student Developer Pack', url: 'https://education.github.com/pack' },
+      { label: 'GitHub Docs — candidatura de estudantes ao GitHub Education', url: 'https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student' }
+    ]
+  },
+  {
+    slug: 'google-ai-pro-estudantes',
+    nome: 'Google AI Pro para estudantes',
+    icone: 'fab fa-google',
+    corIcone: 'text-green-600',
+    bgIcone: 'bg-green-100',
+    badge: 'Desconto estudantil',
+    badgeClasse: 'bg-amber-100 text-amber-800',
+    resumo: 'Plano Google AI Pro com desconto para estudantes elegíveis, mantido por até 4 anos consecutivos enquanto estudar.',
+    oQueE: [
+      'Oferta do Google One para estudantes elegíveis: o plano Google AI Pro com desconto enquanto durar a condição de estudante.',
+      'Segundo a página oficial de suporte do Google One, o benefício se mantém por até 4 anos consecutivos enquanto você for estudante elegível.'
+    ],
+    direitos: [
+      'Estudantes elegíveis com verificação pelo fluxo do Google One (requer login para conferir disponibilidade no seu país e conta).'
+    ],
+    passos: [
+      'Acesse one.google.com/ai-student (botão abaixo) e faça login com sua conta Google.',
+      'Siga o fluxo de verificação do status de estudante.',
+      'Se elegível, ative o desconto no plano Google AI Pro.'
+    ],
+    documentos: [
+      'Conta Google.',
+      'Verificação de status de estudante solicitada no próprio fluxo do Google.'
+    ],
+    prazos: [
+      'Desconto mantido enquanto você for estudante elegível, por até 4 anos consecutivos (fonte: suporte oficial do Google One).'
+    ],
+    aviso: 'Detalhes finais (preço no Brasil e disponibilidade) a confirmar: a página oficial exige login. Verifique no suporte oficial antes de assinar.',
+    linkOficial: 'https://one.google.com/ai-student',
+    fontes: [
+      { label: 'Suporte Google One — oferta para estudantes (PT)', url: 'https://support.google.com/googleone/answer/17422238?hl=pt' },
+      { label: 'Google One AI Student — página oficial (requer login)', url: 'https://one.google.com/ai-student' }
+    ]
+  }
+]
+
+const BENEFICIOS_EM_BREVE = [
+  'Google Workspace for Education',
+  'JetBrains Student Pack',
+  'Notion for Education',
+  'Figma for Education',
+  'Canva for Education',
+  'AWS Educate',
+  'Autodesk Education',
+  'Coursera for Campus',
+  'CAPES Periódicos (acesso CAFe)',
+  'Pé-de-Meia (MEC)'
+]
+
+// Hub de Benefícios
+app.get('/beneficios', (c) => {
+  return c.render(
+    <Layout currentPage="beneficios">
+      <div class="space-y-8">
+        <div class="bg-gradient-to-r from-ai-primary via-ai-secondary to-ai-accent rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative z-10">
+            <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3">
+              🎓 Direitos & Benefícios
+            </span>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">
+              Benefícios gratuitos para estudantes
+            </h1>
+            <p class="text-lg text-white/90">
+              Ferramentas pagas que são gratuitas ou com desconto para estudantes elegíveis — com guia de ativação passo a passo e fontes oficiais.
+            </p>
+            <p class="text-sm text-white/80 mt-3">
+              <i class="fas fa-check-circle mr-1"></i>
+              Informações verificadas nas fontes oficiais em {VERIFICADO}
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {BENEFICIOS.map((b) => (
+            <a href={`/beneficios/${b.slug}`} class="ai-card block bg-white rounded-2xl p-6">
+              <div class="flex items-center justify-between mb-4">
+                <div class={`w-12 h-12 ${b.bgIcone} rounded-xl flex items-center justify-center`}>
+                  <i class={`${b.icone} ${b.corIcone} text-2xl`}></i>
+                </div>
+                <span class={`text-xs font-bold px-3 py-1 rounded-full ${b.badgeClasse}`}>{b.badge}</span>
+              </div>
+              <h2 class="text-xl font-bold text-gray-900 mb-2">{b.nome}</h2>
+              <p class="text-gray-600 mb-4">{b.resumo}</p>
+              <span class="text-ai-primary font-semibold text-sm">
+                Ver guia completo <i class="fas fa-arrow-right ml-1"></i>
+              </span>
+            </a>
+          ))}
+        </div>
+
+        <div class="ai-card bg-white rounded-2xl p-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-2">
+            <i class="fas fa-flask text-purple-500 mr-2"></i>
+            Em catalogação
+          </h2>
+          <p class="text-gray-600 text-sm mb-4">Próximos guias que estamos preparando (cada um só entra no ar após verificação na fonte oficial):</p>
+          <div class="flex flex-wrap gap-2">
+            {BENEFICIOS_EM_BREVE.map((nome) => (
+              <span class="text-sm bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full">{nome}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-gray-900 mb-2">
+            <i class="fas fa-shield-alt text-blue-500 mr-2"></i>
+            Nossa metodologia de verificação
+          </h2>
+          <ul class="text-gray-700 text-sm space-y-2">
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Todo guia cita a fonte oficial e a data da última verificação.</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Nada entra no ar sem confirmação na página oficial do programa.</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Encontrou algo desatualizado? Avise em <a href="mailto:contato@iaetech.com.br" class="text-ai-primary font-semibold hover:underline">contato@iaetech.com.br</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </Layout>,
+    { title: 'Benefícios para Estudantes | Portal IA & Tech' }
+  )
+})
+
+// Ficha individual de Benefício
+app.get('/beneficios/:slug', (c) => {
+  const beneficio = BENEFICIOS.find((b) => b.slug === c.req.param('slug'))
+  if (!beneficio) {
+    return c.redirect('/beneficios')
+  }
+  return c.render(
+    <Layout currentPage="beneficios">
+      <div class="space-y-8">
+        <div class="text-sm text-gray-500 flex items-center gap-2">
+          <a href="/" class="hover:text-ai-primary">Início</a>
+          <i class="fas fa-chevron-right text-xs"></i>
+          <a href="/beneficios" class="hover:text-ai-primary">Benefícios</a>
+          <i class="fas fa-chevron-right text-xs"></i>
+          <span class="text-ai-primary font-semibold">{beneficio.nome}</span>
+        </div>
+
+        <div class="bg-gradient-to-r from-ai-primary via-ai-secondary to-ai-accent rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0">
+              <i class={`${beneficio.icone} text-white text-3xl`}></i>
+            </div>
+            <div class="flex-1">
+              <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold mb-2">{beneficio.badge}</span>
+              <h1 class="text-2xl sm:text-3xl font-bold mb-2">{beneficio.nome}</h1>
+              <p class="text-white/90">{beneficio.resumo}</p>
+            </div>
+            <a href={beneficio.linkOficial} target="_blank" rel="noopener noreferrer" class="bg-white text-ai-primary px-5 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors whitespace-nowrap">
+              <i class="fas fa-external-link-alt mr-2"></i>
+              Site oficial
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 space-y-6">
+            <section class="ai-card bg-white rounded-2xl p-6">
+              <h2 class="text-xl font-bold text-gray-900 mb-3"><i class="fas fa-info-circle text-ai-primary mr-2"></i>O que é</h2>
+              {beneficio.oQueE.map((p) => <p class="text-gray-700 mb-3 leading-relaxed">{p}</p>)}
+            </section>
+
+            <section class="ai-card bg-white rounded-2xl p-6">
+              <h2 class="text-xl font-bold text-gray-900 mb-3"><i class="fas fa-user-check text-green-600 mr-2"></i>Quem tem direito</h2>
+              <ul class="space-y-2">
+                {beneficio.direitos.map((d) => <li class="text-gray-700 flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>{d}</span></li>)}
+              </ul>
+            </section>
+
+            <section class="ai-card bg-white rounded-2xl p-6">
+              <h2 class="text-xl font-bold text-gray-900 mb-3"><i class="fas fa-route text-ai-secondary mr-2"></i>Como ativar — passo a passo</h2>
+              <ol class="space-y-3">
+                {beneficio.passos.map((p, i) => (
+                  <li class="flex items-start">
+                    <span class="flex-shrink-0 w-7 h-7 bg-ai-primary text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">{i + 1}</span>
+                    <span class="text-gray-700">{p}</span>
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            <section class="ai-card bg-white rounded-2xl p-6">
+              <h2 class="text-xl font-bold text-gray-900 mb-3"><i class="fas fa-file-alt text-orange-500 mr-2"></i>O que você vai precisar</h2>
+              <ul class="space-y-2">
+                {beneficio.documentos.map((d) => <li class="text-gray-700 flex items-start"><i class="fas fa-angle-right text-gray-400 mt-1 mr-2"></i><span>{d}</span></li>)}
+              </ul>
+            </section>
+
+            <section class="ai-card bg-white rounded-2xl p-6">
+              <h2 class="text-xl font-bold text-gray-900 mb-3"><i class="fas fa-clock text-ai-accent mr-2"></i>Prazos e renovação</h2>
+              <ul class="space-y-2">
+                {beneficio.prazos.map((p) => <li class="text-gray-700 flex items-start"><i class="fas fa-calendar-alt text-ai-accent mt-1 mr-2"></i><span>{p}</span></li>)}
+              </ul>
+            </section>
+          </div>
+
+          <div class="space-y-6">
+            <div class="ai-card bg-white rounded-2xl p-6">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-gray-900">Status da informação</h3>
+                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+              </div>
+              <p class="text-sm text-gray-600">Verificado nas fontes oficiais em <strong>{VERIFICADO}</strong>.</p>
+            </div>
+
+            {beneficio.aviso && (
+              <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-2xl p-5">
+                <h3 class="font-bold text-amber-900 mb-1"><i class="fas fa-exclamation-triangle mr-2"></i>Atenção</h3>
+                <p class="text-sm text-amber-900">{beneficio.aviso}</p>
+              </div>
+            )}
+
+            <div class="ai-card bg-white rounded-2xl p-6">
+              <h3 class="font-bold text-gray-900 mb-3">Fontes oficiais</h3>
+              <ul class="space-y-3">
+                {beneficio.fontes.map((f) => (
+                  <li>
+                    <a href={f.url} target="_blank" rel="noopener noreferrer" class="text-ai-primary text-sm font-medium hover:underline break-all">
+                      <i class="fas fa-link mr-2"></i>{f.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="bg-gradient-to-br from-ai-primary to-ai-secondary text-white rounded-2xl p-6">
+              <h3 class="font-bold mb-2">Pronto para ativar?</h3>
+              <p class="text-sm text-white/90 mb-4">Siga o passo a passo direto na fonte oficial.</p>
+              <a href={beneficio.linkOficial} target="_blank" rel="noopener noreferrer" class="block bg-white text-ai-primary text-center px-4 py-2.5 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                Acessar site oficial
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-gray-500 text-center">
+          Conteúdo informativo e educacional. Condições, preços e elegibilidade podem mudar — sempre confirme na fonte oficial antes de decidir.
+        </p>
+      </div>
+    </Layout>,
+    { title: `${beneficio.nome} | Portal IA & Tech` }
   )
 })
 

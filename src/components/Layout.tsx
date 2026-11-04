@@ -36,7 +36,6 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
             </button>
             <button class="hidden sm:block p-2 rounded-lg hover:bg-gray-100 transition-colors relative" title="Notificações">
               <i class="fas fa-bell text-gray-600"></i>
-              <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
             </button>
           </div>
         </div>
@@ -70,6 +69,12 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
                 <span>Início</span>
               </a>
               
+              {/* Benefícios estudantis */}
+              <a href="/beneficios" class={`nav-item ${currentPage === 'beneficios' ? 'active' : ''}`}>
+                <i class="fas fa-graduation-cap"></i>
+                <span>Benefícios</span>
+              </a>
+              
               {/* Galeria de IAs */}
               <a href="/galeria" class={`nav-item ${currentPage === 'galeria' ? 'active' : ''}`}>
                 <i class="fas fa-images"></i>
@@ -88,11 +93,7 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
                 <span>Showcase</span>
               </a>
               
-              {/* Upload */}
-              <button onclick="openUploadModal()" class="nav-item w-full text-left">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <span>Upload & Share</span>
-              </button>
+              {/* Upload removido: submissão de projetos será uma página própria no futuro */}
             </div>
             
             {/* Seção de Categorias - Melhorada */}
@@ -166,14 +167,17 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
               <a href="/tutoriais" class="text-gray-300 hover:text-white transition-colors">
                 <i class="fas fa-book-open text-xl"></i>
               </a>
+              <a href="/beneficios" class="text-gray-300 hover:text-white transition-colors">
+                <i class="fas fa-graduation-cap text-xl"></i>
+              </a>
             </div>
             
             <div class="border-t border-gray-600 pt-4">
               <p class="text-sm text-gray-400">
-                © 2025 Portal Educativo IA & Tecnologia. Desenvolvido com ❤️ para educação em tecnologia.
+                © 2026 Portal IA & Tech — Direitos e benefícios para estudantes. Conteúdo verificado em fontes oficiais.
               </p>
               <p class="text-xs text-gray-500 mt-2">
-                Stack: Hono + TypeScript + Cloudflare Pages + TailwindCSS
+                Última verificação dos guias: 04/11/2026 · contato@iaetech.com.br
               </p>
             </div>
           </div>
