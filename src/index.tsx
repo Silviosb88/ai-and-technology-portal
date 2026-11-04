@@ -425,6 +425,23 @@ app.get('/beneficios', (c) => {
           </div>
         </div>
 
+        {/* ESPAÇO RESERVADO: ENEM 2026 — guia em preparação */}
+        {/* Fonte verificada (gov.br/INEP, 04/11/2026): provas em 8 e 15 de novembro de 2026 */}
+        <a href="/beneficios/enem-2026" class="block bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-6 text-white relative overflow-hidden hover:shadow-xl transition-all">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative z-10 flex items-center gap-4">
+            <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-file-signature text-white text-2xl"></i>
+            </div>
+            <div class="flex-1">
+              <span class="inline-block bg-white/25 px-3 py-0.5 rounded-full text-xs font-bold mb-1">ESPAÇO RESERVADO · GUIA EM PREPARAÇÃO</span>
+              <h2 class="text-2xl font-bold mb-1">ENEM 2026 — Guia completo para estudantes</h2>
+              <p class="text-white/90 text-sm">Inscrição, taxa e isenção, acessibilidade no dia da prova e como usar sua nota. Provas confirmadas: 8 e 15 de novembro (INEP). O guia completo chega em breve.</p>
+            </div>
+            <i class="fas fa-arrow-right text-2xl hidden sm:block"></i>
+          </div>
+        </a>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {BENEFICIOS.map((b) => (
             <a href={`/beneficios/${b.slug}`} class="ai-card block bg-white rounded-2xl p-6">
@@ -470,6 +487,88 @@ app.get('/beneficios', (c) => {
       </div>
     </Layout>,
     { title: 'Benefícios para Estudantes | Portal IA & Tech' }
+  )
+})
+
+// ENEM 2026 — ESPAÇO RESERVADO (página de lançamento do guia)
+// Fonte verificada em 04/11/2026 (gov.br/INEP): provas aplicadas em 8 e 15 de novembro de 2026
+// https://www.gov.br/inep/pt-br/centrais-de-conteudo/noticias/enem/enem-2026-falta-um-mes-para-o-primeiro-dia-de-provas
+// TODO: taxa, datas de inscrição, regras de isenção e cronograma completo SÓ entram aqui
+// após verificação direta no edital oficial (Edital INEP nº 64/2026: https://mecnormas.mec.gov.br/pesquisa/detalhar/11900)
+app.get('/beneficios/enem-2026', (c) => {
+  return c.render(
+    <Layout currentPage="beneficios">
+      <div class="space-y-8">
+        <div class="text-sm text-gray-500 flex items-center gap-2">
+          <a href="/" class="hover:text-ai-primary">Início</a>
+          <i class="fas fa-chevron-right text-xs"></i>
+          <a href="/beneficios" class="hover:text-ai-primary">Benefícios</a>
+          <i class="fas fa-chevron-right text-xs"></i>
+          <span class="text-ai-primary font-semibold">ENEM 2026</span>
+        </div>
+
+        <div class="bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative z-10">
+            <span class="inline-block bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold mb-3">
+              📢 ESPAÇO RESERVADO · GUIA EM PREPARAÇÃO
+            </span>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">ENEM 2026</h1>
+            <p class="text-lg text-white/90">
+              Estamos preparando o guia completo do exame — com o mesmo padrão de verificação de todas as páginas do portal. Este espaço é reservado para esse conteúdo.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 space-y-6">
+            <section class="ai-card bg-white rounded-2xl p-6">
+              <h2 class="text-xl font-bold text-gray-900 mb-3"><i class="fas fa-check-circle text-green-600 mr-2"></i>Já confirmado (fonte oficial)</h2>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fas fa-calendar-check text-ai-primary mt-1 mr-3"></i>
+                  <div>
+                    <p class="text-gray-700"><strong>Provas aplicadas em 8 e 15 de novembro de 2026</strong> — datas confirmadas pelo INEP.</p>
+                    <a href="https://www.gov.br/inep/pt-br/centrais-de-conteudo/noticias/enem/enem-2026-falta-um-mes-para-o-primeiro-dia-de-provas" target="_blank" rel="noopener noreferrer" class="text-ai-primary text-sm font-medium hover:underline">
+                      <i class="fas fa-link mr-1"></i>Fonte: Gov.br/INEP (verificado em 04/11/2026)
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </section>
+
+            <section class="ai-card bg-white rounded-2xl p-6">
+              <h2 class="text-xl font-bold text-gray-900 mb-3"><i class="fas fa-hammer text-orange-500 mr-2"></i>O que este guia vai trazer</h2>
+              <p class="text-gray-600 text-sm mb-4">Preparando com o padrão do portal: cada item só entra no ar com verificação no edital oficial.</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="flex items-start bg-gray-50 rounded-lg p-3"><i class="fas fa-pen-to-square text-ai-primary mt-0.5 mr-2"></i><span class="text-sm text-gray-700">Inscrição passo a passo</span></div>
+                <div class="flex items-start bg-gray-50 rounded-lg p-3"><i class="fas fa-hand-holding-dollar text-ai-primary mt-0.5 mr-2"></i><span class="text-sm text-gray-700">Taxa de inscrição e isenção</span></div>
+                <div class="flex items-start bg-gray-50 rounded-lg p-3"><i class="fas fa-universal-access text-ai-primary mt-0.5 mr-2"></i><span class="text-sm text-gray-700">Acessibilidade e atendimentos especiais</span></div>
+                <div class="flex items-start bg-gray-50 rounded-lg p-3"><i class="fas fa-calendar-days text-ai-primary mt-0.5 mr-2"></i><span class="text-sm text-gray-700">Cronograma oficial completo</span></div>
+                <div class="flex items-start bg-gray-50 rounded-lg p-3"><i class="fas fa-clipboard-check text-ai-primary mt-0.5 mr-2"></i><span class="text-sm text-gray-700">O que levar no dia da prova</span></div>
+                <div class="flex items-start bg-gray-50 rounded-lg p-3"><i class="fas fa-graduation-cap text-ai-primary mt-0.5 mr-2"></i><span class="text-sm text-gray-700">Como usar a nota (SiSU, ProUni, FIES)</span></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="space-y-6">
+            <div class="ai-card bg-white rounded-2xl p-6">
+              <h3 class="font-bold text-gray-900 mb-3">Canal oficial do participante</h3>
+              <p class="text-sm text-gray-600 mb-4">Resultado, cartão de confirmação e informações oficiais ficam na Página do Participante do INEP.</p>
+              <a href="https://enem.inep.gov.br/participante/" target="_blank" rel="noopener noreferrer" class="block bg-ai-primary text-white text-center px-4 py-2.5 rounded-lg font-semibold hover:bg-ai-secondary transition-colors">
+                <i class="fas fa-external-link-alt mr-2"></i>Abrir Página do Participante
+              </a>
+            </div>
+
+            <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-2xl p-5">
+              <h3 class="font-bold text-amber-900 mb-1"><i class="fas fa-shield-alt mr-2"></i>Compromisso do portal</h3>
+              <p class="text-sm text-amber-900">Nenhuma data, taxa ou regra será publicada aqui sem verificação direta no edital oficial do INEP. Aguarde o guia completo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Layout>,
+    { title: 'ENEM 2026 — Guia (em preparação) | Portal IA & Tech' }
   )
 })
 

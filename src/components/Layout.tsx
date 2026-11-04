@@ -74,6 +74,14 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
                 <i class="fas fa-graduation-cap"></i>
                 <span>Benefícios</span>
               </a>
+
+              {/* ENEM 2026 — espaço reservado (guia em preparação) */}
+              <a href="/beneficios/enem-2026" class="nav-item">
+                <i class="fas fa-file-signature"></i>
+                <span>ENEM 2026
+                  <span class="ml-1 text-[10px] font-bold bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full align-middle">EM BREVE</span>
+                </span>
+              </a>
               
               {/* Galeria de IAs */}
               <a href="/galeria" class={`nav-item ${currentPage === 'galeria' ? 'active' : ''}`}>
