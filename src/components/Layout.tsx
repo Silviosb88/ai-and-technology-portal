@@ -82,6 +82,12 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
                   <span class="ml-1 text-[10px] font-bold bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full align-middle">EM BREVE</span>
                 </span>
               </a>
+
+              {/* Direitos dos professores */}
+              <a href="/direitos-professores" class={`nav-item ${currentPage === 'professores' ? 'active' : ''}`}>
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Professores</span>
+              </a>
               
               {/* Galeria de IAs */}
               <a href="/galeria" class={`nav-item ${currentPage === 'galeria' ? 'active' : ''}`}>
@@ -178,11 +184,14 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
               <a href="/beneficios" class="text-gray-300 hover:text-white transition-colors">
                 <i class="fas fa-graduation-cap text-xl"></i>
               </a>
+              <a href="/direitos-professores" class="text-gray-300 hover:text-white transition-colors">
+                <i class="fas fa-chalkboard-teacher text-xl"></i>
+              </a>
             </div>
             
             <div class="border-t border-gray-600 pt-4">
               <p class="text-sm text-gray-400">
-                © 2026 Portal IA & Tech — Direitos e benefícios para estudantes. Conteúdo verificado em fontes oficiais.
+                © 2026 Portal IA & Tech — Direitos e benefícios para quem estuda e para quem ensina. Conteúdo verificado em fontes oficiais.
               </p>
               <p class="text-xs text-gray-500 mt-2">
                 Última verificação dos guias: 04/11/2026 · contato@iaetech.com.br

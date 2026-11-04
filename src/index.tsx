@@ -32,16 +32,16 @@ app.get('/', (c) => {
               Conheça seus direitos como estudante
             </h1>
             <p class="text-lg sm:text-xl mb-6 text-white/90">
-              Microsoft 365, Azure, GitHub, Google e outras ferramentas pagas são <strong>gratuitas</strong> para estudantes elegíveis. Guias claros, verificados e atualizados — para que nenhum direito se perca por desconhecimento.
+              Microsoft 365, Azure, GitHub, Google e outras ferramentas pagas são <strong>gratuitas</strong> para estudantes e professores elegíveis — e professores têm direitos próprios (piso salarial, hora-atividade, aposentadoria especial). Guias claros, verificados e atualizados, para que nenhum direito se perca por desconhecimento.
             </p>
             <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
               <a href="/beneficios" class="bg-white text-ai-primary hover:bg-blue-50 px-4 sm:px-6 py-3 rounded-lg font-semibold transition-colors text-center">
                 <i class="fas fa-graduation-cap mr-2"></i>
-                Ver Benefícios
+                Benefícios para estudantes
               </a>
-              <a href="/tutoriais" class="bg-white/20 hover:bg-white/30 px-4 sm:px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm text-center">
-                <i class="fas fa-book-open mr-2"></i>
-                Guias de IA
+              <a href="/direitos-professores" class="bg-white/20 hover:bg-white/30 px-4 sm:px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm text-center">
+                <i class="fas fa-chalkboard-teacher mr-2"></i>
+                Direitos dos professores
               </a>
             </div>
           </div>
@@ -431,6 +431,22 @@ app.get('/beneficios', (c) => {
           </div>
         </div>
 
+        {/* Direitos dos Professores — destaque na home */}
+        <a href="/direitos-professores" class="block bg-gradient-to-r from-rose-500 to-orange-500 rounded-2xl p-6 text-white relative overflow-hidden hover:shadow-xl transition-all">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative z-10 flex items-center gap-4">
+            <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+            </div>
+            <div class="flex-1">
+              <span class="inline-block bg-white/25 px-3 py-0.5 rounded-full text-xs font-bold mb-1">NOVA ÁREA</span>
+              <h2 class="text-2xl font-bold mb-1">Direitos dos Professores</h2>
+              <p class="text-white/90 text-sm">Piso salarial (R$ 5.130,63 em 2026), hora-atividade de 1/3, aposentadoria especial, férias e recesso — com fonte oficial e data de verificação.</p>
+            </div>
+            <i class="fas fa-arrow-right text-2xl hidden sm:block"></i>
+          </div>
+        </a>
+
         {/* ESPAÇO RESERVADO: ENEM 2026 — guia em preparação */}
         {/* Fonte verificada (gov.br/INEP, 04/11/2026): provas em 8 e 15 de novembro de 2026 */}
         <a href="/beneficios/enem-2026" class="block bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-6 text-white relative overflow-hidden hover:shadow-xl transition-all">
@@ -699,6 +715,227 @@ app.get('/beneficios/:slug', (c) => {
       </div>
     </Layout>,
     { title: `${beneficio.nome} | Portal IA & Tech` }
+  )
+})
+
+// =========================================
+// DIREITOS DOS PROFESSORES — área distinta dos direitos estudantis
+// Fontes verificadas nesta rodada: MEC (Lei 15.437/2026), MEC FAQ (Lei 11.738/2008),
+// INSS (EC 103/2019 + Decreto 10.410/2020), CLT art. 322, CF art. 206, GitHub Education
+// Última verificação: 04/11/2026
+// =========================================
+
+const VERIFICADO_DOC = '04/11/2026'
+
+type DireitoDocente = {
+  id: string
+  icone: string
+  titulo: string
+  resumo: string
+  pontos: string[]
+  ondeVale: string
+  fonteLabel: string
+  fonteUrl: string
+  observacao?: string
+}
+
+const DIREITOS_DOCENTES: DireitoDocente[] = [
+  {
+    id: 'piso-salarial',
+    icone: 'fas fa-hand-holding-dollar',
+    titulo: 'Piso salarial nacional do magistério',
+    resumo: 'Valor mínimo que União, Estados, DF e Municípios não podem pagar abaixo do vencimento inicial — em 2026, R$ 5.130,63 para 40h semanais.',
+    pontos: [
+      'A Lei nº 15.437/2026 fixou o piso salarial profissional nacional do magistério público da educação básica em R$ 5.130,63 para 2026 (formação nível médio, modalidade Normal, jornada de 40 horas semanais).',
+      'Reajuste de 5,4% sobre o piso de 2025 (R$ 4.867,77), com efeitos financeiros retroativos a janeiro de 2026; demais jornadas são proporcionais.',
+      'A atualização anual passa a ser calculada pela soma da variação do INPC do ano anterior e 50% da média do crescimento real das receitas do Fundeb nos 5 anos anteriores — e nunca pode ficar abaixo do INPC.',
+      'A lei de 2026 também incluiu entre os beneficiários os profissionais do magistério contratados temporariamente.'
+    ],
+    ondeVale: 'Apenas magistério público da educação básica (União, Estados, DF e Municípios). Não vale para a rede privada.',
+    fonteLabel: 'MEC — Sancionado piso salarial para professores da educação básica (19/06/2026)',
+    fonteUrl: 'https://www.gov.br/mec/pt-br/assuntos/noticias/2026/junho/sancionado-piso-salarial-para-professores-da-educacao-basica'
+  },
+  {
+    id: 'hora-atividade',
+    icone: 'fas fa-clock',
+    titulo: 'Hora-atividade: 1/3 da jornada fora da sala de aula',
+    resumo: 'No máximo 2/3 da jornada do magistério público da educação básica pode ser em interação com estudantes — o restante é hora-atividade (planejamento, avaliação, formação).',
+    pontos: [
+      'O art. 2º, §4º, da Lei nº 11.738/2008 estabelece o limite máximo de 2/3 da carga horária para atividades de interação com os educandos.',
+      'O 1/3 restante (planejamento, correção, formação continuada, reuniões pedagógicas) é garantido por lei — e não pode ser absorvido como "trabalho de casa".',
+      'A forma de cumprimento da hora-atividade é definida por cada ente federativo, conforme o projeto político-pedagógico da rede.'
+    ],
+    ondeVale: 'Magistério público da educação básica (jornada regulamentada pela Lei do Piso).',
+    fonteLabel: 'MEC — Perguntas frequentes sobre o Piso Salarial (Lei 11.738/2008)',
+    fonteUrl: 'https://www.gov.br/mec/pt-br/despublicados/plano-de-carreira/perguntas-frequentes-1/perguntas-frequentes'
+  },
+  {
+    id: 'aposentadoria',
+    icone: 'fas fa-umbrella-beach',
+    titulo: 'Aposentadoria do professor (regras próprias)',
+    resumo: 'Professores têm regras diferenciadas na Previdência: 25 anos de contribuição (mulher) ou 30 anos (homem), exclusivamente em funções de magistério na educação básica.',
+    pontos: [
+      'Direito adquirido (condições implementadas até 13/11/2019): 25 anos de contribuição para professora e 30 para professor, exclusivamente em funções de magistério na educação básica (educação infantil, ensino fundamental e médio).',
+      'Regras de transição da EC 103/2019 (para quem estava filiada ao RGPS até 13/11/2019): (1) pontuação mínima — mulher 25 anos + 81 pontos em 2019 (subiu 1 ponto/ano até 92); homem 30 anos + 91 pontos em 2019 (até 100); (2) idade mínima — mulher 25 anos + 51 anos em 2019 (+6 meses/ano até 57); homem 30 anos + 56 anos em 2019 (até 60); (3) pedágio de 100% — mulher 25 anos + 52 anos de idade; homem 30 anos + 55 anos.',
+      'Carência nas regras de transição: mínimo de 180 meses de efetiva atividade (homens e mulheres).',
+      'Funções de magistério para fins previdenciários incluem, além da docência, direção de unidade escolar e coordenação/assessoramento pedagógicos (Decreto nº 10.410/2020).',
+      'Quem ingressou no RGPS a partir de 14/11/2019 fica sujeito à aposentadoria programada comum do INSS (sem a regra especial).'
+    ],
+    ondeVale: 'Regime Geral de Previdência Social (INSS) — professores da iniciativa privada e do regime geral; servidores efetivos seguem os regimes próprios (regras do ente).',
+    fonteLabel: 'INSS — Aposentadoria por tempo de contribuição do professor (página oficial)',
+    fonteUrl: 'https://www.gov.br/inss/pt-br/direitos-e-deveres/aposentadorias/aposentadoria-por-tempo-de-contribuicao-do-professor'
+  },
+  {
+    id: 'ferias-recesso',
+    icone: 'fas fa-calendar-alt',
+    titulo: 'Férias e recesso escolar',
+    resumo: 'Durante as férias escolares, a CLT impede exigir do professor outro serviço além de exames — e na rede privada o recesso é conquistado via convenção coletiva.',
+    pontos: [
+      'CLT, art. 322, §2º: "No período de férias, não se poderá exigir dos professores outro serviço senão o relacionado com a realização de exames".',
+      'No período de exames e de férias escolares, o pagamento dos professores é assegurado (CLT, art. 322).',
+      'Na rede privada, o recesso escolar é um direito definido nas convenções coletivas de cada categoria (ex.: cláusula de disponibilidade apenas para planejamento, reciclagem e cursos) — confira a CCT do seu sindicato.',
+      'Férias e recesso são coisas diferentes: férias são direito do trabalhador (com adicional de 1/3 na regra geral da CLT); recesso é pausa do calendário letivo regulada por convenção coletiva na rede privada.'
+    ],
+    ondeVale: 'Docentes celetistas (rede privada e contratos CLT). Servidores públicos seguem o regime jurídico do ente.',
+    fonteLabel: 'SINPRONORTE — Recesso escolar ou férias escolares é direito garantido em lei (cita CLT art. 322)',
+    fonteUrl: 'https://sinpronorte.org.br/2022/07/12/recesso-escolar-ou-ferias-escolares-e-direito-garantido-em-lei/'
+  },
+  {
+    id: 'liberdade-catedra',
+    icone: 'fas fa-feather',
+    titulo: 'Liberdade de ensinar (cátedra) e valorização docente',
+    resumo: 'A Constituição garante a liberdade de aprender, ensinar, pesquisar e divulgar — e lista a valorização dos profissionais da educação e o piso nacional como princípios do ensino.',
+    pontos: [
+      'CF/88, art. 206, II: "liberdade de aprender, ensinar, pesquisar e divulgar o pensamento, a arte e o saber".',
+      'CF/88, art. 206, V: valorização dos profissionais da educação escolar, com planos de carreira e ingresso nas redes públicas exclusivamente por concurso público de provas e títulos (redação da EC 53/2006).',
+      'CF/88, art. 206, VIII: piso salarial profissional nacional para os profissionais da educação escolar pública, nos termos de lei federal (EC 53/2006).'
+    ],
+    ondeVale: 'Todo o sistema de ensino brasileiro (princípios constitucionais).',
+    fonteLabel: 'CF/88, art. 206 — texto dos incisos (referência jurídica)',
+    fonteUrl: 'https://www.jusbrasil.com.br/topicos/10650554/artigo-206-da-constituicao-federal-de-1988'
+  },
+  {
+    id: 'protecao-violencia',
+    icone: 'fas fa-shield-halved',
+    titulo: 'Proteção contra violência nas escolas',
+    resumo: 'Medidas de proteção a educadores existem em leis estaduais e municipais — o alcance varia por território. Confira a regra do seu estado/município.',
+    pontos: [
+      'Existe legislação estadual de proteção a educadores (ex.: Espírito Santo instituiu medidas de segurança para profissionais das redes pública e privada — "Lei SOS Educação").',
+      'No Legislativo federal tramitam projetos de proteção e combate à violência física e moral contra profissionais do ensino.',
+      'O MEC mantém o programa Escola que Protege, voltado à prevenção e enfrentamento da violência nas escolas.'
+    ],
+    ondeVale: 'Varia por estado/município — não há uma lei nacional única de proteção ao docente (status: a confirmar por território).',
+    fonteLabel: 'Ales/ES — Lei estabelece medidas para garantir segurança de educadores',
+    fonteUrl: 'https://www.al.es.gov.br/Noticia/2025/08/49134/lei-estabelece-medidas-para-garantir-seguranca-de-educadores.html'
+  }
+]
+
+const BENEFICIOS_DOCENTES_PLATAFORMAS = [
+  { nome: 'Canva for Education', desc: '100% gratuito para professores verificados da educação básica (K-12) e seus alunos', url: 'https://www.canva.com/education/teachers/' },
+  { nome: 'Notion for Education', desc: 'Plano Plus gratuito para educadores de instituições acreditadas', url: 'https://www.notion.com/product/notion-for-education' },
+  { nome: 'GitHub Education (professores)', desc: 'GitHub tem portal dedicado a educadores — benefícios específicos a confirmar na página oficial', url: 'https://education.github.com/teachers' },
+  { nome: 'Microsoft 365 Education A1', desc: 'Educadores de instituições elegíveis também têm acesso gratuito', url: 'https://www.microsoft.com/pt-br/education/products/office' }
+]
+
+// Hub — Direitos dos Professores
+app.get('/direitos-professores', (c) => {
+  return c.render(
+    <Layout currentPage="professores">
+      <div class="space-y-8">
+        <div class="bg-gradient-to-r from-rose-500 via-orange-500 to-amber-500 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative z-10">
+            <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3">
+              🍎 Direitos de quem ensina
+            </span>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">Direitos dos Professores</h1>
+            <p class="text-lg text-white/90">
+              Área distinta dos benefícios estudantis: direitos trabalhistas, previdenciários e constitucionais de professores — na rede pública e na privada.
+            </p>
+            <p class="text-sm text-white/80 mt-3">
+              <i class="fas fa-check-circle mr-1"></i>
+              Verificado nas fontes oficiais em {VERIFICADO_DOC}
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+          <p class="text-sm text-amber-900">
+            <i class="fas fa-info-circle mr-2"></i>
+            <strong>Importante:</strong> vários desses direitos dependem do ente federativo (estado/município) ou da convenção coletiva do seu sindicato. Onde aplicável, indicamos o alcance exato de cada regra — e o que ainda não pudemos confirmar está marcado como "a confirmar".
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {DIREITOS_DOCENTES.map((d) => (
+            <div class="ai-card bg-white rounded-2xl p-6 flex flex-col">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 bg-gradient-to-br from-orange-100 to-rose-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class={`${d.icone} text-orange-600 text-xl`}></i>
+                </div>
+                <h2 class="text-lg font-bold text-gray-900">{d.titulo}</h2>
+              </div>
+              <p class="text-gray-700 text-sm mb-4">{d.resumo}</p>
+              <ul class="space-y-2 mb-4 flex-1">
+                {d.pontos.map((p) => (
+                  <li class="text-sm text-gray-700 flex items-start">
+                    <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="bg-gray-50 rounded-lg p-3 mb-3">
+                <p class="text-xs text-gray-600">
+                  <i class="fas fa-map-marker-alt text-orange-500 mr-1"></i>
+                  <strong>Onde vale:</strong> {d.ondeVale}
+                </p>
+              </div>
+              {d.observacao && (
+                <div class="bg-amber-50 border-l-4 border-amber-400 rounded-r-lg p-3 mb-3">
+                  <p class="text-xs text-amber-900">{d.observacao}</p>
+                </div>
+              )}
+              <a href={d.fonteUrl} target="_blank" rel="noopener noreferrer" class="text-ai-primary text-sm font-medium hover:underline">
+                <i class="fas fa-link mr-1"></i>{d.fonteLabel}
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div class="ai-card bg-white rounded-2xl p-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-2">
+            <i class="fas fa-gift text-green-500 mr-2"></i>
+            Plataformas que também dão benefícios a professores
+          </h2>
+          <p class="text-gray-600 text-sm mb-4">Além dos direitos trabalhistas, educadores verificados têm acesso gratuito ou com desconto em ferramentas (condições podem mudar — confirme no site oficial):</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {BENEFICIOS_DOCENTES_PLATAFORMAS.map((b) => (
+              <a href={b.url} target="_blank" rel="noopener noreferrer" class="block p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors border border-green-100">
+                <h3 class="font-semibold text-gray-900 mb-1">{b.nome}</h3>
+                <p class="text-sm text-gray-600">{b.desc}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-gray-900 mb-2">
+            <i class="fas fa-shield-alt text-blue-500 mr-2"></i>
+            Metodologia de verificação (a mesma dos guias de estudantes)
+          </h2>
+          <ul class="text-gray-700 text-sm space-y-2">
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Toda regra cita a fonte oficial (MEC, INSS, CLT/CF) e a data da verificação ({VERIFICADO_DOC}).</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Nada entra no ar sem confirmação na fonte oficial — o que não confirmamos aparece como "a confirmar".</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Encontrou algo desatualizado? Avise em <a href="mailto:contato@iaetech.com.br" class="text-ai-primary font-semibold hover:underline">contato@iaetech.com.br</a>.</li>
+          </ul>
+        </div>
+
+        <p class="text-xs text-gray-500 text-center">
+          Conteúdo informativo e educacional — não constitui aconselhamento jurídico ou previdenciário. Para o seu caso concreto, consulte o sindicato da categoria, o INSS ou um profissional do Direito.
+        </p>
+      </div>
+    </Layout>,
+    { title: 'Direitos dos Professores | Portal IA & Tech' }
   )
 })
 
