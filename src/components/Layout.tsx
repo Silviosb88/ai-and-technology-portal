@@ -187,6 +187,11 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
               <p class="text-xs text-gray-500 mt-2">
                 Última verificação dos guias: 04/11/2026 · contato@iaetech.com.br
               </p>
+              <div class="border-t border-gray-700 mt-4 pt-4">
+                <p class="text-xs text-gray-500 leading-relaxed">
+                  <strong class="text-gray-400">Aviso sobre marcas e independência:</strong> o Portal IA & Tech é um projeto educacional independente. Não somos afiliados, patrocinados ou endossados pela Microsoft, Google, GitHub, Kaggle (Google), freeCodeCamp, Canva, Figma, JetBrains, Notion, Autodesk, AWS, Apple, Coursera, CAPES ou qualquer outra empresa/organização citada. Todos os nomes, logotipos e marcas mencionados são propriedade de seus respectivos titulares e são usados aqui de forma nominativa e referencial, apenas para identificação informativa (art. 132, IV, da Lei 9.279/96 — Lei da Propriedade Industrial). Os links apontam sempre para as fontes oficiais, onde as condições, preços e critérios de elegibilidade podem mudar a qualquer momento — confirme antes de decidir. Este conteúdo é informativo e não constitui aconselhamento jurídico ou profissional.
+                </p>
+              </div>
             </div>
           </div>
         </div>

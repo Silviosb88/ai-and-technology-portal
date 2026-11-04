@@ -145,38 +145,44 @@ app.get('/', (c) => {
             </div>
             
             <div class="space-y-4">
-              <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-play text-white text-sm"></i>
+              <a href="https://learn.microsoft.com/pt-br/training" target="_blank" rel="noopener noreferrer" class="block">
+                <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fab fa-microsoft text-white text-sm"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="font-semibold text-gray-900 mb-1">Microsoft Learn</h3>
+                    <p class="text-sm text-gray-600 mb-2">Roteiros oficiais de IA, Azure e Copilot em português</p>
+                    <span class="text-xs text-ai-primary font-medium">Gratuito • Oficial</span>
+                  </div>
                 </div>
-                <div class="flex-1">
-                  <h3 class="font-semibold text-gray-900 mb-1">Introdução ao Machine Learning</h3>
-                  <p class="text-sm text-gray-600 mb-2">Conceitos fundamentais e primeiros passos</p>
-                  <span class="text-xs text-ai-primary font-medium">15 min • Iniciante</span>
-                </div>
-              </div>
+              </a>
               
-              <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-code text-white text-sm"></i>
+              <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener noreferrer" class="block">
+                <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-flask text-white text-sm"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="font-semibold text-gray-900 mb-1">Kaggle Learn</h3>
+                    <p class="text-sm text-gray-600 mb-2">Python e Machine Learning com certificado gratuito</p>
+                    <span class="text-xs text-ai-primary font-medium">Gratuito • Certificado</span>
+                  </div>
                 </div>
-                <div class="flex-1">
-                  <h3 class="font-semibold text-gray-900 mb-1">Criando seu Primeiro Modelo de IA</h3>
-                  <p class="text-sm text-gray-600 mb-2">Passo a passo com Python e TensorFlow</p>
-                  <span class="text-xs text-ai-primary font-medium">45 min • Intermediário</span>
-                </div>
-              </div>
+              </a>
               
-              <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                <div class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-brain text-white text-sm"></i>
+              <a href="https://grow.google/ai-essentials/" target="_blank" rel="noopener noreferrer" class="block">
+                <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <div class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fab fa-google text-white text-sm"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="font-semibold text-gray-900 mb-1">Google AI Essentials</h3>
+                    <p class="text-sm text-gray-600 mb-2">Fundamentos de IA generativa e prompting pelo Google</p>
+                    <span class="text-xs text-ai-primary font-medium">Oficial • Zero experiência</span>
+                  </div>
                 </div>
-                <div class="flex-1">
-                  <h3 class="font-semibold text-gray-900 mb-1">Deep Learning com Redes Neurais</h3>
-                  <p class="text-sm text-gray-600 mb-2">Entendendo arquiteturas complexas</p>
-                  <span class="text-xs text-ai-primary font-medium">60 min • Avançado</span>
-                </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -1688,50 +1694,54 @@ app.get('/tutoriais', async (c) => {
               </div>
             </div>
             <div class="flex flex-wrap gap-4 mt-6">
-              <button class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm">
-                <i class="fas fa-filter mr-2"></i>
-                Filtrar por Nível
-              </button>
-              <button class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm">
-                <i class="fas fa-clock mr-2"></i>
-                Ordenar por Tempo
-              </button>
+              <a href="https://learn.microsoft.com/pt-br/training" target="_blank" rel="noopener noreferrer" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm">
+                <i class="fas fa-external-link-alt mr-2"></i>
+                Microsoft Learn (gratuito)
+              </a>
+              <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener noreferrer" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-colors backdrop-blur-sm">
+                <i class="fas fa-external-link-alt mr-2"></i>
+                Kaggle Learn (gratuito)
+              </a>
             </div>
+            <p class="text-sm text-white/80 mt-4">
+              <i class="fas fa-check-circle mr-1"></i>
+              Links diretos para plataformas oficiais de treinamento — verificados em 04/11/2026
+            </p>
           </div>
         </div>
 
-        {/* Estatísticas */}
+        {/* Estatísticas — números reais do catálogo */}
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div class="ai-card p-6 text-center">
             <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <i class="fas fa-play-circle text-green-600 text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">24</h3>
-            <p class="text-sm text-gray-600">Vídeo Tutoriais</p>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">5</h3>
+            <p class="text-sm text-gray-600">Plataformas oficiais de aprendizado</p>
           </div>
           
           <div class="ai-card p-6 text-center">
             <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-code text-blue-600 text-xl"></i>
+              <i class="fas fa-gift text-blue-600 text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">18</h3>
-            <p class="text-sm text-gray-600">Projetos Práticos</p>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">100%</h3>
+            <p class="text-sm text-gray-600">Conteúdo gratuito para começar</p>
           </div>
           
           <div class="ai-card p-6 text-center">
             <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <i class="fas fa-certificate text-purple-600 text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">6</h3>
-            <p class="text-sm text-gray-600">Certificações</p>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">3</h3>
+            <p class="text-sm text-gray-600">Emissão de certificado gratuita</p>
           </div>
           
           <div class="ai-card p-6 text-center">
             <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-users text-orange-600 text-xl"></i>
+              <i class="fas fa-calendar-check text-orange-600 text-xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">1.2k</h3>
-            <p class="text-sm text-gray-600">Estudantes</p>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">04/11/2026</h3>
+            <p class="text-sm text-gray-600">Última verificação</p>
           </div>
         </div>
 
@@ -1766,9 +1776,9 @@ app.get('/tutoriais', async (c) => {
                 Machine Learning Básico
               </li>
             </ul>
-            <button class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
-              Iniciar Trilha
-            </button>
+            <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener noreferrer" class="block w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors text-center">
+              Começar na Kaggle Learn <i class="fas fa-external-link-alt ml-1"></i>
+            </a>
           </div>
 
           {/* Intermediário */}
@@ -1800,9 +1810,9 @@ app.get('/tutoriais', async (c) => {
                 Redes Neurais Avançadas
               </li>
             </ul>
-            <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
-              Continuar Trilha
-            </button>
+            <a href="https://www.freecodecamp.org/learn/machine-learning-with-python" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors text-center">
+              Começar na freeCodeCamp <i class="fas fa-external-link-alt ml-1"></i>
+            </a>
           </div>
 
           {/* Avançado */}
@@ -1845,67 +1855,107 @@ app.get('/tutoriais', async (c) => {
           <div class="flex items-center justify-between mb-6">
             <h2 class="text-2xl font-bold text-gray-900">
               <i class="fas fa-star text-yellow-500 mr-2"></i>
-              Tutoriais em Destaque
+              Cursos e trilhas oficiais (gratuitos)
             </h2>
-            <button class="text-ai-primary hover:text-ai-secondary font-medium">
-              Ver todos <i class="fas fa-arrow-right ml-1"></i>
-            </button>
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Tutorial 1 */}
+            {/* Microsoft Learn */}
+            <div class="ai-card overflow-hidden hover:shadow-lg transition-shadow">
+              <div class="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
+                <i class="fab fa-microsoft text-5xl text-blue-600"></i>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center mb-3">
+                  <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Oficial</span>
+                  <span class="text-sm text-gray-500">Todos os níveis</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Microsoft Learn</h3>
+                <p class="text-gray-600 text-sm mb-4">Roteiros de aprendizagem oficiais em português: IA, Azure e Copilot, com módulos interativos e sem custo.</p>
+                <a href="https://learn.microsoft.com/pt-br/training" target="_blank" rel="noopener noreferrer" class="block w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors text-center">
+                  Acessar Microsoft Learn <i class="fas fa-external-link-alt ml-1"></i>
+                </a>
+              </div>
+            </div>
+
+            {/* Kaggle Learn */}
+            <div class="ai-card overflow-hidden hover:shadow-lg transition-shadow">
+              <div class="aspect-video bg-gradient-to-br from-cyan-100 to-blue-100 flex items-center justify-center">
+                <i class="fas fa-flask text-5xl text-cyan-600"></i>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center mb-3">
+                  <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Certificado grátis</span>
+                  <span class="text-sm text-gray-500">~3h por curso</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Kaggle Learn</h3>
+                <p class="text-gray-600 text-sm mb-4">Micro-cursos sem custo (Python, Pandas, Intro ao Machine Learning) com certificado — ideal para começar hoje.</p>
+                <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener noreferrer" class="block w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors text-center">
+                  Acessar Kaggle Learn <i class="fas fa-external-link-alt ml-1"></i>
+                </a>
+              </div>
+            </div>
+
+            {/* Google AI Essentials */}
             <div class="ai-card overflow-hidden hover:shadow-lg transition-shadow">
               <div class="aspect-video bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
-                <i class="fas fa-play-circle text-4xl text-green-600"></i>
+                <i class="fab fa-google text-5xl text-green-600"></i>
               </div>
               <div class="p-6">
                 <div class="flex items-center mb-3">
-                  <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Iniciante</span>
-                  <span class="text-sm text-gray-500">15 min</span>
+                  <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Oficial</span>
+                  <span class="text-sm text-gray-500">Zero experiência</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Introdução ao Machine Learning</h3>
-                <p class="text-gray-600 text-sm mb-4">Aprenda os conceitos fundamentais do aprendizado de máquina de forma prática.</p>
-                <button class="w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors">
-                  Assistir Tutorial
-                </button>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Google AI Essentials</h3>
+                <p class="text-gray-600 text-sm mb-4">Programa do Google para usar IA no dia a dia: fundamentos de IA generativa e prompting prático.</p>
+                <a href="https://grow.google/ai-essentials/" target="_blank" rel="noopener noreferrer" class="block w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors text-center">
+                  Acessar Grow Google <i class="fas fa-external-link-alt ml-1"></i>
+                </a>
               </div>
             </div>
 
-            {/* Tutorial 2 */}
+            {/* freeCodeCamp */}
             <div class="ai-card overflow-hidden hover:shadow-lg transition-shadow">
-              <div class="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                <i class="fas fa-play-circle text-4xl text-blue-600"></i>
+              <div class="aspect-video bg-gradient-to-br from-gray-100 to-green-100 flex items-center justify-center">
+                <i class="fab fa-free-code-camp text-5xl text-green-700"></i>
               </div>
               <div class="p-6">
                 <div class="flex items-center mb-3">
-                  <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Intermediário</span>
-                  <span class="text-sm text-gray-500">32 min</span>
+                  <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Certificação grátis</span>
+                  <span class="text-sm text-gray-500">Intermediário</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Criando uma Rede Neural</h3>
-                <p class="text-gray-600 text-sm mb-4">Construa sua primeira rede neural do zero usando Python e TensorFlow.</p>
-                <button class="w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors">
-                  Assistir Tutorial
-                </button>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">freeCodeCamp — ML com Python</h3>
+                <p class="text-gray-600 text-sm mb-4">Certificação gratuita usando TensorFlow para construir redes neurais e técnicas avançadas de ML.</p>
+                <a href="https://www.freecodecamp.org/learn/machine-learning-with-python" target="_blank" rel="noopener noreferrer" class="block w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors text-center">
+                  Acessar freeCodeCamp <i class="fas fa-external-link-alt ml-1"></i>
+                </a>
               </div>
             </div>
 
-            {/* Tutorial 3 */}
+            {/* GitHub Skills */}
             <div class="ai-card overflow-hidden hover:shadow-lg transition-shadow">
-              <div class="aspect-video bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
-                <i class="fas fa-play-circle text-4xl text-purple-600"></i>
+              <div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <i class="fab fa-github text-5xl text-gray-800"></i>
               </div>
               <div class="p-6">
                 <div class="flex items-center mb-3">
-                  <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Iniciante</span>
-                  <span class="text-sm text-gray-500">22 min</span>
+                  <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">Oficial</span>
+                  <span class="text-sm text-gray-500">Iniciante → Avançado</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Computer Vision com OpenCV</h3>
-                <p class="text-gray-600 text-sm mb-4">Detecte objetos em imagens usando técnicas de visão computacional.</p>
-                <button class="w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors">
-                  Assistir Tutorial
-                </button>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">GitHub Skills</h3>
+                <p class="text-gray-600 text-sm mb-4">Exercícios interativos gratuitos para dominar GitHub — do primeiro commit ao trabalho com IA no fluxo de dev.</p>
+                <a href="https://skills.github.com/" target="_blank" rel="noopener noreferrer" class="block w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors text-center">
+                  Acessar GitHub Skills <i class="fas fa-external-link-alt ml-1"></i>
+                </a>
               </div>
             </div>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5 mt-6">
+            <p class="text-sm text-blue-900">
+              <i class="fas fa-info-circle mr-2"></i>
+              <strong>Como escolhemos:</strong> só listamos plataformas oficiais das próprias empresas, com acesso gratuito comprovado na fonte oficial. Preços e condições dos cursos pagos (quando houver) podem mudar — confirme sempre no site da plataforma.
+            </p>
           </div>
         </div>
       </div>
