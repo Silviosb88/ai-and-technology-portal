@@ -94,6 +94,11 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
                 <i class="fas fa-gem"></i>
                 <span>Benefícios ocultos</span>
               </a>
+              {/* Direitos dos estudantes (referências) */}
+              <a href="/direitos-estudantes" class={`nav-item ${currentPage === 'estudantes' ? 'active' : ''}`}>
+                <i class="fas fa-user-graduate"></i>
+                <span>Direitos dos estudantes</span>
+              </a>
               
               {/* Galeria de IAs */}
               <a href="/galeria" class={`nav-item ${currentPage === 'galeria' ? 'active' : ''}`}>
@@ -195,6 +200,9 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
               </a>
               <a href="/beneficios-ocultos" class="text-slate-700 hover:text-slate-900 transition-colors">
                 <i class="fas fa-gem text-xl"></i>
+              </a>
+              <a href="/direitos-estudantes" class="text-slate-700 hover:text-blue-700 transition-colors">
+                <i class="fas fa-user-graduate text-xl"></i>
               </a>
             </div>
             
