@@ -95,8 +95,8 @@ class DashboardManager {
                      loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div class="absolute bottom-2 left-2 right-2">
-                        <h4 class="text-white text-sm font-medium truncate">${this.escapeHtml(image.title)}</h4>
-                        <p class="text-white/80 text-xs truncate">${image.like_count || 0} ❤️ • ${image.view_count || 0} 👀</p>
+                        <h4 class="text-slate-900 text-sm font-medium truncate">${this.escapeHtml(image.title)}</h4>
+                        <p class="text-slate-900/80 text-xs truncate">${image.like_count || 0} ❤️ • ${image.view_count || 0} 👀</p>
                     </div>
                 </div>
             </div>

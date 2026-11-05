@@ -155,7 +155,7 @@ class GalleryManager {
         }
 
         try {
-            button.innerHTML = '<i class="fas fa-spinner fa-spin text-white"></i>';
+            button.innerHTML = '<i class="fas fa-spinner fa-spin text-slate-900"></i>';
             button.disabled = true;
 
             const response = await fetch(`/api/images/${imageId}`, {
@@ -189,7 +189,7 @@ class GalleryManager {
             this.showToast('❌ Erro ao deletar imagem', 'error');
             
             // Restaurar botão
-            button.innerHTML = '<i class="fas fa-trash text-white"></i>';
+            button.innerHTML = '<i class="fas fa-trash text-slate-900"></i>';
             button.disabled = false;
         }
     }
@@ -214,8 +214,8 @@ class GalleryManager {
         if (editModeToggle) {
             editModeToggle.textContent = this.isEditMode ? '✅ Finalizar Edição' : '✏️ Modo Edição';
             editModeToggle.className = this.isEditMode 
-                ? 'px-4 py-2 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition-colors'
-                : 'px-4 py-2 bg-gray-500 text-white rounded-lg font-semibold hover:bg-gray-600 transition-colors';
+                ? 'px-4 py-2 bg-green-500 text-slate-900 rounded-lg font-semibold hover:bg-green-600 transition-colors'
+                : 'px-4 py-2 bg-gray-500 text-slate-900 rounded-lg font-semibold hover:bg-gray-600 transition-colors';
         }
 
         this.showToast(
@@ -286,9 +286,9 @@ class GalleryManager {
         
         // Cores baseadas no tipo
         const colors = {
-            success: 'bg-green-500 text-white',
-            error: 'bg-red-500 text-white',
-            info: 'bg-blue-500 text-white',
+            success: 'bg-green-500 text-slate-900',
+            error: 'bg-red-500 text-slate-900',
+            info: 'bg-blue-500 text-slate-900',
             warning: 'bg-yellow-500 text-black'
         };
         

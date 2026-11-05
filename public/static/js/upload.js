@@ -197,10 +197,10 @@ class UploadManager {
                             <source src="${videoUrl}" type="${file.type}">
                         </video>
                         <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
-                            <i class="fas fa-play-circle text-white text-3xl opacity-80"></i>
+                            <i class="fas fa-play-circle text-slate-900 text-3xl opacity-80"></i>
                         </div>
                     </div>
-                    <button class="remove-file absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100" 
+                    <button class="remove-file absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-slate-900 rounded-full text-xs hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100" 
                             data-file-index="${index}">
                         <i class="fas fa-times"></i>
                     </button>
@@ -231,7 +231,7 @@ class UploadManager {
                                  alt="Preview ${index + 1}" 
                                  class="w-full h-full object-cover">
                         </div>
-                        <button class="remove-file absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100" 
+                        <button class="remove-file absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-slate-900 rounded-full text-xs hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100" 
                                 data-file-index="${index}">
                             <i class="fas fa-times"></i>
                         </button>

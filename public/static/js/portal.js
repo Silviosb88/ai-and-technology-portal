@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="flex items-center">
                 <i class="fas ${getToastIcon(type)} mr-3"></i>
                 <span class="flex-1">${message}</span>
-                <button onclick="this.parentElement.parentElement.remove()" class="ml-3 text-white/70 hover:text-white">
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-3 text-slate-900/70 hover:text-slate-900">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
             padding: 1.5rem;
             border-radius: 0.5rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            color: white;
+            color: #14532D;
             transform: translateX(100%);
             transition: transform 0.3s ease;
             border-left: 4px solid;
