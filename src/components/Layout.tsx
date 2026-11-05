@@ -12,8 +12,8 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
           
           {/* Logo - Melhorado para mobile */}
           <a href="/" class="flex items-center space-x-2 sm:space-x-3 hover:opacity-80 transition-opacity">
-            <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-xl flex items-center justify-center">
-              <i class="fas fa-brain text-white text-sm sm:text-lg"></i>
+            <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-yellow-300 to-yellow-200 rounded-xl flex items-center justify-center">
+              <i class="fas fa-brain text-slate-900 text-sm sm:text-lg"></i>
             </div>
             <div class="hidden sm:block">
               <h1 class="text-lg sm:text-xl font-bold bg-gradient-to-r from-ai-primary to-ai-secondary bg-clip-text text-transparent">
@@ -50,8 +50,8 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
           {/* Sidebar header - Melhorado */}
           <div class="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200/50">
             <div class="flex items-center space-x-3">
-              <div class="w-8 h-8 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-lg flex items-center justify-center">
-                <i class="fas fa-brain text-white text-sm"></i>
+              <div class="w-8 h-8 bg-gradient-to-br from-yellow-300 to-yellow-200 rounded-lg flex items-center justify-center">
+                <i class="fas fa-brain text-slate-900 text-sm"></i>
               </div>
               <span class="font-semibold text-ai-dark">Portal IA</span>
             </div>
@@ -129,7 +129,7 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
                   <span>Computer Vision</span>
                 </a>
                 <a href="/galeria?categoria=nlp" class="category-item">
-                  <i class="fas fa-comments text-purple-500"></i>
+                  <i class="fas fa-comments text-blue-500"></i>
                   <span>NLP</span>
                 </a>
                 <a href="/galeria?categoria=robotica" class="category-item">
@@ -147,8 +147,8 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
           {/* Sidebar footer */}
           <div class="p-6 border-t border-gray-200/50">
             <div class="flex items-center space-x-3 p-3 rounded-lg bg-gradient-to-r from-ai-primary/10 to-ai-secondary/10 border border-ai-primary/20">
-              <div class="w-8 h-8 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-full flex items-center justify-center">
-                <i class="fas fa-user text-white text-sm"></i>
+              <div class="w-8 h-8 bg-gradient-to-br from-yellow-300 to-yellow-200 rounded-full flex items-center justify-center">
+                <i class="fas fa-user text-slate-900 text-sm"></i>
               </div>
               <div class="flex-1 min-w-0">
                 <p class="text-sm font-medium text-gray-900 truncate">Silvio</p>
@@ -167,47 +167,47 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
       </main>
       
       {/* Footer */}
-      <footer class="lg:ml-[280px] bg-gradient-to-r from-ai-dark to-slate-800 text-white">
+      <footer class="lg:ml-[280px] bg-gradient-to-r from-ai-dark to-slate-800 text-slate-900">
         <div class="p-6">
           <div class="text-center">
             <div class="flex items-center justify-center mb-4">
-              <div class="w-8 h-8 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-lg flex items-center justify-center mr-3">
-                <i class="fas fa-brain text-white text-sm"></i>
+              <div class="w-8 h-8 bg-gradient-to-br from-yellow-300 to-yellow-200 rounded-lg flex items-center justify-center mr-3">
+                <i class="fas fa-brain text-slate-900 text-sm"></i>
               </div>
               <span class="text-xl font-bold">Portal IA & Tech</span>
             </div>
             
             <div class="flex justify-center space-x-6 mb-4">
-              <a href="/" class="text-gray-300 hover:text-white transition-colors">
+              <a href="/" class="text-slate-700 hover:text-slate-900 transition-colors">
                 <i class="fas fa-home text-xl"></i>
               </a>
-              <a href="/galeria" class="text-gray-300 hover:text-white transition-colors">
+              <a href="/galeria" class="text-slate-700 hover:text-slate-900 transition-colors">
                 <i class="fas fa-images text-xl"></i>
               </a>
-              <a href="/tutoriais" class="text-gray-300 hover:text-white transition-colors">
+              <a href="/tutoriais" class="text-slate-700 hover:text-slate-900 transition-colors">
                 <i class="fas fa-book-open text-xl"></i>
               </a>
-              <a href="/beneficios" class="text-gray-300 hover:text-white transition-colors">
+              <a href="/beneficios" class="text-slate-700 hover:text-slate-900 transition-colors">
                 <i class="fas fa-graduation-cap text-xl"></i>
               </a>
-              <a href="/direitos-professores" class="text-gray-300 hover:text-white transition-colors">
+              <a href="/direitos-professores" class="text-slate-700 hover:text-slate-900 transition-colors">
                 <i class="fas fa-chalkboard-teacher text-xl"></i>
               </a>
-              <a href="/beneficios-ocultos" class="text-gray-300 hover:text-white transition-colors">
+              <a href="/beneficios-ocultos" class="text-slate-700 hover:text-slate-900 transition-colors">
                 <i class="fas fa-gem text-xl"></i>
               </a>
             </div>
             
-            <div class="border-t border-gray-600 pt-4">
-              <p class="text-sm text-gray-400">
+            <div class="border-t border-gray-200 pt-4">
+              <p class="text-sm text-slate-600">
                 © 2026 Portal IA & Tech — Direitos e benefícios para quem estuda e para quem ensina. Conteúdo verificado em fontes oficiais.
               </p>
               <p class="text-xs text-gray-500 mt-2">
                 Última verificação dos guias: 04/11/2026 · contato@iaetech.com.br
               </p>
-              <div class="border-t border-gray-700 mt-4 pt-4">
+              <div class="border-t border-gray-200 mt-4 pt-4">
                 <p class="text-xs text-gray-500 leading-relaxed">
-                  <strong class="text-gray-400">Aviso sobre marcas e independência:</strong> o Portal IA & Tech é um projeto educacional independente. Não somos afiliados, patrocinados ou endossados pela Microsoft, Google, GitHub, Kaggle (Google), freeCodeCamp, Canva, Figma, JetBrains, Notion, Autodesk, AWS, Apple, Coursera, CAPES ou qualquer outra empresa/organização citada. Todos os nomes, logotipos e marcas mencionados são propriedade de seus respectivos titulares e são usados aqui de forma nominativa e referencial, apenas para identificação informativa (art. 132, IV, da Lei 9.279/96 — Lei da Propriedade Industrial). Os links apontam sempre para as fontes oficiais, onde as condições, preços e critérios de elegibilidade podem mudar a qualquer momento — confirme antes de decidir. Este conteúdo é informativo e não constitui aconselhamento jurídico ou profissional.
+                  <strong class="text-slate-600">Aviso sobre marcas e independência:</strong> o Portal IA & Tech é um projeto educacional independente. Não somos afiliados, patrocinados ou endossados pela Microsoft, Google, GitHub, Kaggle (Google), freeCodeCamp, Canva, Figma, JetBrains, Notion, Autodesk, AWS, Apple, Coursera, CAPES ou qualquer outra empresa/organização citada. Todos os nomes, logotipos e marcas mencionados são propriedade de seus respectivos titulares e são usados aqui de forma nominativa e referencial, apenas para identificação informativa (art. 132, IV, da Lei 9.279/96 — Lei da Propriedade Industrial). Os links apontam sempre para as fontes oficiais, onde as condições, preços e critérios de elegibilidade podem mudar a qualquer momento — confirme antes de decidir. Este conteúdo é informativo e não constitui aconselhamento jurídico ou profissional.
                 </p>
               </div>
             </div>
@@ -225,7 +225,7 @@ const navStyles = `
 }
 
 .nav-item.active {
-  @apply bg-gradient-to-r from-ai-primary/15 to-ai-secondary/10 text-ai-primary border-r-2 border-ai-primary;
+  @apply bg-gradient-to-r from-green-100 to-blue-50 text-ai-primary border-r-2 border-ai-primary;
 }
 
 .nav-item i {

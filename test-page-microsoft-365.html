@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft 365 + Copilot para Estudantes - Portal IA & Tech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ai-primary': '#6366f1',
+                        'ai-secondary': '#8b5cf6',
+                        'ai-accent': '#06b6d4',
+                        'ai-dark': '#1e293b',
+                        'ai-light': '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .ai-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .ai-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+        
+        .rating-star {
+            color: #fbbf24;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-brain text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-ai-dark">Portal IA & Tech</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="/" class="text-gray-600 hover:text-ai-primary transition">Início</a>
+                    <a href="/ferramentas" class="text-ai-primary font-semibold">Ferramentas</a>
+                    <a href="/tutoriais" class="text-gray-600 hover:text-ai-primary transition">Tutoriais</a>
+                    <a href="/sobre" class="text-gray-600 hover:text-ai-primary transition">Sobre</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center space-x-2 text-sm text-gray-600">
+                <a href="/" class="hover:text-ai-primary transition">Início</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <a href="/ferramentas" class="hover:text-ai-primary transition">Ferramentas</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-ai-primary font-semibold">Microsoft 365 + Copilot</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="gradient-hero text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="flex-1">
+                    <div class="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
+                        <span class="text-sm font-semibold">🎓 GRATUITO PARA ESTUDANTES</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Microsoft 365 + Copilot para Estudantes</h1>
+                    <p class="text-xl text-white/90 mb-6">Sua suíte de estudos com IA integrada ao Word, Excel, PowerPoint, Teams e OneNote.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://www.microsoft.com/en-us/education/products/office" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3 rounded-lg font-semibold text-white inline-flex items-center space-x-2">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Acessar Site Oficial</span>
+                        </a>
+                        <a href="#como-criar-conta" class="bg-white text-ai-primary px-6 py-3 rounded-lg font-semibold inline-flex items-center space-x-2 hover:bg-gray-100 transition">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Como Criar Conta</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 flex justify-center">
+                    <div class="w-64 h-64 bg-white/10 backdrop-blur-lg rounded-3xl flex items-center justify-center">
+                        <i class="fab fa-microsoft text-white text-9xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="bg-white py-8 border-b">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-ai-primary mb-1">4.8/5</div>
+                    <div class="text-sm text-gray-600">Avaliação Geral</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-ai-primary mb-1">Gratuito</div>
+                    <div class="text-sm text-gray-600">Plano Educacional</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-ai-primary mb-1">7 Apps</div>
+                    <div class="text-sm text-gray-600">Integrados com IA</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-ai-primary mb-1">100%</div>
+                    <div class="text-sm text-gray-600">Cloud + Mobile</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Main Column -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- O que é -->
+                <section id="o-que-e" class="ai-card bg-white rounded-2xl p-8">
+                    <h2 class="text-3xl font-bold text-ai-dark mb-4 flex items-center">
+                        <span class="feature-icon w-10 h-10 rounded-lg flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-info-circle"></i>
+                        </span>
+                        O que é Microsoft 365 + Copilot
+                    </h2>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        <strong>Microsoft 365</strong> é a suíte de produtividade em nuvem da Microsoft (Word, Excel, PowerPoint, OneNote, Outlook, Teams) com versões web, desktop e mobile. 
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        O <strong>Copilot</strong> é a IA integrada que gera textos, resumos, apresentações, códigos e planos de estudo diretamente dentro desses aplicativos, usando processamento de linguagem natural.
+                    </p>
+                </section>
+
+                <!-- Como ajuda estudantes -->
+                <section id="como-ajuda" class="ai-card bg-white rounded-2xl p-8">
+                    <h2 class="text-3xl font-bold text-ai-dark mb-6 flex items-center">
+                        <span class="feature-icon w-10 h-10 rounded-lg flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-graduation-cap"></i>
+                        </span>
+                        Como ajuda estudantes
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Uso 1 -->
+                        <div class="border-l-4 border-ai-primary pl-6">
+                            <h3 class="text-xl font-bold text-ai-dark mb-2 flex items-center">
+                                <i class="fas fa-file-word text-blue-600 mr-2"></i>
+                                Escrever trabalhos e relatórios
+                            </h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                No <strong>Word + Copilot</strong>, gere rascunhos a partir de tópicos, melhore clareza e sugira referências bibliográficas. Perfeito para redações, fichamentos e TCCs.
+                            </p>
+                        </div>
+
+                        <!-- Uso 2 -->
+                        <div class="border-l-4 border-ai-secondary pl-6">
+                            <h3 class="text-xl font-bold text-ai-dark mb-2 flex items-center">
+                                <i class="fas fa-file-powerpoint text-orange-600 mr-2"></i>
+                                Criar apresentações
+                            </h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                No <strong>PowerPoint + Copilot</strong>, transforme um texto ou documento em slides completos com estrutura e design automático. Economize horas de trabalho!
+                            </p>
+                        </div>
+
+                        <!-- Uso 3 -->
+                        <div class="border-l-4 border-ai-accent pl-6">
+                            <h3 class="text-xl font-bold text-ai-dark mb-2 flex items-center">
+                                <i class="fas fa-sticky-note text-purple-600 mr-2"></i>
+                                Organizar estudos
+                            </h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                No <strong>OneNote + Copilot</strong>, transforme anotações de aula em resumos, mapas mentais e listas de revisão. Ideal para preparação de provas.
+                            </p>
+                        </div>
+
+                        <!-- Uso 4 -->
+                        <div class="border-l-4 border-green-500 pl-6">
+                            <h3 class="text-xl font-bold text-ai-dark mb-2 flex items-center">
+                                <i class="fas fa-users text-green-600 mr-2"></i>
+                                Colaborar em projetos
+                            </h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                No <strong>Teams + Copilot</strong>, resuma reuniões de grupo, chamadas com professores e discussões. Sugere próximos passos e divisão de tarefas.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Como criar conta -->
+                <section id="como-criar-conta" class="ai-card bg-white rounded-2xl p-8">
+                    <h2 class="text-3xl font-bold text-ai-dark mb-6 flex items-center">
+                        <span class="feature-icon w-10 h-10 rounded-lg flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-user-plus"></i>
+                        </span>
+                        Como criar conta
+                    </h2>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
+                        <p class="text-blue-900">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            Se a sua instituição é elegível, você pode ter o <strong>Microsoft 365 Education (A1) gratuitamente</strong> usando o e-mail institucional.
+                        </p>
+                    </div>
+
+                    <ol class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 bg-ai-primary text-white rounded-full flex items-center justify-center font-bold mr-4">1</span>
+                            <div>
+                                <p class="text-gray-700">Acesse a página <a href="https://www.microsoft.com/en-us/education/products/office" target="_blank" class="text-ai-primary font-semibold hover:underline">Microsoft 365 Education</a></p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 bg-ai-primary text-white rounded-full flex items-center justify-center font-bold mr-4">2</span>
+                            <div>
+                                <p class="text-gray-700">Clique em <strong>"Get started for free"</strong> ou <strong>"Começar agora"</strong></p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 bg-ai-primary text-white rounded-full flex items-center justify-center font-bold mr-4">3</span>
+                            <div>
+                                <p class="text-gray-700">Digite seu <strong>e-mail institucional</strong> (exemplo: <code class="bg-gray-100 px-2 py-1 rounded">nome@universidade.edu.br</code>)</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 bg-ai-primary text-white rounded-full flex items-center justify-center font-bold mr-4">4</span>
+                            <div>
+                                <p class="text-gray-700">Siga as instruções: se sua instituição for parceira, você terá acesso imediato ao plano A1 gratuito</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 bg-ai-primary text-white rounded-full flex items-center justify-center font-bold mr-4">5</span>
+                            <div>
+                                <p class="text-gray-700">Confirme o e-mail e faça login na sua conta Microsoft</p>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-6 rounded">
+                        <p class="text-yellow-900">
+                            <i class="fas fa-lightbulb mr-2"></i>
+                            <strong>Dica:</strong> Se sua instituição não aparecer, peça ao setor de TI ou coordenação para verificar parceria com Microsoft Education.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Planos e preços -->
+                <section id="planos" class="ai-card bg-white rounded-2xl p-8">
+                    <h2 class="text-3xl font-bold text-ai-dark mb-6 flex items-center">
+                        <span class="feature-icon w-10 h-10 rounded-lg flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-tags"></i>
+                        </span>
+                        Planos e opções para estudantes
+                    </h2>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-gray-50 border-b-2 border-ai-primary">
+                                    <th class="text-left p-4 font-bold text-ai-dark">Plano</th>
+                                    <th class="text-left p-4 font-bold text-ai-dark">Resumo</th>
+                                    <th class="text-left p-4 font-bold text-ai-dark">Preço</th>
+                                    <th class="text-left p-4 font-bold text-ai-dark">Benefício para estudantes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="p-4 font-semibold text-ai-primary">Microsoft 365 Education A1</td>
+                                    <td class="p-4 text-gray-700">Versões web de Word, Excel, PowerPoint, OneNote, Teams + armazenamento em nuvem</td>
+                                    <td class="p-4">
+                                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full font-bold">Gratuito</span>
+                                    </td>
+                                    <td class="p-4 text-gray-700">Disponível com e-mail institucional da escola/faculdade</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="p-4 font-semibold text-ai-primary">Microsoft 365 Education A3/A5</td>
+                                    <td class="p-4 text-gray-700">Apps desktop completos + recursos avançados + Copilot (se licença contratada)</td>
+                                    <td class="p-4 text-gray-700">Gratuito via instituição ou pago pela escola</td>
+                                    <td class="p-4 text-gray-700">Acesso a Copilot completo se a instituição contratar licença</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="p-4 font-semibold text-ai-primary">Copilot Pro (individual)</td>
+                                    <td class="p-4 text-gray-700">Copilot avançado + 100 boosts/mês + integração prioritária</td>
+                                    <td class="p-4 text-gray-700">~R$ 100/mês</td>
+                                    <td class="p-4 text-gray-700">Opção para quem não tem acesso institucional</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4 mt-6 rounded">
+                        <p class="text-red-900 text-sm">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            <strong>Aviso:</strong> Os preços e condições mudam frequentemente. Sempre consulte o site oficial para informações atualizadas.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Boas práticas -->
+                <section id="boas-praticas" class="ai-card bg-white rounded-2xl p-8">
+                    <h2 class="text-3xl font-bold text-ai-dark mb-6 flex items-center">
+                        <span class="feature-icon w-10 h-10 rounded-lg flex items-center justify-center text-white mr-3">
+                            <i class="fas fa-shield-alt"></i>
+                        </span>
+                        Boas práticas de uso acadêmico
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 text-xl mt-1 mr-3"></i>
+                            <div>
+                                <h3 class="font-bold text-ai-dark mb-1">Verifique sempre as fontes</h3>
+                                <p class="text-gray-700">Use Copilot para rascunhos e estrutura, mas confirme fatos em livros, artigos científicos e sites confiáveis.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 text-xl mt-1 mr-3"></i>
+                            <div>
+                                <h3 class="font-bold text-ai-dark mb-1">Não cole diretamente textos gerados</h3>
+                                <p class="text-gray-700">Use como apoio para entender conceitos, estruturar ideias e melhorar sua escrita. Não entregue como 100% autoria própria.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 text-xl mt-1 mr-3"></i>
+                            <div>
+                                <h3 class="font-bold text-ai-dark mb-1">Cite o uso de IA quando exigido</h3>
+                                <p class="text-gray-700">Algumas instituições exigem menção na metodologia ou agradecimentos. Verifique as diretrizes da sua escola.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 text-xl mt-1 mr-3"></i>
+                            <div>
+                                <h3 class="font-bold text-ai-dark mb-1">Proteja dados sensíveis</h3>
+                                <p class="text-gray-700">Evite colocar dados pessoais de colegas, professores ou pacientes nos prompts da IA.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 text-xl mt-1 mr-3"></i>
+                            <div>
+                                <h3 class="font-bold text-ai-dark mb-1">Pergunte de forma específica</h3>
+                                <p class="text-gray-700">Exemplo: "explique cálculo de derivadas para vestibular" é melhor que "explique derivadas".</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-1 space-y-6">
+                
+                <!-- Avaliação -->
+                <div class="ai-card bg-white rounded-2xl p-6">
+                    <h3 class="text-xl font-bold text-ai-dark mb-4">Avaliação do Portal</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-gray-700 font-semibold">Facilidade de uso</span>
+                                <span class="text-ai-primary font-bold">4.5/5</span>
+                            </div>
+                            <div class="flex text-xl">
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star-half-alt rating-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Interface familiar + IA simples</p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-gray-700 font-semibold">Custo-benefício</span>
+                                <span class="text-ai-primary font-bold">5/5</span>
+                            </div>
+                            <div class="flex text-xl">
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Gratuito com e-mail institucional</p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-gray-700 font-semibold">Utilidade acadêmica</span>
+                                <span class="text-ai-primary font-bold">4.8/5</span>
+                            </div>
+                            <div class="flex text-xl">
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Integração com ferramentas do dia a dia</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t">
+                        <p class="text-xs text-gray-500">Atualizado em: 02/01/2026</p>
+                    </div>
+                </div>
+
+                <!-- Links úteis -->
+                <div class="ai-card bg-white rounded-2xl p-6">
+                    <h3 class="text-xl font-bold text-ai-dark mb-4">Links úteis</h3>
+                    <div class="space-y-3">
+                        <a href="https://www.microsoft.com/en-us/education/products/office" target="_blank" class="flex items-center text-ai-primary hover:underline">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Microsoft 365 Education
+                        </a>
+                        <a href="https://www.microsoft.com/microsoft-copilot/for-individuals/ai-for-students" target="_blank" class="flex items-center text-ai-primary hover:underline">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Copilot para estudantes
+                        </a>
+                        <a href="#" class="flex items-center text-ai-primary hover:underline">
+                            <i class="fas fa-play-circle mr-2"></i>
+                            Tutoriais em vídeo
+                        </a>
+                        <a href="#" class="flex items-center text-ai-primary hover:underline">
+                            <i class="fas fa-book mr-2"></i>
+                            Documentação oficial
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="gradient-hero text-white rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3">Pronto para começar?</h3>
+                    <p class="text-white/90 mb-4">Crie sua conta gratuita agora e descubra o poder da IA nos seus estudos!</p>
+                    <a href="https://www.microsoft.com/en-us/education/products/office" target="_blank" class="block w-full bg-white text-ai-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-gray-100 transition">
+                        Começar agora
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-ai-dark text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">
+                O conteúdo deste guia é mantido atualizado com base em fontes oficiais e feedback da comunidade.
+            </p>
+            <p class="text-gray-400 mt-2">
+                Portal IA & Tech © 2026 - Educação em Inteligência Artificial
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

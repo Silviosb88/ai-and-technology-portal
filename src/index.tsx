@@ -22,7 +22,7 @@ app.get('/', (c) => {
     <Layout currentPage="home">
       <div class="space-y-8">
         {/* Hero Section - Melhorado para mobile */}
-        <div class="bg-gradient-to-r from-ai-primary via-ai-secondary to-ai-accent rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+        <div class="bg-gradient-to-r from-yellow-300 via-green-100 to-blue-100 rounded-2xl p-6 sm:p-8 text-slate-900 relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10">
             <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3">
@@ -31,7 +31,7 @@ app.get('/', (c) => {
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
               Conheça seus direitos como estudante
             </h1>
-            <p class="text-lg sm:text-xl mb-6 text-white/90">
+            <p class="text-lg sm:text-xl mb-6 text-slate-900/90">
               Microsoft 365, Azure, GitHub, Google e outras ferramentas pagas são <strong>gratuitas</strong> para estudantes e professores elegíveis — e professores têm direitos próprios (piso salarial, hora-atividade, aposentadoria especial). Guias claros, verificados e atualizados, para que nenhum direito se perca por desconhecimento.
             </p>
             <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
@@ -66,8 +66,8 @@ app.get('/', (c) => {
           </div>
           
           <div class="ai-card p-4 sm:p-6 text-center">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-              <i class="fas fa-list text-purple-600 text-lg sm:text-xl"></i>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <i class="fas fa-list text-blue-600 text-lg sm:text-xl"></i>
             </div>
             <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">10+</h3>
             <p class="text-xs sm:text-sm text-gray-600">Programas em catalogação</p>
@@ -75,7 +75,7 @@ app.get('/', (c) => {
           
           <div class="ai-card p-4 sm:p-6 text-center">
             <div class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-              <i class="fas fa-calendar-check text-orange-600 text-lg sm:text-xl"></i>
+              <i class="fas fa-calendar-check text-green-700 text-lg sm:text-xl"></i>
             </div>
             <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">04/11/2026</h3>
             <p class="text-xs sm:text-sm text-gray-600">Última verificação</p>
@@ -148,7 +148,7 @@ app.get('/', (c) => {
               <a href="https://learn.microsoft.com/pt-br/training" target="_blank" rel="noopener noreferrer" class="block">
                 <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                   <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <i class="fab fa-microsoft text-white text-sm"></i>
+                    <i class="fab fa-microsoft text-slate-900 text-sm"></i>
                   </div>
                   <div class="flex-1">
                     <h3 class="font-semibold text-gray-900 mb-1">Microsoft Learn</h3>
@@ -161,7 +161,7 @@ app.get('/', (c) => {
               <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener noreferrer" class="block">
                 <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                   <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <i class="fas fa-flask text-white text-sm"></i>
+                    <i class="fas fa-flask text-slate-900 text-sm"></i>
                   </div>
                   <div class="flex-1">
                     <h3 class="font-semibold text-gray-900 mb-1">Kaggle Learn</h3>
@@ -173,8 +173,8 @@ app.get('/', (c) => {
               
               <a href="https://grow.google/ai-essentials/" target="_blank" rel="noopener noreferrer" class="block">
                 <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                  <div class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <i class="fab fa-google text-white text-sm"></i>
+                  <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fab fa-google text-slate-900 text-sm"></i>
                   </div>
                   <div class="flex-1">
                     <h3 class="font-semibold text-gray-900 mb-1">Google AI Essentials</h3>
@@ -196,11 +196,11 @@ app.get('/', (c) => {
             Veja quais benefícios você tem e como ativá-los em poucos minutos — sempre com fonte oficial e data de verificação
           </p>
           <div class="flex flex-wrap justify-center gap-4">
-            <a href="/beneficios" class="ai-button-primary text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+            <a href="/beneficios" class="ai-button-primary text-slate-900 px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
               <i class="fas fa-graduation-cap mr-2"></i>
               Explorar Benefícios
             </a>
-            <a href="/tutoriais" class="bg-white text-ai-primary px-8 py-3 rounded-lg font-semibold border-2 border-ai-primary hover:bg-ai-primary hover:text-white transition-all">
+            <a href="/tutoriais" class="bg-white text-ai-primary px-8 py-3 rounded-lg font-semibold border-2 border-ai-primary hover:bg-ai-primary hover:text-slate-900 transition-all">
               <i class="fas fa-book-open mr-2"></i>
               Guias de IA
             </a>
@@ -412,7 +412,7 @@ app.get('/beneficios', (c) => {
   return c.render(
     <Layout currentPage="beneficios">
       <div class="space-y-8">
-        <div class="bg-gradient-to-r from-ai-primary via-ai-secondary to-ai-accent rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+        <div class="bg-gradient-to-r from-yellow-300 via-green-100 to-blue-100 rounded-2xl p-6 sm:p-8 text-slate-900 relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10">
             <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3">
@@ -421,10 +421,10 @@ app.get('/beneficios', (c) => {
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">
               Benefícios gratuitos para estudantes
             </h1>
-            <p class="text-lg text-white/90">
+            <p class="text-lg text-slate-900/90">
               Ferramentas pagas que são gratuitas ou com desconto para estudantes elegíveis — com guia de ativação passo a passo e fontes oficiais.
             </p>
-            <p class="text-sm text-white/80 mt-3">
+            <p class="text-sm text-slate-900/80 mt-3">
               <i class="fas fa-check-circle mr-1"></i>
               Informações verificadas nas fontes oficiais em {VERIFICADO}
             </p>
@@ -432,16 +432,16 @@ app.get('/beneficios', (c) => {
         </div>
 
         {/* Direitos dos Professores — destaque na home */}
-        <a href="/direitos-professores" class="block bg-gradient-to-r from-rose-500 to-orange-500 rounded-2xl p-6 text-white relative overflow-hidden hover:shadow-xl transition-all">
+        <a href="/direitos-professores" class="block bg-gradient-to-r from-yellow-200 to-green-100 rounded-2xl p-6 text-slate-900 relative overflow-hidden hover:shadow-xl transition-all">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10 flex items-center gap-4">
             <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+              <i class="fas fa-chalkboard-teacher text-slate-900 text-2xl"></i>
             </div>
             <div class="flex-1">
               <span class="inline-block bg-white/25 px-3 py-0.5 rounded-full text-xs font-bold mb-1">NOVA ÁREA</span>
               <h2 class="text-2xl font-bold mb-1">Direitos dos Professores</h2>
-              <p class="text-white/90 text-sm">Piso salarial (R$ 5.130,63 em 2026), hora-atividade de 1/3, aposentadoria especial, férias e recesso — com fonte oficial e data de verificação.</p>
+              <p class="text-slate-900/90 text-sm">Piso salarial (R$ 5.130,63 em 2026), hora-atividade de 1/3, aposentadoria especial, férias e recesso — com fonte oficial e data de verificação.</p>
             </div>
             <i class="fas fa-arrow-right text-2xl hidden sm:block"></i>
           </div>
@@ -449,16 +449,16 @@ app.get('/beneficios', (c) => {
 
         {/* ESPAÇO RESERVADO: ENEM 2026 — guia em preparação */}
         {/* Fonte verificada (gov.br/INEP, 04/11/2026): provas em 8 e 15 de novembro de 2026 */}
-        <a href="/beneficios/enem-2026" class="block bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-6 text-white relative overflow-hidden hover:shadow-xl transition-all">
+        <a href="/beneficios/enem-2026" class="block bg-gradient-to-r from-yellow-300 to-yellow-200 rounded-2xl p-6 text-slate-900 relative overflow-hidden hover:shadow-xl transition-all">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10 flex items-center gap-4">
             <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-file-signature text-white text-2xl"></i>
+              <i class="fas fa-file-signature text-slate-900 text-2xl"></i>
             </div>
             <div class="flex-1">
               <span class="inline-block bg-white/25 px-3 py-0.5 rounded-full text-xs font-bold mb-1">ESPAÇO RESERVADO · GUIA EM PREPARAÇÃO</span>
               <h2 class="text-2xl font-bold mb-1">ENEM 2026 — Guia completo para estudantes</h2>
-              <p class="text-white/90 text-sm">Inscrição, taxa e isenção, acessibilidade no dia da prova e como usar sua nota. Provas confirmadas: 8 e 15 de novembro (INEP). O guia completo chega em breve.</p>
+              <p class="text-slate-900/90 text-sm">Inscrição, taxa e isenção, acessibilidade no dia da prova e como usar sua nota. Provas confirmadas: 8 e 15 de novembro (INEP). O guia completo chega em breve.</p>
             </div>
             <i class="fas fa-arrow-right text-2xl hidden sm:block"></i>
           </div>
@@ -483,16 +483,16 @@ app.get('/beneficios', (c) => {
         </div>
 
         {/* Benefícios ocultos — CTA no hub */}
-        <a href="/beneficios-ocultos" class="block bg-gradient-to-r from-indigo-600 to-fuchsia-600 rounded-2xl p-6 text-white relative overflow-hidden hover:shadow-xl transition-all">
+        <a href="/beneficios-ocultos" class="block bg-gradient-to-r from-yellow-200 to-blue-100 rounded-2xl p-6 text-slate-900 relative overflow-hidden hover:shadow-xl transition-all">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10 flex items-center gap-4">
             <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-gem text-white text-2xl"></i>
+              <i class="fas fa-gem text-slate-900 text-2xl"></i>
             </div>
             <div class="flex-1">
               <span class="inline-block bg-white/25 px-3 py-0.5 rounded-full text-xs font-bold mb-1">PARA ESTUDANTES E PROFESSORES</span>
               <h2 class="text-2xl font-bold mb-1">Benefícios ocultos — direitos que quase ninguém usa</h2>
-              <p class="text-white/90 text-sm">Meia-entrada (lei federal e leis estaduais), museus do IBRAM, cursos MEC com certificado, Adobe com desconto, Autodesk e GitHub para professores.</p>
+              <p class="text-slate-900/90 text-sm">Meia-entrada (lei federal e leis estaduais), museus do IBRAM, cursos MEC com certificado, Adobe com desconto, Autodesk e GitHub para professores.</p>
             </div>
             <i class="fas fa-arrow-right text-2xl hidden sm:block"></i>
           </div>
@@ -500,7 +500,7 @@ app.get('/beneficios', (c) => {
 
         <div class="ai-card bg-white rounded-2xl p-6">
           <h2 class="text-xl font-bold text-gray-900 mb-2">
-            <i class="fas fa-flask text-purple-500 mr-2"></i>
+            <i class="fas fa-flask text-blue-500 mr-2"></i>
             Em catalogação
           </h2>
           <p class="text-gray-600 text-sm mb-4">Próximos guias que estamos preparando (cada um só entra no ar após verificação na fonte oficial):</p>
@@ -545,14 +545,14 @@ app.get('/beneficios/enem-2026', (c) => {
           <span class="text-ai-primary font-semibold">ENEM 2026</span>
         </div>
 
-        <div class="bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+        <div class="bg-gradient-to-r from-yellow-300 to-yellow-200 rounded-2xl p-6 sm:p-8 text-slate-900 relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10">
             <span class="inline-block bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold mb-3">
               📢 ESPAÇO RESERVADO · GUIA EM PREPARAÇÃO
             </span>
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">ENEM 2026</h1>
-            <p class="text-lg text-white/90">
+            <p class="text-lg text-slate-900/90">
               Estamos preparando o guia completo do exame — com o mesmo padrão de verificação de todas as páginas do portal. Este espaço é reservado para esse conteúdo.
             </p>
           </div>
@@ -593,7 +593,7 @@ app.get('/beneficios/enem-2026', (c) => {
             <div class="ai-card bg-white rounded-2xl p-6">
               <h3 class="font-bold text-gray-900 mb-3">Canal oficial do participante</h3>
               <p class="text-sm text-gray-600 mb-4">Resultado, cartão de confirmação e informações oficiais ficam na Página do Participante do INEP.</p>
-              <a href="https://enem.inep.gov.br/participante/" target="_blank" rel="noopener noreferrer" class="block bg-ai-primary text-white text-center px-4 py-2.5 rounded-lg font-semibold hover:bg-ai-secondary transition-colors">
+              <a href="https://enem.inep.gov.br/participante/" target="_blank" rel="noopener noreferrer" class="block bg-yellow-300 text-slate-900 text-center px-4 py-2.5 rounded-lg font-semibold hover:bg-yellow-200 transition-colors">
                 <i class="fas fa-external-link-alt mr-2"></i>Abrir Página do Participante
               </a>
             </div>
@@ -627,16 +627,16 @@ app.get('/beneficios/:slug', (c) => {
           <span class="text-ai-primary font-semibold">{beneficio.nome}</span>
         </div>
 
-        <div class="bg-gradient-to-r from-ai-primary via-ai-secondary to-ai-accent rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+        <div class="bg-gradient-to-r from-yellow-300 via-green-100 to-blue-100 rounded-2xl p-6 sm:p-8 text-slate-900 relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0">
-              <i class={`${beneficio.icone} text-white text-3xl`}></i>
+              <i class={`${beneficio.icone} text-slate-900 text-3xl`}></i>
             </div>
             <div class="flex-1">
               <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold mb-2">{beneficio.badge}</span>
               <h1 class="text-2xl sm:text-3xl font-bold mb-2">{beneficio.nome}</h1>
-              <p class="text-white/90">{beneficio.resumo}</p>
+              <p class="text-slate-900/90">{beneficio.resumo}</p>
             </div>
             <a href={beneficio.linkOficial} target="_blank" rel="noopener noreferrer" class="bg-white text-ai-primary px-5 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors whitespace-nowrap">
               <i class="fas fa-external-link-alt mr-2"></i>
@@ -664,7 +664,7 @@ app.get('/beneficios/:slug', (c) => {
               <ol class="space-y-3">
                 {beneficio.passos.map((p, i) => (
                   <li class="flex items-start">
-                    <span class="flex-shrink-0 w-7 h-7 bg-ai-primary text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">{i + 1}</span>
+                    <span class="flex-shrink-0 w-7 h-7 bg-yellow-300 text-slate-900 rounded-full flex items-center justify-center text-sm font-bold mr-3">{i + 1}</span>
                     <span class="text-gray-700">{p}</span>
                   </li>
                 ))}
@@ -715,9 +715,9 @@ app.get('/beneficios/:slug', (c) => {
               </ul>
             </div>
 
-            <div class="bg-gradient-to-br from-ai-primary to-ai-secondary text-white rounded-2xl p-6">
+            <div class="bg-gradient-to-br from-yellow-300 to-yellow-200 text-slate-900 rounded-2xl p-6">
               <h3 class="font-bold mb-2">Pronto para ativar?</h3>
-              <p class="text-sm text-white/90 mb-4">Siga o passo a passo direto na fonte oficial.</p>
+              <p class="text-sm text-slate-900/90 mb-4">Siga o passo a passo direto na fonte oficial.</p>
               <a href={beneficio.linkOficial} target="_blank" rel="noopener noreferrer" class="block bg-white text-ai-primary text-center px-4 py-2.5 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
                 Acessar site oficial
               </a>
@@ -858,17 +858,17 @@ app.get('/direitos-professores', (c) => {
   return c.render(
     <Layout currentPage="professores">
       <div class="space-y-8">
-        <div class="bg-gradient-to-r from-rose-500 via-orange-500 to-amber-500 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+        <div class="bg-gradient-to-r from-yellow-300 via-green-100 to-blue-100 rounded-2xl p-6 sm:p-8 text-slate-900 relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10">
             <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3">
               🍎 Direitos de quem ensina
             </span>
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">Direitos dos Professores</h1>
-            <p class="text-lg text-white/90">
+            <p class="text-lg text-slate-900/90">
               Área distinta dos benefícios estudantis: direitos trabalhistas, previdenciários e constitucionais de professores — na rede pública e na privada.
             </p>
-            <p class="text-sm text-white/80 mt-3">
+            <p class="text-sm text-slate-900/80 mt-3">
               <i class="fas fa-check-circle mr-1"></i>
               Verificado nas fontes oficiais em {VERIFICADO_DOC}
             </p>
@@ -876,10 +876,10 @@ app.get('/direitos-professores', (c) => {
         </div>
 
         {/* CTA Relatório completo */}
-        <div class="bg-gradient-to-r from-ai-primary to-ai-secondary text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-4">
+        <div class="bg-gradient-to-r from-ai-primary to-ai-secondary text-slate-900 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-4">
           <div class="flex-1">
             <h2 class="text-xl font-bold mb-1"><i class="fas fa-file-lines mr-2"></i>Relatório completo 2026 — Direitos dos Professores</h2>
-            <p class="text-sm text-white/90">Pesquisa em profundidade com base legal completa: Constituição, LDB, Lei do Piso (Lei 15.437/2026), Fundeb, CLT, aposentadoria especial e jurisprudência do STF — com fonte oficial em cada item.</p>
+            <p class="text-sm text-slate-900/90">Pesquisa em profundidade com base legal completa: Constituição, LDB, Lei do Piso (Lei 15.437/2026), Fundeb, CLT, aposentadoria especial e jurisprudência do STF — com fonte oficial em cada item.</p>
           </div>
           <a href="/relatorio-direitos-professores" class="bg-white text-ai-primary px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors whitespace-nowrap">
             Abrir relatório <i class="fas fa-arrow-right ml-1"></i>
@@ -887,10 +887,10 @@ app.get('/direitos-professores', (c) => {
         </div>
 
         {/* Benefícios ocultos — CTA */}
-        <div class="bg-gradient-to-r from-indigo-600 to-fuchsia-600 text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-4">
+        <div class="bg-gradient-to-r from-yellow-200 to-blue-100 text-slate-900 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-4">
           <div class="flex-1">
             <h2 class="text-xl font-bold mb-1"><i class="fas fa-gem mr-2"></i>Benefícios ocultos — direitos que quase ninguém usa</h2>
-            <p class="text-sm text-white/90">Meia-entrada, museus federais, cursos do MEC com certificado, GitHub para professores, Canva e Autodesk — com nível de burocracia e fonte oficial em cada card.</p>
+            <p class="text-sm text-slate-900/90">Meia-entrada, museus federais, cursos do MEC com certificado, GitHub para professores, Canva e Autodesk — com nível de burocracia e fonte oficial em cada card.</p>
           </div>
           <a href="/beneficios-ocultos" class="bg-white text-ai-primary px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors whitespace-nowrap">
             Abrir lista <i class="fas fa-arrow-right ml-1"></i>
@@ -908,8 +908,8 @@ app.get('/direitos-professores', (c) => {
           {DIREITOS_DOCENTES.map((d) => (
             <div class="ai-card bg-white rounded-2xl p-6 flex flex-col">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 bg-gradient-to-br from-orange-100 to-rose-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <i class={`${d.icone} text-orange-600 text-xl`}></i>
+                <div class="w-11 h-11 bg-gradient-to-br from-yellow-100 to-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class={`${d.icone} text-green-700 text-xl`}></i>
                 </div>
                 <h2 class="text-lg font-bold text-gray-900">{d.titulo}</h2>
               </div>
@@ -1090,14 +1090,14 @@ app.get('/relatorio-direitos-professores', (c) => {
   return c.render(
     <Layout currentPage="professores">
       <div class="space-y-8">
-        <div class="bg-gradient-to-r from-slate-800 via-rose-800 to-orange-600 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+        <div class="bg-gradient-to-r from-yellow-300 via-green-100 to-blue-100 rounded-2xl p-6 sm:p-8 text-slate-900 relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10">
             <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3">
               🍎 RELATÓRIO ESPECIAL · ATUALIZADO EM 05/11/2026
             </span>
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">Direitos dos Professores no Brasil — Relatório 2026</h1>
-            <p class="text-lg text-white/90 mb-4">
+            <p class="text-lg text-slate-900/90 mb-4">
               Pesquisa em profundidade sobre os direitos de quem ensina: professores da rede pública (União, Estados, DF e Municípios) e da rede privada (CLT), do ensino infantil ao médio, com foco também em quem atua no magistério superior.
             </p>
             <div class="flex flex-wrap gap-2 text-xs">
@@ -1118,8 +1118,8 @@ app.get('/relatorio-direitos-professores', (c) => {
         {secoes.map((s) => (
           <section class="ai-card bg-white rounded-2xl p-6" id={s.id}>
             <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
-              <span class="w-10 h-10 bg-gradient-to-br from-rose-100 to-orange-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
-                <i class={`${s.icone} text-orange-600`}></i>
+              <span class="w-10 h-10 bg-gradient-to-br from-yellow-100 to-green-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                <i class={`${s.icone} text-green-700`}></i>
               </span>
               {s.titulo}
             </h2>
@@ -1165,9 +1165,9 @@ app.get('/relatorio-direitos-professores', (c) => {
           </div>
         </div>
 
-        <div class="bg-rose-50 border border-rose-200 rounded-2xl p-6">
-          <h2 class="text-lg font-bold text-gray-900 mb-2"><i class="fas fa-gavel text-rose-500 mr-2"></i>Aviso legal</h2>
-          <p class="text-sm text-rose-900">
+        <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-gray-900 mb-2"><i class="fas fa-gavel text-green-500 mr-2"></i>Aviso legal</h2>
+          <p class="text-sm text-green-900">
             Este relatório é conteúdo informativo e educacional, atualizado em <strong>05/11/2026</strong>. Não constitui aconselhamento jurídico ou previdenciário e não substitui a leitura das leis e a consulta a um profissional do Direito. Leis, valores e jurisprudência mudam: o piso salarial, em especial, é reajustado por lei todo ano. Confira sempre as fontes oficiais citadas em cada seção antes de decidir. Encontrou algo desatualizado? Avise em <a href="mailto:contato@iaetech.com.br" class="font-semibold underline">contato@iaetech.com.br</a>. Todas as marcas e nomes de terceiros citados pertencem a seus respectivos titulares (uso nominativo — art. 132, IV, da Lei 9.279/96).
           </p>
         </div>
@@ -1223,7 +1223,7 @@ const ITENS_OCULTOS: ItemOculto[] = [
     id: 'meia-entrada-professor',
     titulo: 'Meia-entrada e Carteira do Professor (leis estaduais)',
     publico: 'professor',
-    publicoClasse: 'bg-rose-100 text-rose-800',
+    publicoClasse: 'bg-yellow-100 text-green-800',
     publicoLabel: '🍎 Professor(a)',
     burocracia: 'medio',
     burocraciaClasse: 'bg-amber-100 text-amber-800',
@@ -1244,7 +1244,7 @@ const ITENS_OCULTOS: ItemOculto[] = [
     id: 'museus-ibram',
     titulo: 'Museus e espaços culturais federais (IBRAM)',
     publico: 'ambos',
-    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoClasse: 'bg-blue-100 text-blue-800',
     publicoLabel: '✨ Ambos',
     burocracia: 'facil',
     burocraciaClasse: 'bg-green-100 text-green-800',
@@ -1264,7 +1264,7 @@ const ITENS_OCULTOS: ItemOculto[] = [
     id: 'avamec',
     titulo: 'AVAMEC — cursos gratuitos do MEC com certificado',
     publico: 'ambos',
-    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoClasse: 'bg-blue-100 text-blue-800',
     publicoLabel: '✨ Ambos',
     burocracia: 'facil',
     burocraciaClasse: 'bg-green-100 text-green-800',
@@ -1283,7 +1283,7 @@ const ITENS_OCULTOS: ItemOculto[] = [
     id: 'escola-virtual-gov',
     titulo: 'Escola Virtual Gov — cursos gratuitos com certificado',
     publico: 'ambos',
-    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoClasse: 'bg-blue-100 text-blue-800',
     publicoLabel: '✨ Ambos',
     burocracia: 'facil',
     burocraciaClasse: 'bg-green-100 text-green-800',
@@ -1302,7 +1302,7 @@ const ITENS_OCULTOS: ItemOculto[] = [
     id: 'uab-capes',
     titulo: 'UAB/CAPES — ensino superior e extensão a distância públicas',
     publico: 'ambos',
-    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoClasse: 'bg-blue-100 text-blue-800',
     publicoLabel: '✨ Ambos',
     burocracia: 'medio',
     burocraciaClasse: 'bg-amber-100 text-amber-800',
@@ -1321,7 +1321,7 @@ const ITENS_OCULTOS: ItemOculto[] = [
     id: 'github-teachers',
     titulo: 'GitHub Education para professores (Global Campus)',
     publico: 'professor',
-    publicoClasse: 'bg-rose-100 text-rose-800',
+    publicoClasse: 'bg-yellow-100 text-green-800',
     publicoLabel: '🍎 Professor(a)',
     burocracia: 'medio',
     burocraciaClasse: 'bg-amber-100 text-amber-800',
@@ -1340,7 +1340,7 @@ const ITENS_OCULTOS: ItemOculto[] = [
     id: 'google-workspace-edu',
     titulo: 'Google Workspace for Education + treinamento de educadores',
     publico: 'ambos',
-    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoClasse: 'bg-blue-100 text-blue-800',
     publicoLabel: '✨ Ambos',
     burocracia: 'facil',
     burocraciaClasse: 'bg-green-100 text-green-800',
@@ -1359,7 +1359,7 @@ const ITENS_OCULTOS: ItemOculto[] = [
     id: 'canva-education',
     titulo: 'Canva for Education — 100% gratuito para professores',
     publico: 'professor',
-    publicoClasse: 'bg-rose-100 text-rose-800',
+    publicoClasse: 'bg-yellow-100 text-green-800',
     publicoLabel: '🍎 Professor(a)',
     burocracia: 'facil',
     burocraciaClasse: 'bg-green-100 text-green-800',
@@ -1378,7 +1378,7 @@ const ITENS_OCULTOS: ItemOculto[] = [
     id: 'adobe-education',
     titulo: 'Adobe Creative Cloud — desconto educacional (não é gratuito)',
     publico: 'ambos',
-    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoClasse: 'bg-blue-100 text-blue-800',
     publicoLabel: '✨ Ambos',
     burocracia: 'facil',
     burocraciaClasse: 'bg-green-100 text-green-800',
@@ -1397,7 +1397,7 @@ const ITENS_OCULTOS: ItemOculto[] = [
     id: 'autodesk-education',
     titulo: 'Autodesk Education — 1 ano de acesso gratuito (renovável)',
     publico: 'ambos',
-    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoClasse: 'bg-blue-100 text-blue-800',
     publicoLabel: '✨ Ambos',
     burocracia: 'medio',
     burocraciaClasse: 'bg-amber-100 text-amber-800',
@@ -1418,17 +1418,17 @@ app.get('/beneficios-ocultos', (c) => {
   return c.render(
     <Layout currentPage="ocultos">
       <div class="space-y-8">
-        <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+        <div class="bg-gradient-to-r from-yellow-300 via-green-100 to-blue-100 rounded-2xl p-6 sm:p-8 text-slate-900 relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10">
             <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3">
               💎 Benefícios ocultos — para quem estuda e para quem ensina
             </span>
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">Direitos que quase ninguém usa</h1>
-            <p class="text-lg text-white/90">
+            <p class="text-lg text-slate-900/90">
               Meia-entrada, museus, cursos com certificado e licenças de software que a maioria não sabe que tem — perdidos na correria do dia a dia ou na burocracia mal explicada. Cada card traz o que é, para quem vale, quanto complica ativar e a fonte oficial.
             </p>
-            <p class="text-sm text-white/80 mt-3">
+            <p class="text-sm text-slate-900/80 mt-3">
               <i class="fas fa-check-circle mr-1"></i>
               Verificado em fontes oficiais em {VERIFICADO_OCULTOS}
             </p>
@@ -1442,7 +1442,7 @@ app.get('/beneficios-ocultos', (c) => {
             Mostre só o que vale para você:
           </p>
           <div class="flex flex-wrap gap-2">
-            <button class="filtro-publico bg-ai-primary text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors" data-filtro="todos">✨ Mostrar tudo</button>
+            <button class="filtro-publico bg-yellow-300 text-slate-900 px-4 py-2 rounded-lg text-sm font-semibold transition-colors" data-filtro="todos">✨ Mostrar tudo</button>
             <button class="filtro-publico bg-white text-gray-700 border border-gray-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors" data-filtro="estudante">🎓 Sou estudante</button>
             <button class="filtro-publico bg-white text-gray-700 border border-gray-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors" data-filtro="professor">🍎 Sou professor(a)</button>
           </div>
@@ -1480,7 +1480,7 @@ app.get('/beneficios-ocultos', (c) => {
                 </div>
               )}
               <div class="pt-3 border-t border-gray-100">
-                <a href={o.url} target="_blank" rel="noopener noreferrer" class="ai-button-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all inline-block">
+                <a href={o.url} target="_blank" rel="noopener noreferrer" class="ai-button-primary text-slate-900 px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all inline-block">
                   {o.urlLabel} <i class="fas fa-external-link-alt ml-1"></i>
                 </a>
               </div>
@@ -1493,7 +1493,7 @@ app.get('/beneficios-ocultos', (c) => {
         <div class="ai-card bg-white rounded-2xl p-6">
           <h2 class="text-xl font-bold text-gray-900 mb-2"><i class="fas fa-link text-ai-primary mr-2"></i>Benefícios de tecnologia já catalogados</h2>
           <p class="text-gray-600 text-sm mb-4">Microsoft 365 Education (A1), Azure for Students (US$ 100 sem cartão), GitHub Student Pack (com Copilot) e Google AI Pro para estudantes já têm guias completos no portal — com verificação na fonte oficial:</p>
-          <a href="/beneficios" class="ai-button-primary text-white px-5 py-2.5 rounded-lg font-semibold inline-block hover:shadow-lg transition-all">
+          <a href="/beneficios" class="ai-button-primary text-slate-900 px-5 py-2.5 rounded-lg font-semibold inline-block hover:shadow-lg transition-all">
             <i class="fas fa-graduation-cap mr-2"></i>Ver guias de benefícios
           </a>
         </div>
@@ -1513,9 +1513,107 @@ app.get('/beneficios-ocultos', (c) => {
         </p>
       </div>
 
-      <script dangerouslySetInnerHTML={{ __html: `(function(){var base=new Date('${VERIFICADO_OCULTOS_DATA}');var dias=Math.floor((Date.now()-base.getTime())/86400000);document.querySelectorAll('[data-verif]').forEach(function(el){var b=el.querySelector('.verif-badge');if(!b)return;var cls='bg-green-100 text-green-800';var txt='Verificado em ${VERIFICADO_OCULTOS}' + (dias===0?' — hoje':dias>90?' — REVISÃO ATRASADA ('+dias+' dias)':dias>30?' — ('+dias+' dias atrás, agendar revisão)':'');if(dias>90){cls='bg-red-100 text-red-800'}else if(dias>30){cls='bg-amber-100 text-amber-800'}b.className='verif-badge text-[11px] font-semibold px-2 py-0.5 rounded-full '+cls;b.textContent=txt;});var btns=document.querySelectorAll('.filtro-publico');var cards=document.querySelectorAll('.oculto-card');function ativa(botao){btns.forEach(function(x){x.classList.remove('bg-ai-primary','text-white');x.classList.add('bg-white','text-gray-700','border-gray-200');});botao.classList.add('bg-ai-primary','text-white');botao.classList.remove('bg-white','text-gray-700','border-gray-200');}btns.forEach(function(b){b.addEventListener('click',function(){var alvo=b.getAttribute('data-filtro');ativa(b);cards.forEach(function(c){var pub=c.getAttribute('data-publico');var mostrar=alvo==='todos'||pub===alvo||pub==='ambos';c.style.display=mostrar?'':'none';});});});})();` }} />
+      <script dangerouslySetInnerHTML={{ __html: `(function(){var base=new Date('${VERIFICADO_OCULTOS_DATA}');var dias=Math.floor((Date.now()-base.getTime())/86400000);document.querySelectorAll('[data-verif]').forEach(function(el){var b=el.querySelector('.verif-badge');if(!b)return;var cls='bg-green-100 text-green-800';var txt='Verificado em ${VERIFICADO_OCULTOS}' + (dias===0?' — hoje':dias>90?' — REVISÃO ATRASADA ('+dias+' dias)':dias>30?' — ('+dias+' dias atrás, agendar revisão)':'');if(dias>90){cls='bg-red-100 text-red-800'}else if(dias>30){cls='bg-amber-100 text-amber-800'}b.className='verif-badge text-[11px] font-semibold px-2 py-0.5 rounded-full '+cls;b.textContent=txt;});var btns=document.querySelectorAll('.filtro-publico');var cards=document.querySelectorAll('.oculto-card');function ativa(botao){btns.forEach(function(x){x.classList.remove('bg-ai-primary','text-slate-900');x.classList.add('bg-white','text-gray-700','border-gray-200');});botao.classList.add('bg-ai-primary','text-slate-900');botao.classList.remove('bg-white','text-gray-700','border-gray-200');}btns.forEach(function(b){b.addEventListener('click',function(){var alvo=b.getAttribute('data-filtro');ativa(b);cards.forEach(function(c){var pub=c.getAttribute('data-publico');var mostrar=alvo==='todos'||pub===alvo||pub==='ambos';c.style.display=mostrar?'':'none';});});});})();` }} />
     </Layout>,
     { title: 'Benefícios ocultos — para quem estuda e quem ensina | Portal IA & Tech' }
+  )
+})
+
+// DIREITOS DOS ESTUDANTES — espaço de referências (links curados, sem criação de conteúdo)
+// Premissa do portal: apontar para quem já faz — cada card diz o que a própria fonte afirma sobre si
+// CIEE verificado no site oficial em 05/11/2026: ONG que conecta jovens/estudantes a empresas, "Tudo 100% gratuito!",
+// programas (Jovem Aprendiz, Estágio, Aprendiz, Processos Públicos, Soluções Especiais, PCD) e área para instituições de ensino
+const REFERENCIAS_ESTUDANTES = [
+  {
+    id: 'ciee',
+    nome: 'CIEE',
+    icone: 'fas fa-user-graduate',
+    badge: '🟢 Fácil — cadastro gratuito',
+    badgeClasse: 'bg-green-100 text-green-900',
+    resumo: 'ONG brasileira que conecta jovens e estudantes a empresas — é o CIEE quem coordena e intermedeia o estudante até as vagas de estágio e aprendizagem.',
+    pontos: [
+      'Afirmação do próprio site oficial: "Tudo 100% gratuito!" para o estudante.',
+      'Programas listados na vitrine de oportunidades: Jovem Aprendiz, Estágio, Aprendiz, Processos Públicos, Soluções Especiais e PCD.',
+      'Há também uma área dedicada a instituições de ensino que participam da comunidade CIEE.'
+    ],
+    urlLabel: 'Abrir site oficial do CIEE',
+    url: 'https://www.ciee.org.br/',
+    fonte: 'CIEE — site oficial (verificado em 05/11/2026)'
+  }
+]
+
+const REFERENCIAS_EM_CATALOGACAO = [
+  'Brasil Escola',
+  'Outras referências de conteúdo educacional'
+]
+
+// Hub — Direitos dos Estudantes (espaço de links de referência)
+app.get('/direitos-estudantes', (c) => {
+  return c.render(
+    <Layout currentPage="estudantes">
+      <div class="space-y-8">
+        <div class="bg-gradient-to-r from-yellow-300 via-green-100 to-blue-100 rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+          <div class="relative z-10">
+            <span class="inline-block bg-yellow-300 text-green-900 px-3 py-1 rounded-full text-xs sm:text-sm font-bold mb-3">
+              🎓 ESPAÇO DE REFERÊNCIAS
+            </span>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-3">Direitos dos estudantes</h1>
+            <p class="text-lg text-slate-700">
+              Um local para encontrar as referências: serviços e entidades que já atuam com estudantes, apontados com link direto e fonte oficial. O portal não cria conteúdo aqui — aponta para quem já o faz.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {REFERENCIAS_ESTUDANTES.map((r) => (
+            <div class="ai-card bg-white rounded-2xl p-6 flex flex-col">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <div class="w-11 h-11 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class={`${r.icone} text-green-700 text-xl`}></i>
+                </div>
+                <span class={`text-xs font-bold px-2.5 py-1 rounded-full ${r.badgeClasse}`}>{r.badge}</span>
+              </div>
+              <h2 class="text-lg font-bold text-slate-900 mb-2">{r.nome}</h2>
+              <p class="text-slate-700 text-sm mb-3">{r.resumo}</p>
+              <ul class="space-y-2 mb-4 flex-1">
+                {r.pontos.map((p) => (
+                  <li class="text-sm text-slate-700 flex items-start">
+                    <i class="fas fa-check text-green-600 mt-1 mr-2 flex-shrink-0"></i>
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="pt-3 border-t border-gray-100">
+                <a href={r.url} target="_blank" rel="noopener noreferrer" class="bg-yellow-300 text-green-900 px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-200 transition-colors inline-block">
+                  {r.urlLabel} <i class="fas fa-external-link-alt ml-1"></i>
+                </a>
+              </div>
+              <p class="text-[11px] text-gray-500 mt-2">Fonte: {r.fonte}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="ai-card bg-white rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-slate-900 mb-2">
+            <i class="fas fa-flask text-blue-600 mr-2"></i>
+            Em catalogação (sem link até verificação na fonte oficial)
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            {REFERENCIAS_EM_CATALOGACAO.map((nome) => (
+              <span class="text-sm bg-yellow-100 text-green-900 px-3 py-1.5 rounded-full font-medium">{nome}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5">
+          <p class="text-sm text-slate-700">
+            <i class="fas fa-shield-alt text-blue-600 mr-2"></i>
+            <strong>Como funciona este espaço:</strong> cada card resume o que a própria fonte afirma sobre si no site oficial, com a data da verificação. Condições podem mudar — confirme sempre na fonte. Encontrou algo desatualizado? Avise em <a href="mailto:contato@iaetech.com.br" class="text-blue-700 font-semibold hover:underline">contato@iaetech.com.br</a>.
+          </p>
+        </div>
+      </div>
+    </Layout>,
+    { title: 'Direitos dos estudantes — referências | Portal IA & Tech' }
   )
 })
 
@@ -2260,7 +2358,7 @@ app.get('/showcase', async (c) => {
     <Layout currentPage="showcase">
       <div class="space-y-8">
         {/* Hero Section */}
-        <div class="bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-2xl p-8 text-white relative overflow-hidden">
+        <div class="bg-gradient-to-r from-blue-600 via-pink-500 to-red-500 rounded-2xl p-8 text-slate-900 relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10">
             <div class="flex items-center mb-4">
@@ -2269,7 +2367,7 @@ app.get('/showcase', async (c) => {
               </div>
               <div>
                 <h1 class="text-4xl font-bold mb-2">Showcase de IAs</h1>
-                <p class="text-xl text-white/90">Projetos incríveis da comunidade</p>
+                <p class="text-xl text-slate-900/90">Projetos incríveis da comunidade</p>
               </div>
             </div>
             <div class="flex flex-wrap gap-4 mt-6">
@@ -2288,8 +2386,8 @@ app.get('/showcase', async (c) => {
         {/* Estatísticas */}
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div class="ai-card p-6 text-center">
-            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-project-diagram text-purple-600 text-xl"></i>
+            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-project-diagram text-blue-600 text-xl"></i>
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2">42</h3>
             <p class="text-sm text-gray-600">Projetos Ativos</p>
@@ -2313,7 +2411,7 @@ app.get('/showcase', async (c) => {
           
           <div class="ai-card p-6 text-center">
             <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-download text-orange-600 text-xl"></i>
+              <i class="fas fa-download text-green-700 text-xl"></i>
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2">12.4k</h3>
             <p class="text-sm text-gray-600">Downloads</p>
@@ -2344,8 +2442,8 @@ app.get('/showcase', async (c) => {
             </button>
             
             <button class="ai-card p-6 text-center hover:shadow-lg transition-all group">
-              <div class="w-12 h-12 bg-purple-100 group-hover:bg-purple-200 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
-                <i class="fas fa-magic text-purple-600 text-xl"></i>
+              <div class="w-12 h-12 bg-blue-100 group-hover:bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                <i class="fas fa-magic text-blue-600 text-xl"></i>
               </div>
               <h3 class="font-semibold text-gray-900 mb-2">IA Generativa</h3>
               <p class="text-sm text-gray-600">15 projetos</p>
@@ -2353,7 +2451,7 @@ app.get('/showcase', async (c) => {
             
             <button class="ai-card p-6 text-center hover:shadow-lg transition-all group">
               <div class="w-12 h-12 bg-orange-100 group-hover:bg-orange-200 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
-                <i class="fas fa-robot text-orange-600 text-xl"></i>
+                <i class="fas fa-robot text-green-700 text-xl"></i>
               </div>
               <h3 class="font-semibold text-gray-900 mb-2">Robótica</h3>
               <p class="text-sm text-gray-600">7 projetos</p>
@@ -2376,9 +2474,9 @@ app.get('/showcase', async (c) => {
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Projeto 1 */}
             <div class="ai-card overflow-hidden hover:shadow-xl transition-all group">
-              <div class="aspect-video bg-gradient-to-br from-blue-500 to-purple-600 relative overflow-hidden">
+              <div class="aspect-video bg-gradient-to-br from-blue-500 to-blue-600 relative overflow-hidden">
                 <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
-                  <div class="text-center text-white">
+                  <div class="text-center text-slate-900">
                     <i class="fas fa-play-circle text-5xl mb-2 opacity-80 group-hover:opacity-100 transition-opacity"></i>
                     <p class="text-sm font-medium">Demo Interativa</p>
                   </div>
@@ -2400,7 +2498,7 @@ app.get('/showcase', async (c) => {
                     <span>@dev_pedro</span>
                   </div>
                   <div class="flex space-x-2">
-                    <button class="bg-ai-primary text-white px-3 py-1 rounded text-sm font-medium hover:bg-ai-secondary transition-colors">
+                    <button class="bg-yellow-300 text-slate-900 px-3 py-1 rounded text-sm font-medium hover:bg-yellow-200 transition-colors">
                       Demo
                     </button>
                     <button class="border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm font-medium hover:bg-gray-50 transition-colors">
@@ -2415,7 +2513,7 @@ app.get('/showcase', async (c) => {
             <div class="ai-card overflow-hidden hover:shadow-xl transition-all group">
               <div class="aspect-video bg-gradient-to-br from-green-500 to-teal-600 relative overflow-hidden">
                 <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
-                  <div class="text-center text-white">
+                  <div class="text-center text-slate-900">
                     <i class="fas fa-comments text-5xl mb-2 opacity-80 group-hover:opacity-100 transition-opacity"></i>
                     <p class="text-sm font-medium">Chatbot Ativo</p>
                   </div>
@@ -2437,7 +2535,7 @@ app.get('/showcase', async (c) => {
                     <span>@ana_dev</span>
                   </div>
                   <div class="flex space-x-2">
-                    <button class="bg-ai-primary text-white px-3 py-1 rounded text-sm font-medium hover:bg-ai-secondary transition-colors">
+                    <button class="bg-yellow-300 text-slate-900 px-3 py-1 rounded text-sm font-medium hover:bg-yellow-200 transition-colors">
                       Testar
                     </button>
                     <button class="border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm font-medium hover:bg-gray-50 transition-colors">
@@ -2450,9 +2548,9 @@ app.get('/showcase', async (c) => {
 
             {/* Projeto 3 */}
             <div class="ai-card overflow-hidden hover:shadow-xl transition-all group">
-              <div class="aspect-video bg-gradient-to-br from-purple-500 to-pink-600 relative overflow-hidden">
+              <div class="aspect-video bg-gradient-to-br from-blue-500 to-pink-600 relative overflow-hidden">
                 <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
-                  <div class="text-center text-white">
+                  <div class="text-center text-slate-900">
                     <i class="fas fa-image text-5xl mb-2 opacity-80 group-hover:opacity-100 transition-opacity"></i>
                     <p class="text-sm font-medium">Gerador Ativo</p>
                   </div>
@@ -2460,7 +2558,7 @@ app.get('/showcase', async (c) => {
               </div>
               <div class="p-6">
                 <div class="flex items-center justify-between mb-3">
-                  <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Generativa</span>
+                  <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Generativa</span>
                   <div class="flex items-center text-gray-500 text-sm">
                     <i class="fas fa-star text-yellow-500 mr-1"></i>
                     <span>4.9</span>
@@ -2474,7 +2572,7 @@ app.get('/showcase', async (c) => {
                     <span>@art_ai</span>
                   </div>
                   <div class="flex space-x-2">
-                    <button class="bg-ai-primary text-white px-3 py-1 rounded text-sm font-medium hover:bg-ai-secondary transition-colors">
+                    <button class="bg-yellow-300 text-slate-900 px-3 py-1 rounded text-sm font-medium hover:bg-yellow-200 transition-colors">
                       Criar
                     </button>
                     <button class="border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm font-medium hover:bg-gray-50 transition-colors">
@@ -2498,7 +2596,7 @@ app.get('/tutoriais', async (c) => {
     <Layout currentPage="tutoriais">
       <div class="space-y-8">
         {/* Header Section */}
-        <div class="bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 rounded-2xl p-8 text-white relative overflow-hidden">
+        <div class="bg-gradient-to-r from-green-500 via-blue-500 to-blue-600 rounded-2xl p-8 text-slate-900 relative overflow-hidden">
           <div class="absolute inset-0 bg-black/10"></div>
           <div class="relative z-10">
             <div class="flex items-center mb-4">
@@ -2507,7 +2605,7 @@ app.get('/tutoriais', async (c) => {
               </div>
               <div>
                 <h1 class="text-4xl font-bold mb-2">Tutoriais de IA</h1>
-                <p class="text-xl text-white/90">Aprenda do básico ao avançado</p>
+                <p class="text-xl text-slate-900/90">Aprenda do básico ao avançado</p>
               </div>
             </div>
             <div class="flex flex-wrap gap-4 mt-6">
@@ -2520,7 +2618,7 @@ app.get('/tutoriais', async (c) => {
                 Kaggle Learn (gratuito)
               </a>
             </div>
-            <p class="text-sm text-white/80 mt-4">
+            <p class="text-sm text-slate-900/80 mt-4">
               <i class="fas fa-check-circle mr-1"></i>
               Links diretos para plataformas oficiais de treinamento — verificados em 04/11/2026
             </p>
@@ -2546,8 +2644,8 @@ app.get('/tutoriais', async (c) => {
           </div>
           
           <div class="ai-card p-6 text-center">
-            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-certificate text-purple-600 text-xl"></i>
+            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-certificate text-blue-600 text-xl"></i>
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2">3</h3>
             <p class="text-sm text-gray-600">Emissão de certificado gratuita</p>
@@ -2555,7 +2653,7 @@ app.get('/tutoriais', async (c) => {
           
           <div class="ai-card p-6 text-center">
             <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-calendar-check text-orange-600 text-xl"></i>
+              <i class="fas fa-calendar-check text-green-700 text-xl"></i>
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2">04/11/2026</h3>
             <p class="text-sm text-gray-600">Última verificação</p>
@@ -2593,7 +2691,7 @@ app.get('/tutoriais', async (c) => {
                 Machine Learning Básico
               </li>
             </ul>
-            <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener noreferrer" class="block w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors text-center">
+            <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener noreferrer" class="block w-full bg-green-500 text-slate-900 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors text-center">
               Começar na Kaggle Learn <i class="fas fa-external-link-alt ml-1"></i>
             </a>
           </div>
@@ -2627,16 +2725,16 @@ app.get('/tutoriais', async (c) => {
                 Redes Neurais Avançadas
               </li>
             </ul>
-            <a href="https://www.freecodecamp.org/learn/machine-learning-with-python" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors text-center">
+            <a href="https://www.freecodecamp.org/learn/machine-learning-with-python" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-500 text-slate-900 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors text-center">
               Começar na freeCodeCamp <i class="fas fa-external-link-alt ml-1"></i>
             </a>
           </div>
 
           {/* Avançado */}
-          <div class="ai-card p-6 border-l-4 border-purple-500">
+          <div class="ai-card p-6 border-l-4 border-blue-500">
             <div class="flex items-center mb-4">
-              <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                <i class="fas fa-rocket text-purple-600"></i>
+              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-rocket text-blue-600"></i>
               </div>
               <div>
                 <h3 class="text-xl font-bold text-gray-900">Avançado</h3>
@@ -2689,7 +2787,7 @@ app.get('/tutoriais', async (c) => {
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Microsoft Learn</h3>
                 <p class="text-gray-600 text-sm mb-4">Roteiros de aprendizagem oficiais em português: IA, Azure e Copilot, com módulos interativos e sem custo.</p>
-                <a href="https://learn.microsoft.com/pt-br/training" target="_blank" rel="noopener noreferrer" class="block w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors text-center">
+                <a href="https://learn.microsoft.com/pt-br/training" target="_blank" rel="noopener noreferrer" class="block w-full bg-yellow-300 text-slate-900 py-2 px-4 rounded-lg font-medium hover:bg-yellow-200 transition-colors text-center">
                   Acessar Microsoft Learn <i class="fas fa-external-link-alt ml-1"></i>
                 </a>
               </div>
@@ -2707,7 +2805,7 @@ app.get('/tutoriais', async (c) => {
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Kaggle Learn</h3>
                 <p class="text-gray-600 text-sm mb-4">Micro-cursos sem custo (Python, Pandas, Intro ao Machine Learning) com certificado — ideal para começar hoje.</p>
-                <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener noreferrer" class="block w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors text-center">
+                <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener noreferrer" class="block w-full bg-yellow-300 text-slate-900 py-2 px-4 rounded-lg font-medium hover:bg-yellow-200 transition-colors text-center">
                   Acessar Kaggle Learn <i class="fas fa-external-link-alt ml-1"></i>
                 </a>
               </div>
@@ -2725,7 +2823,7 @@ app.get('/tutoriais', async (c) => {
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Google AI Essentials</h3>
                 <p class="text-gray-600 text-sm mb-4">Programa do Google para usar IA no dia a dia: fundamentos de IA generativa e prompting prático.</p>
-                <a href="https://grow.google/ai-essentials/" target="_blank" rel="noopener noreferrer" class="block w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors text-center">
+                <a href="https://grow.google/ai-essentials/" target="_blank" rel="noopener noreferrer" class="block w-full bg-yellow-300 text-slate-900 py-2 px-4 rounded-lg font-medium hover:bg-yellow-200 transition-colors text-center">
                   Acessar Grow Google <i class="fas fa-external-link-alt ml-1"></i>
                 </a>
               </div>
@@ -2743,7 +2841,7 @@ app.get('/tutoriais', async (c) => {
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">freeCodeCamp — ML com Python</h3>
                 <p class="text-gray-600 text-sm mb-4">Certificação gratuita usando TensorFlow para construir redes neurais e técnicas avançadas de ML.</p>
-                <a href="https://www.freecodecamp.org/learn/machine-learning-with-python" target="_blank" rel="noopener noreferrer" class="block w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors text-center">
+                <a href="https://www.freecodecamp.org/learn/machine-learning-with-python" target="_blank" rel="noopener noreferrer" class="block w-full bg-yellow-300 text-slate-900 py-2 px-4 rounded-lg font-medium hover:bg-yellow-200 transition-colors text-center">
                   Acessar freeCodeCamp <i class="fas fa-external-link-alt ml-1"></i>
                 </a>
               </div>
@@ -2761,7 +2859,7 @@ app.get('/tutoriais', async (c) => {
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">GitHub Skills</h3>
                 <p class="text-gray-600 text-sm mb-4">Exercícios interativos gratuitos para dominar GitHub — do primeiro commit ao trabalho com IA no fluxo de dev.</p>
-                <a href="https://skills.github.com/" target="_blank" rel="noopener noreferrer" class="block w-full bg-ai-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-ai-secondary transition-colors text-center">
+                <a href="https://skills.github.com/" target="_blank" rel="noopener noreferrer" class="block w-full bg-yellow-300 text-slate-900 py-2 px-4 rounded-lg font-medium hover:bg-yellow-200 transition-colors text-center">
                   Acessar GitHub Skills <i class="fas fa-external-link-alt ml-1"></i>
                 </a>
               </div>

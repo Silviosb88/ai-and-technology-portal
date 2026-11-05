@@ -7,7 +7,7 @@ export const UploadModal = ({ categories = [] }: { categories?: any[] }) => {
         <div class="flex items-center justify-between p-6 border-b border-gray-200">
           <div class="flex items-center space-x-3">
             <div class="w-10 h-10 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-xl flex items-center justify-center">
-              <i class="fas fa-cloud-upload-alt text-white"></i>
+              <i class="fas fa-cloud-upload-alt text-slate-900"></i>
             </div>
             <div>
               <h2 class="text-xl font-bold text-gray-900">Upload de Imagens IA</h2>
@@ -42,7 +42,7 @@ export const UploadModal = ({ categories = [] }: { categories?: any[] }) => {
                 </p>
                 <button 
                   id="file-select-btn" 
-                  class="ai-button-primary text-white px-6 py-3 rounded-lg font-semibold mb-2"
+                  class="ai-button-primary text-slate-900 px-6 py-3 rounded-lg font-semibold mb-2"
                 >
                   <i class="fas fa-folder-open mr-2"></i>
                   Selecionar Arquivos
@@ -222,7 +222,7 @@ export const UploadModal = ({ categories = [] }: { categories?: any[] }) => {
                 <button 
                   type="submit"
                   id="upload-submit-btn"
-                  class="flex-1 ai-button-primary text-white px-4 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  class="flex-1 ai-button-primary text-slate-900 px-4 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <i class="fas fa-cloud-upload-alt mr-2"></i>
                   Publicar

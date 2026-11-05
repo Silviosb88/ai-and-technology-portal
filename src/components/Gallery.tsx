@@ -13,7 +13,7 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
             {/* Título e estatísticas */}
             <div class="flex items-center space-x-4">
               <div class="w-12 h-12 bg-gradient-to-br from-ai-primary to-ai-secondary rounded-xl flex items-center justify-center">
-                <i class="fas fa-images text-white text-xl"></i>
+                <i class="fas fa-images text-slate-900 text-xl"></i>
               </div>
               <div>
                 <h1 class="text-2xl font-bold bg-gradient-to-r from-ai-primary to-ai-secondary bg-clip-text text-transparent">
@@ -54,7 +54,7 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
               {/* Botão Modo Edição */}
               <button 
                 id="edit-mode-toggle"
-                class="px-4 py-2 bg-gray-500 text-white rounded-lg font-semibold hover:bg-gray-600 transition-colors flex items-center space-x-2"
+                class="px-4 py-2 bg-gray-500 text-slate-900 rounded-lg font-semibold hover:bg-gray-600 transition-colors flex items-center space-x-2"
                 onclick="window.galleryManager && window.galleryManager.toggleEditMode()"
               >
                 <i class="fas fa-edit"></i>
@@ -64,7 +64,7 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
               {/* Botão Upload */}
               <button 
                 id="upload-btn"
-                class="ai-button-primary text-white px-6 py-2 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all flex items-center space-x-2"
+                class="ai-button-primary text-slate-900 px-6 py-2 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all flex items-center space-x-2"
               >
                 <i class="fas fa-cloud-upload-alt"></i>
                 <span>Upload</span>
@@ -164,7 +164,7 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
                 <div class="relative overflow-hidden rounded-xl bg-white shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                   {/* Badge de Destaque */}
                   {image.is_featured && (
-                    <div class="absolute top-3 left-3 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
+                    <div class="absolute top-3 left-3 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900 px-2 py-1 rounded-full text-xs font-medium flex items-center">
                       <i class="fas fa-star mr-1"></i>
                       Destaque
                     </div>
@@ -183,7 +183,7 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div class="absolute bottom-3 left-3 right-3">
                         <div class="flex items-center justify-between">
-                          <div class="flex items-center space-x-2 text-white text-sm">
+                          <div class="flex items-center space-x-2 text-slate-900 text-sm">
                             <i class="fas fa-eye"></i>
                             <span>{image.view_count}</span>
                             <i class="fas fa-heart ml-2"></i>
@@ -193,15 +193,15 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
                             <button class="like-btn p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors backdrop-blur-sm" 
                                     data-image-id={image.id} 
                                     data-like-count={image.like_count || 0}>
-                              <i class="fas fa-heart text-white"></i>
+                              <i class="fas fa-heart text-slate-900"></i>
                             </button>
                             <button class="share-btn p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors backdrop-blur-sm" 
                                     data-image-id={image.id}>
-                              <i class="fas fa-share text-white"></i>
+                              <i class="fas fa-share text-slate-900"></i>
                             </button>
                             <button class="delete-btn hidden p-2 bg-red-500/80 rounded-full hover:bg-red-600/80 transition-colors backdrop-blur-sm" 
                                     data-image-id={image.id}>
-                              <i class="fas fa-trash text-white"></i>
+                              <i class="fas fa-trash text-slate-900"></i>
                             </button>
                           </div>
                         </div>
@@ -251,7 +251,7 @@ export const Gallery = ({ images = [], categories = [], currentCategory = null }
             </div>
             <h3 class="text-xl font-semibold text-gray-900 mb-2">Nenhuma imagem encontrada</h3>
             <p class="text-gray-600 mb-6">Tente ajustar os filtros ou fazer uma nova busca</p>
-            <button class="ai-button-primary text-white px-6 py-3 rounded-lg font-semibold">
+            <button class="ai-button-primary text-slate-900 px-6 py-3 rounded-lg font-semibold">
               <i class="fas fa-plus mr-2"></i>
               Adicionar Primeira Imagem
             </button>

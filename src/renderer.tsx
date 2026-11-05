@@ -26,9 +26,9 @@ export const renderer = jsxRenderer(({ children, title }) => {
                 theme: {
                   extend: {
                     colors: {
-                      'ai-primary': '#6366f1',
-                      'ai-secondary': '#8b5cf6', 
-                      'ai-accent': '#06b6d4',
+                      'ai-primary': '#1D4ED8',
+                      'ai-secondary': '#15803D', 
+                      'ai-accent': '#EAB308',
                       'ai-dark': '#1e293b',
                       'ai-light': '#f8fafc'
                     },

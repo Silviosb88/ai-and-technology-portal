@@ -6,8 +6,8 @@
 :root {
   --sidebar-width: 280px;
   --header-height: 70px;
-  --ai-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
-  --ai-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+  --ai-gradient: linear-gradient(135deg, #FDE047 0%, #BBF7D0 50%, #BFDBFE 100%);
+  --ai-shadow: 0 4px 20px rgba(29, 78, 216, 0.15);
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -36,10 +36,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 5px rgba(29, 78, 216, 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.8);
+    box-shadow: 0 0 20px rgba(29, 78, 216, 0.8);
   }
 }
 
@@ -78,7 +78,7 @@
 
 .ai-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 8px 25px rgba(29, 78, 216, 0.25);
 }
 
 /* Botões com gradiente IA */
@@ -89,14 +89,14 @@
 
 .ai-button-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.3);
 }
 
 /* Tags e badges */
 .ai-tag {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  color: #6366f1;
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.1), rgba(21, 128, 61, 0.1));
+  border: 1px solid rgba(29, 78, 216, 0.2);
+  color: #1D4ED8;
 }
 
 /* Galeria de imagens */
@@ -156,14 +156,14 @@
 }
 
 .nav-item:hover {
-  background: rgba(99, 102, 241, 0.1);
-  color: #6366f1;
+  background: rgba(29, 78, 216, 0.1);
+  color: #1D4ED8;
 }
 
 .nav-item.active {
-  background: linear-gradient(to right, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
-  color: #6366f1;
-  border-right: 2px solid #6366f1;
+  background: linear-gradient(to right, rgba(29, 78, 216, 0.15), rgba(21, 128, 61, 0.1));
+  color: #1D4ED8;
+  border-right: 2px solid #1D4ED8;
   font-weight: 500;
 }
 
