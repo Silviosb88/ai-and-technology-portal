@@ -167,7 +167,7 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
       </main>
       
       {/* Footer */}
-      <footer class="lg:ml-[280px] bg-gradient-to-r from-ai-dark to-slate-800 text-slate-900">
+      <footer class="lg:ml-[280px] bg-white border-t border-gray-200 text-slate-900">
         <div class="p-6">
           <div class="text-center">
             <div class="flex items-center justify-center mb-4">
