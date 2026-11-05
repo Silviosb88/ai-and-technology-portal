@@ -482,6 +482,22 @@ app.get('/beneficios', (c) => {
           ))}
         </div>
 
+        {/* Benefícios ocultos — CTA no hub */}
+        <a href="/beneficios-ocultos" class="block bg-gradient-to-r from-indigo-600 to-fuchsia-600 rounded-2xl p-6 text-white relative overflow-hidden hover:shadow-xl transition-all">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative z-10 flex items-center gap-4">
+            <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-gem text-white text-2xl"></i>
+            </div>
+            <div class="flex-1">
+              <span class="inline-block bg-white/25 px-3 py-0.5 rounded-full text-xs font-bold mb-1">PARA ESTUDANTES E PROFESSORES</span>
+              <h2 class="text-2xl font-bold mb-1">Benefícios ocultos — direitos que quase ninguém usa</h2>
+              <p class="text-white/90 text-sm">Meia-entrada (lei federal e leis estaduais), museus do IBRAM, cursos MEC com certificado, Adobe com desconto, Autodesk e GitHub para professores.</p>
+            </div>
+            <i class="fas fa-arrow-right text-2xl hidden sm:block"></i>
+          </div>
+        </a>
+
         <div class="ai-card bg-white rounded-2xl p-6">
           <h2 class="text-xl font-bold text-gray-900 mb-2">
             <i class="fas fa-flask text-purple-500 mr-2"></i>
@@ -870,6 +886,17 @@ app.get('/direitos-professores', (c) => {
           </a>
         </div>
 
+        {/* Benefícios ocultos — CTA */}
+        <div class="bg-gradient-to-r from-indigo-600 to-fuchsia-600 text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-4">
+          <div class="flex-1">
+            <h2 class="text-xl font-bold mb-1"><i class="fas fa-gem mr-2"></i>Benefícios ocultos — direitos que quase ninguém usa</h2>
+            <p class="text-sm text-white/90">Meia-entrada, museus federais, cursos do MEC com certificado, GitHub para professores, Canva e Autodesk — com nível de burocracia e fonte oficial em cada card.</p>
+          </div>
+          <a href="/beneficios-ocultos" class="bg-white text-ai-primary px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors whitespace-nowrap">
+            Abrir lista <i class="fas fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+
         <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
           <p class="text-sm text-amber-900">
             <i class="fas fa-info-circle mr-2"></i>
@@ -1147,6 +1174,348 @@ app.get('/relatorio-direitos-professores', (c) => {
       </div>
     </Layout>,
     { title: 'Relatório 2026 — Direitos dos Professores | Portal IA & Tech' }
+  )
+})
+
+// BENEFÍCIOS OCULTOS — direitos e vantagens pouco utilizados por quem estuda e quem ensina
+// Cada card verificado em fonte oficial em 05/11/2026; variações estaduais/municipais marcadas no card
+const VERIFICADO_OCULTOS_DATA = '2026-11-05'
+const VERIFICADO_OCULTOS = '05/11/2026'
+
+type ItemOculto = {
+  id: string
+  titulo: string
+  publico: 'estudante' | 'professor' | 'ambos'
+  publicoClasse: string
+  publicoLabel: string
+  burocracia: 'facil' | 'medio' | 'exigente'
+  burocraciaClasse: string
+  burocraciaLabel: string
+  resumo: string
+  pontos: string[]
+  aviso?: string
+  urlLabel: string
+  url: string
+  fonte: string
+}
+
+const ITENS_OCULTOS: ItemOculto[] = [
+  {
+    id: 'meia-entrada-estudante',
+    titulo: 'Meia-entrada em eventos culturais (lei federal)',
+    publico: 'estudante',
+    publicoClasse: 'bg-blue-100 text-blue-800',
+    publicoLabel: '🎓 Estudante',
+    burocracia: 'facil',
+    burocraciaClasse: 'bg-green-100 text-green-800',
+    burocraciaLabel: '🟢 Fácil — só apresentar a CIE',
+    resumo: 'Metade do preço do ingresso em cinemas, teatros, shows, espetáculos e eventos esportivos — direito garantido por lei federal.',
+    pontos: [
+      'A Lei nº 12.933/2013 garante meia-entrada a: estudantes (com Carteira de Identificação Estudantil — CIE, modelo único nacional), idosos, pessoas com deficiência e jovens de 15 a 29 anos comprovadamente de baixa renda (Cadastro Único).',
+      'A CIE (carteirinha estudantil oficial) é o documento de comprovação, emitida por entidades como UNE, UBES e ANPG.',
+      'Vale em eventos artísticos, culturais e esportivos em todo o território nacional.'
+    ],
+    urlLabel: 'Abrir portal oficial da Meia-Entrada',
+    url: 'https://www.meiaentrada.org.br/',
+    fonte: 'Lei 12.933/2013 — texto original na Câmará dos Deputados; portal oficial Meia-Entrada'
+  },
+  {
+    id: 'meia-entrada-professor',
+    titulo: 'Meia-entrada e Carteira do Professor (leis estaduais)',
+    publico: 'professor',
+    publicoClasse: 'bg-rose-100 text-rose-800',
+    publicoLabel: '🍎 Professor(a)',
+    burocracia: 'medio',
+    burocraciaClasse: 'bg-amber-100 text-amber-800',
+    burocraciaLabel: '🟡 Médio — exige carteirinha do estado',
+    resumo: 'Professores da educação básica também têm meia-entrada — mas por leis estaduais e municipais, não pela lei federal.',
+    pontos: [
+      'A Lei 12.933/2013 (federal) NÃO inclui professores — o direito do docente vem de leis de cada estado e município.',
+      'Órgãos estaduais de defesa do consumidor listam professores da educação básica (pública e privada) entre os beneficiários da meia-entrada em seus territórios (ex.: Procon-SC).',
+      'Exemplo de lei estadual: São Paulo, Lei nº 16.448/2014 — meia-entrada para professores em efetivo exercício (fonte secundária, a confirmar no texto oficial do estado).',
+      'Carteiras de professor estaduais costumam desbloquear também outros benefícios locais de cultura (e, em alguns estados, turismo) — varia conforme onde você leciona.'
+    ],
+    aviso: 'A cobertura varia por estado e município: confirme a lei do seu território e o que a bilheteria do evento aceita.',
+    urlLabel: 'Ver exemplo — página oficial do Procon-SC sobre meia-entrada',
+    url: 'https://www.procon.sc.gov.br/lei-da-meia-entrada-entenda-quem-tem-o-direito-e-como-comprovar/',
+    fonte: 'Procon-SC (órgão estadual oficial); Lei estadual SP 16.448/2014 (fonte secundária, a confirmar)'
+  },
+  {
+    id: 'museus-ibram',
+    titulo: 'Museus e espaços culturais federais (IBRAM)',
+    publico: 'ambos',
+    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoLabel: '✨ Ambos',
+    burocracia: 'facil',
+    burocraciaClasse: 'bg-green-100 text-green-800',
+    burocraciaLabel: '🟢 Fácil — sem verificação acadêmica',
+    resumo: 'Rede de museus federais gerida pelo IBRAM, com visitação aberta ao público — condições de ingresso variam por museu.',
+    pontos: [
+      'O Instituto Brasileiro de Museus (IBRAM) gere dezenas de museus federais (Museu Histórico Nacional, Museu da República, museus de SC, MG, PE e outros) — portais oficiais: gov.br/museus e visite.museus.gov.br.',
+      'A política de gratuidade não é uniforme: cada museu define ingresso, isenções e agendamento — confirme na página da instituição antes de visitar.',
+      'Programação educativa frequente e aberta, como a Primavera dos Museus (edição 2026 com o tema "Museus para todas as pessoas").'
+    ],
+    aviso: 'Gratuidade específica de cada museu: a confirmar na página oficial da instituição — o portal não afirma isenção sem verificação individual.',
+    urlLabel: 'Abrir plataforma Visite Museus (IBRAM)',
+    url: 'https://visite.museus.gov.br/',
+    fonte: 'IBRAM — Portal Gov.br; plataforma Visite Museus; Gov.br (Primavera dos Museus 2026)'
+  },
+  {
+    id: 'avamec',
+    titulo: 'AVAMEC — cursos gratuitos do MEC com certificado',
+    publico: 'ambos',
+    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoLabel: '✨ Ambos',
+    burocracia: 'facil',
+    burocraciaClasse: 'bg-green-100 text-green-800',
+    burocraciaLabel: '🟢 Fácil — cadastro gratuito',
+    resumo: 'Ambiente Virtual de Aprendizagem do MEC: cursos online gratuitos com certificado, em áreas como ciências, pedagogia, matemática, português e idiomas.',
+    pontos: [
+      'Plataforma oficial do Ministério da Educação para ações formativas — cursos de autoinstrução com certificado emitido pelo sistema.',
+      'Aberto a professores, estudantes e público geral; há também trilhas de aprendizagem e autodiagnóstico.',
+      'Aplicativo oficial AVAMEC Mobile (Google Play) para acompanhar cursos e certificados pelo celular.'
+    ],
+    urlLabel: 'Abrir AVAMEC (avamec.mec.gov.br)',
+    url: 'https://avamec.mec.gov.br/',
+    fonte: 'AVAMEC — plataforma oficial do MEC; página do serviço no Gov.br'
+  },
+  {
+    id: 'escola-virtual-gov',
+    titulo: 'Escola Virtual Gov — cursos gratuitos com certificado',
+    publico: 'ambos',
+    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoLabel: '✨ Ambos',
+    burocracia: 'facil',
+    burocraciaClasse: 'bg-green-100 text-green-800',
+    burocraciaLabel: '🟢 Fácil — cadastro gratuito',
+    resumo: 'Plataforma do Governo Federal com cursos de autoinstrução — a própria página oficial confirma: gratuitos, sem tutoria e com certificado.',
+    pontos: [
+      'Catálogo com áreas como governo digital, compras públicas, sustentabilidade, orçamento e finanças, segurança e gestão.',
+      'Segundo as perguntas frequentes oficiais: todos os cursos são de autoinstrução, sem tutoria, com certificado e gratuitos.',
+      'Tem validador oficial de documentos/certificados emitidos pela plataforma.'
+    ],
+    urlLabel: 'Abrir Escola Virtual Gov',
+    url: 'https://www.escolavirtual.gov.br/',
+    fonte: 'Escola Virtual Gov — perguntas frequentes oficiais; catálogo de cursos'
+  },
+  {
+    id: 'uab-capes',
+    titulo: 'UAB/CAPES — ensino superior e extensão a distância públicas',
+    publico: 'ambos',
+    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoLabel: '✨ Ambos',
+    burocracia: 'medio',
+    burocraciaClasse: 'bg-amber-100 text-amber-800',
+    burocraciaLabel: '🟡 Médio — vagas por edital',
+    resumo: 'Sistema Universidade Aberta do Brasil: cursos de graduação, especialização e extensão a distância oferecidos por universidades públicas.',
+    pontos: [
+      'O UAB é um sistema integrado por universidades públicas que oferta cursos de nível superior e extensão a distância para a população, coordenado pela CAPES.',
+      'As vagas são abertas por editais de cada instituição/polo — exige acompanhar os editais (por isso a burocracia média).',
+      'Muitos polos UAB oferecem cursos de extensão gratuitos ou com custo zero para a comunidade externa (varia por universidade).'
+    ],
+    urlLabel: 'Abrir página oficial do UAB (Gov.br/CAPES)',
+    url: 'https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/articulacao-e-inovacao-em-educacao-aberta/sistema-universidade-aberta-do-brasil',
+    fonte: 'Gov.br/CAPES — Sistema Universidade Aberta do Brasil'
+  },
+  {
+    id: 'github-teachers',
+    titulo: 'GitHub Education para professores (Global Campus)',
+    publico: 'professor',
+    publicoClasse: 'bg-rose-100 text-rose-800',
+    publicoLabel: '🍎 Professor(a)',
+    burocracia: 'medio',
+    burocraciaClasse: 'bg-amber-100 text-amber-800',
+    burocraciaLabel: '🟡 Médio — verificação de vínculo',
+    resumo: 'Educadores em exercício em instituições acreditadas têm acesso gratuito aos benefícios e recursos do GitHub Education.',
+    pontos: [
+      'Segundo a página oficial: para acessar os benefícios do GitHub Education é necessário ser educador(a) em exercício em uma instituição de ensino acreditada — benefício gratuito.',
+      'O Global Campus reúne em um só lugar recursos educacionais, programas e eventos para professores.',
+      'A candidatura é feita com verificação de vínculo (a documentação oficial do GitHub orienta o passo a passo).'
+    ],
+    urlLabel: 'Abrir GitHub Education — Teachers',
+    url: 'https://github.com/education/teachers',
+    fonte: 'GitHub Education — Teachers (oficial); GitHub Docs — candidatura de professores'
+  },
+  {
+    id: 'google-workspace-edu',
+    titulo: 'Google Workspace for Education + treinamento de educadores',
+    publico: 'ambos',
+    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoLabel: '✨ Ambos',
+    burocracia: 'facil',
+    burocraciaClasse: 'bg-green-100 text-green-800',
+    burocraciaLabel: '🟢 Fácil — via instituição',
+    resumo: 'Pacote educacional do Google (Docs, Drive, Meet, Classroom) sem custo para instituições qualificadas — e treinamento gratuito para professores no Learning Center.',
+    pontos: [
+      'A edição Fundamentals do Google Workspace for Education é oferecida sem custo para instituições qualificadas (o acesso do aluno e do professor vem pela conta escolar da instituição).',
+      'O Google for Education Learning Center oferece cursos gratuitos para educadores — incluindo o curso introdutório Google Workspace for Education Fundamentals, para quem está começando.',
+      'Complementa os guias de estudantes do portal: a mesma conta escolar dá acesso ao Workspace e à rotina digital da turma.'
+    ],
+    urlLabel: 'Abrir Google for Education Learning Center',
+    url: 'https://edu.google.com/learning-center/',
+    fonte: 'Google for Education — Learning Center (oficial); edições do Workspace for Education'
+  },
+  {
+    id: 'canva-education',
+    titulo: 'Canva for Education — 100% gratuito para professores',
+    publico: 'professor',
+    publicoClasse: 'bg-rose-100 text-rose-800',
+    publicoLabel: '🍎 Professor(a)',
+    burocracia: 'facil',
+    burocraciaClasse: 'bg-green-100 text-green-800',
+    burocraciaLabel: '🟢 Fácil — verificação simples',
+    resumo: 'Recursos premium do Canva sem custo para professores verificados da educação básica (K-12) e seus alunos — sem testes nem paywalls.',
+    pontos: [
+      'Segundo a página oficial: 100% gratuito para professores verificados e seus estudantes, sem testes, paywalls ou custos ocultos.',
+      'Critérios de elegibilidade rígidos e documentados na página oficial de diretrizes (professor verificado da educação básica).',
+      'O professor verificado estende o acesso aos seus alunos — um cadastro beneficia a turma inteira.'
+    ],
+    urlLabel: 'Abrir Canva for Education',
+    url: 'https://www.canva.com/education/teachers/',
+    fonte: 'Canva for Education — Teachers (oficial); diretrizes de elegibilidade'
+  },
+  {
+    id: 'adobe-education',
+    titulo: 'Adobe Creative Cloud — desconto educacional (não é gratuito)',
+    publico: 'ambos',
+    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoLabel: '✨ Ambos',
+    burocracia: 'facil',
+    burocraciaClasse: 'bg-green-100 text-green-800',
+    burocraciaLabel: '🟢 Fácil — verificação de matrícula',
+    resumo: 'Estudantes e professores têm desconto agressivo no pacote da Adobe — redução de 71% em mais de 20 aplicativos (Photoshop, Illustrator, Premiere e outros).',
+    pontos: [
+      'A página oficial da Adobe anuncia o Creative Cloud Pro para estudantes e professores com desconto de 71% em mais de 20 aplicativos.',
+      'Elegibilidade oficial: ter pelo menos 13 anos e estar matriculado/vinculado a universidade ou faculdade acreditada (pública ou privada) — professores e funcionários também se qualificam.',
+      'Atenção: é um DESCONTO, não gratuidade — o plano educacional é pago (com valor reduzido). Confira sempre o preço atual na página oficial antes de assinar.'
+    ],
+    urlLabel: 'Abrir Adobe Creative Cloud para estudantes e professores',
+    url: 'https://www.adobe.com/education/students/creativecloud.html',
+    fonte: 'Adobe — Creative Cloud para estudantes e professores (oficial); critérios de elegibilidade'
+  },
+  {
+    id: 'autodesk-education',
+    titulo: 'Autodesk Education — 1 ano de acesso gratuito (renovável)',
+    publico: 'ambos',
+    publicoClasse: 'bg-purple-100 text-purple-800',
+    publicoLabel: '✨ Ambos',
+    burocracia: 'medio',
+    burocraciaClasse: 'bg-amber-100 text-amber-800',
+    burocraciaLabel: '🟡 Médio — verificação anual',
+    resumo: 'Estudantes e educadores qualificados têm 1 ano de acesso gratuito aos softwares Autodesk (AutoCAD, Fusion e outros) para fins educacionais.',
+    pontos: [
+      'O plano Autodesk Education oferece acesso gratuito por 1 ano aos softwares e serviços da Autodesk para estudantes e educadores qualificados, renovável anualmente enquanto durar a elegibilidade.',
+      'O acesso é single-user, para uso educacional (aprendizado, ensino, projetos acadêmicos) — não para uso comercial.',
+      'A confirmação de elegibilidade é feita no fluxo de cadastro, com documentação da instituição.'
+    ],
+    urlLabel: 'Abrir Autodesk Education',
+    url: 'https://www.autodesk.com/education/home',
+    fonte: 'Autodesk — Student and Educator Software Resources (oficial)'
+  }
+]
+
+app.get('/beneficios-ocultos', (c) => {
+  return c.render(
+    <Layout currentPage="ocultos">
+      <div class="space-y-8">
+        <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10"></div>
+          <div class="relative z-10">
+            <span class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3">
+              💎 Benefícios ocultos — para quem estuda e para quem ensina
+            </span>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">Direitos que quase ninguém usa</h1>
+            <p class="text-lg text-white/90">
+              Meia-entrada, museus, cursos com certificado e licenças de software que a maioria não sabe que tem — perdidos na correria do dia a dia ou na burocracia mal explicada. Cada card traz o que é, para quem vale, quanto complica ativar e a fonte oficial.
+            </p>
+            <p class="text-sm text-white/80 mt-3">
+              <i class="fas fa-check-circle mr-1"></i>
+              Verificado em fontes oficiais em {VERIFICADO_OCULTOS}
+            </p>
+          </div>
+        </div>
+
+        {/* Filtro por perfil — mostra só o que vale para o visitante */}
+        <div class="ai-card bg-white rounded-2xl p-5">
+          <p class="text-sm font-semibold text-gray-700 mb-3">
+            <i class="fas fa-user-check text-ai-primary mr-2"></i>
+            Mostre só o que vale para você:
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <button class="filtro-publico bg-ai-primary text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors" data-filtro="todos">✨ Mostrar tudo</button>
+            <button class="filtro-publico bg-white text-gray-700 border border-gray-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors" data-filtro="estudante">🎓 Sou estudante</button>
+            <button class="filtro-publico bg-white text-gray-700 border border-gray-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors" data-filtro="professor">🍎 Sou professor(a)</button>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 mt-4 text-xs text-gray-500">
+            <span><strong>Legenda de burocracia:</strong></span>
+            <span class="bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-semibold">🟢 Fácil</span>
+            <span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-semibold">🟡 Média</span>
+            <span class="bg-red-100 text-red-800 px-2 py-0.5 rounded-full font-semibold">🔴 Exigente</span>
+            <span>— quanto esforço leva para ativar o benefício.</span>
+          </div>
+        </div>
+
+        {/* Grid de cards */}
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {ITENS_OCULTOS.map((o) => (
+            <div class="ai-card bg-white rounded-2xl p-6 flex flex-col oculto-card" data-publico={o.publico} data-verif={VERIFICADO_OCULTOS_DATA}>
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class={`text-xs font-bold px-2.5 py-1 rounded-full ${o.publicoClasse}`}>{o.publicoLabel}</span>
+                <span class={`text-xs font-bold px-2.5 py-1 rounded-full ${o.burocraciaClasse}`}>{o.burocraciaLabel}</span>
+                <span class="verif-badge text-[11px] font-semibold px-2 py-0.5 rounded-full bg-green-100 text-green-800" title="Idade da verificação — o portal reconfirma cada card periodicamente">Verificado em {VERIFICADO_OCULTOS}</span>
+              </div>
+              <h2 class="text-lg font-bold text-gray-900 mb-2">{o.titulo}</h2>
+              <p class="text-gray-700 text-sm mb-3">{o.resumo}</p>
+              <ul class="space-y-2 mb-4 flex-1">
+                {o.pontos.map((p) => (
+                  <li class="text-sm text-gray-700 flex items-start">
+                    <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+              {o.aviso && (
+                <div class="bg-amber-50 border-l-4 border-amber-400 rounded-r-lg p-3 mb-3">
+                  <p class="text-xs text-amber-900"><i class="fas fa-exclamation-triangle mr-1"></i> {o.aviso}</p>
+                </div>
+              )}
+              <div class="pt-3 border-t border-gray-100">
+                <a href={o.url} target="_blank" rel="noopener noreferrer" class="ai-button-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all inline-block">
+                  {o.urlLabel} <i class="fas fa-external-link-alt ml-1"></i>
+                </a>
+              </div>
+              <p class="text-[11px] text-gray-400 mt-2">Fonte: {o.fonte}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Já catalogados no portal */}
+        <div class="ai-card bg-white rounded-2xl p-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-2"><i class="fas fa-link text-ai-primary mr-2"></i>Benefícios de tecnologia já catalogados</h2>
+          <p class="text-gray-600 text-sm mb-4">Microsoft 365 Education (A1), Azure for Students (US$ 100 sem cartão), GitHub Student Pack (com Copilot) e Google AI Pro para estudantes já têm guias completos no portal — com verificação na fonte oficial:</p>
+          <a href="/beneficios" class="ai-button-primary text-white px-5 py-2.5 rounded-lg font-semibold inline-block hover:shadow-lg transition-all">
+            <i class="fas fa-graduation-cap mr-2"></i>Ver guias de benefícios
+          </a>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-gray-900 mb-2"><i class="fas fa-shield-alt text-blue-500 mr-2"></i>Metodologia (a mesma de todo o portal)</h2>
+          <ul class="text-gray-700 text-sm space-y-2">
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Cada card cita a fonte oficial onde a regra foi verificada em {VERIFICADO_OCULTOS}.</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>O que varia por estado/município está marcado no card — nunca tratamos regra local como nacional.</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>O selo de idade da verificação em cada card mostra há quanto tempo aquele conteúdo foi revisado.</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Encontrou algo desatualizado? Avise em <a href="mailto:contato@iaetech.com.br" class="text-ai-primary font-semibold hover:underline">contato@iaetech.com.br</a>.</li>
+          </ul>
+        </div>
+
+        <p class="text-xs text-gray-500 text-center">
+          Conteúdo informativo e educacional. Condições, preços e elegibilidade podem mudar — sempre confirme na fonte oficial antes de decidir. Todas as marcas citadas pertencem a seus respectivos titulares (uso nominativo — art. 132, IV, da Lei 9.279/96).
+        </p>
+      </div>
+
+      <script dangerouslySetInnerHTML={{ __html: `(function(){var base=new Date('${VERIFICADO_OCULTOS_DATA}');var dias=Math.floor((Date.now()-base.getTime())/86400000);document.querySelectorAll('[data-verif]').forEach(function(el){var b=el.querySelector('.verif-badge');if(!b)return;var cls='bg-green-100 text-green-800';var txt='Verificado em ${VERIFICADO_OCULTOS}' + (dias===0?' — hoje':dias>90?' — REVISÃO ATRASADA ('+dias+' dias)':dias>30?' — ('+dias+' dias atrás, agendar revisão)':'');if(dias>90){cls='bg-red-100 text-red-800'}else if(dias>30){cls='bg-amber-100 text-amber-800'}b.className='verif-badge text-[11px] font-semibold px-2 py-0.5 rounded-full '+cls;b.textContent=txt;});var btns=document.querySelectorAll('.filtro-publico');var cards=document.querySelectorAll('.oculto-card');function ativa(botao){btns.forEach(function(x){x.classList.remove('bg-ai-primary','text-white');x.classList.add('bg-white','text-gray-700','border-gray-200');});botao.classList.add('bg-ai-primary','text-white');botao.classList.remove('bg-white','text-gray-700','border-gray-200');}btns.forEach(function(b){b.addEventListener('click',function(){var alvo=b.getAttribute('data-filtro');ativa(b);cards.forEach(function(c){var pub=c.getAttribute('data-publico');var mostrar=alvo==='todos'||pub===alvo||pub==='ambos';c.style.display=mostrar?'':'none';});});});})();` }} />
+    </Layout>,
+    { title: 'Benefícios ocultos — para quem estuda e quem ensina | Portal IA & Tech' }
   )
 })
 

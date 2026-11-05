@@ -88,6 +88,12 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
                 <i class="fas fa-chalkboard-teacher"></i>
                 <span>Professores</span>
               </a>
+
+              {/* Benefícios ocultos (estudantes + professores) */}
+              <a href="/beneficios-ocultos" class={`nav-item ${currentPage === 'ocultos' ? 'active' : ''}`}>
+                <i class="fas fa-gem"></i>
+                <span>Benefícios ocultos</span>
+              </a>
               
               {/* Galeria de IAs */}
               <a href="/galeria" class={`nav-item ${currentPage === 'galeria' ? 'active' : ''}`}>
@@ -186,6 +192,9 @@ export const Layout = ({ children, currentPage = 'home' }: { children: any, curr
               </a>
               <a href="/direitos-professores" class="text-gray-300 hover:text-white transition-colors">
                 <i class="fas fa-chalkboard-teacher text-xl"></i>
+              </a>
+              <a href="/beneficios-ocultos" class="text-gray-300 hover:text-white transition-colors">
+                <i class="fas fa-gem text-xl"></i>
               </a>
             </div>
             
